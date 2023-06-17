@@ -1,0 +1,185 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "graduation-project": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/graduation-project",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/assets/styles/font.css",
+              "src/assets/styles/bootstrap.min.css",
+              "src/assets/styles/custom.css",
+              "src/assets/styles/style.css",
+              "src/assets/styles/vendors.css",
+              "src/assets/styles/vendors.unminified.css",
+              "src/assets/styles/admin.css",
+              "src/assets/styles/blog.css",
+              "src/assets/styles/bootstrap.css",
+              "src/assets/styles/extralayers.css",
+              "src/assets/styles/finaltilesgallery.css",
+              "src/assets/styles/flavr.min.css",
+              "src/assets/styles/lightbox2.css",
+              "src/assets/styles/shop.css",
+              "src/assets/styles/timeline.css",
+              "src/assets/styles/colors/color-aqua.css",
+              "src/assets/styles/colors/color-blue.css",
+              "src/assets/styles/colors/color-green.css",
+              "src/assets/styles/colors/color-orange.css",
+              "src/assets/styles/fontello/css/all-fontello.min.css",
+              "src/assets/styles/fontello/css/fontello.css",
+              "src/assets/styles/fontello/css/fontello-codes.css",
+              "src/assets/styles/fontello/css/icon_set_1.css",
+              "src/assets/styles/fontello/css/icon_set_2.css",
+              "src/assets/styles/icon_restaurant/css/icon_restaurants.css",
+              "src/assets/styles/new_icons/css/icon_set_1.css",
+              "src/assets/styles/new_icons/css/icon_set_2.css",
+              "src/assets/styles/new_icons/css/icon_set_all.min.css"
+            ],
+            "scripts": [
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/bootstrap.bundle.js",
+              "src/assets/js/bootstrap-notify.js",
+              "src/assets/js/cat_nav_mobile.js",
+              "src/assets/js/common_scripts.js",
+              "src/assets/js/common_scripts_min.js",
+              "src/assets/js/daterangepicker.js",
+              "src/assets/js/flavr.min.js",
+              "src/assets/js/footer-reveal.js",
+              "src/assets/js/functions.js",
+              "src/assets/js/hideShowPassword.js",
+              "src/assets/js/infobox.js",
+              "src/assets/js/input_qty.js",
+              "src/assets/js/ion.rangeSlider.js",
+              "src/assets/js/isotope.min.js",
+              "src/assets/js/jquery.bxslider.min.js",
+              "src/assets/js/jquery.cookiebar.js",
+              "src/assets/js/jquery.ddslick.js",
+              "src/assets/js/jquery.finaltilesgallery.js",
+              "src/assets/js/jquery.magnific-popup.js",
+              "src/assets/js/jquery.selectbox-0.2.js",
+              "src/assets/js/jquery.sliderPro.js",
+              "src/assets/js/jquery.tweet.js",
+              "src/assets/js/jquery.validate.js",
+              "src/assets/js/jquery-migrate.min.js",
+              "src/assets/js/lightbox2.js",
+              "src/assets/js/map.js",
+              "src/assets/js/map_contact.js",
+              "src/assets/js/map_full_page.js",
+              "src/assets/js/map_home.js",
+              "src/assets/js/map_hotels.js",
+              "src/assets/js/map_listing_hotels.js",
+              "src/assets/js/map_listing_restaurants.js",
+              "src/assets/js/map_listing_tours.js",
+              "src/assets/js/map_restaurants.js",
+              "src/assets/js/map_single_restaurant.js",
+              "src/assets/js/map_transfer.js",
+              "src/assets/js/modernizr.js",
+              "src/assets/js/moment.min.js",
+              "src/assets/js/morphext.js",
+              "src/assets/js/notify_func.js",
+              "src/assets/js/owl.carousel.js",
+              "src/assets/js/parallax.js",
+              "src/assets/js/pop_up.js",
+              "src/assets/js/pop_up_func.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/pw_strenght.js",
+              "src/assets/js/ResizeSensor.js",
+              "src/assets/js/revolution_func.js",
+              "src/assets/js/switcher.js",
+              "src/assets/js/tabs.js",
+              "src/assets/js/theia-sticky-sidebar.js",
+              "src/assets/js/video_header.js",
+              "src/assets/js/wow.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "graduation-project:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "graduation-project:build:production"
+            },
+            "development": {
+              "browserTarget": "graduation-project:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "graduation-project:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "286ded29-c7d0-4f0f-8b1e-e1e0fdc1e662"
+  }
+}
