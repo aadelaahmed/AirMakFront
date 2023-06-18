@@ -183,7 +183,7 @@ export class Property {
     this._propertyNo = value;
   }
 
-  get images(): [] {
+  get image(): Image[] {
     return this._images;
   }
 

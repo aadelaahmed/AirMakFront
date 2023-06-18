@@ -2,12 +2,14 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
-import {AddPropertyComponent} from "./components/add-property-component/add-property-component.component";
+import {EditPropertyComponent} from "./components/edit-property/edit-property.component";
+import {AddPropertyComponent} from "./components/add-property/add-property.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
-  {path: 'property', component: AddPropertyComponent, title: 'Add New Property'},
+  {path: 'edit/property', component: EditPropertyComponent, title: 'Edit Property'},
+  {path: 'add/property', component: AddPropertyComponent, title: 'Add Property'},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
 

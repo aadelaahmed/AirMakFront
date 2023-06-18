@@ -8,11 +8,14 @@ import {HeaderComponent} from './components/shared/header/header.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
 import {FormsModule} from "@angular/forms";
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {firebaseConfig} from "../environments/environment";
+import { EditPropertyComponent } from './components/edit-property/edit-property.component';
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
+import { ExploringComponent } from './components/exploring/exploring.component';
+import {AddPropertyComponent} from "./components/add-property/add-property.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,9 @@ import {firebaseConfig} from "../environments/environment";
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
+    EditPropertyComponent,
+    PropertyDetailsComponent,
+    ExploringComponent,
     AddPropertyComponent
   ],
   imports: [
