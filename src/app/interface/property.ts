@@ -1,28 +1,28 @@
-import { Address } from './Address';
 import { Review } from './review';
 import { User } from './user';
 // @ts-ignore
 import { Image } from './image';
+import {Address} from "./address";
 export class Property {
-  private id: number;
-  private user: User;
-  private address: Address;
-  private propertyType: string;
-  private description: string;
-  private price: number;
-  private availability: number;
-  private listingType: string;
-  private floorNo: number;
-  private wifi: number;
-  private bedRoomCount: number;
-  private bathRoomCount: number;
-  private airCondition: number;
-  private tv: number;
-  private propertyNo: number;
-  private images: Image[];
-  private reviews: Review[];
+  private _id: number;
+  private _user: User;
+  private _address: Address;
+  private _propertyType: string;
+  private _description: string;
+  private _price: number;
+  private _availability: number;
+  private _listingType: string;
+  private _floorNo: number;
+  private _wifi: number;
+  private _bedRoomCount: number;
+  private _bathRoomCount: number;
+  private _airCondition: number;
+  private _tv: number;
+  private _propertyNo: number;
+  private _images: Image[];
+  private _reviews: Review[];
 
-  constructor(
+  /*constructor(
     id: number,
     user: User,
     address: Address,
@@ -58,10 +58,146 @@ export class Property {
     this.propertyNo = propertyNo;
     this.images = images;
     this.reviews = reviews;
-  }
+  }*/
 
   // Getters and setters
   // ...
 
-  // Add additional methods or logic as needed
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
+
+  get user(): User {
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
+
+  get address(): Address {
+    return this._address;
+  }
+
+  set address(value: Address) {
+    this._address = value;
+  }
+
+  get propertyType(): string {
+    return this._propertyType;
+  }
+
+  set propertyType(value: string) {
+    this._propertyType = value;
+  }
+
+  get description(): string {
+    return this._description;
+  }
+
+  set description(value: string) {
+    this._description = value;
+  }
+
+  get price(): number {
+    return this._price;
+  }
+
+  set price(value: number) {
+    this._price = value;
+  }
+
+  get availability(): number {
+    return this._availability;
+  }
+
+  set availability(value: number) {
+    this._availability = value;
+  }
+
+  get listingType(): string {
+    return this._listingType;
+  }
+
+  set listingType(value: string) {
+    this._listingType = value;
+  }
+
+  get floorNo(): number {
+    return this._floorNo;
+  }
+
+  set floorNo(value: number) {
+    this._floorNo = value;
+  }
+
+  get wifi(): number {
+    return this._wifi;
+  }
+
+  set wifi(value: number) {
+    this._wifi = value;
+  }
+
+  get bedRoomCount(): number {
+    return this._bedRoomCount;
+  }
+
+  set bedRoomCount(value: number) {
+    this._bedRoomCount = value;
+  }
+
+  get bathRoomCount(): number {
+    return this._bathRoomCount;
+  }
+
+  set bathRoomCount(value: number) {
+    this._bathRoomCount = value;
+  }
+
+  get airCondition(): number {
+    return this._airCondition;
+  }
+
+  set airCondition(value: number) {
+    this._airCondition = value;
+  }
+
+  get tv(): number {
+    return this._tv;
+  }
+
+  set tv(value: number) {
+    this._tv = value;
+  }
+
+  get propertyNo(): number {
+    return this._propertyNo;
+  }
+
+  set propertyNo(value: number) {
+    this._propertyNo = value;
+  }
+
+  get images(): [] {
+    return this._images;
+  }
+
+  set images(value: []) {
+    this._images = value;
+  }
+
+  get reviews(): Review[] {
+    return this._reviews;
+  }
+
+  set reviews(value: Review[]) {
+    this._reviews = value;
+  }
+
+// Add additional methods or logic as needed
 }

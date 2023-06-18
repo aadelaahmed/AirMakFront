@@ -8,6 +8,8 @@ import {HeaderComponent} from './components/shared/header/header.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AddPropertyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
