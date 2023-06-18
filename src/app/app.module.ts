@@ -10,7 +10,9 @@ import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
 import {FormsModule} from "@angular/forms";
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {firebaseConfig} from "../environments/environment";
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     NgOptimizedImage,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
