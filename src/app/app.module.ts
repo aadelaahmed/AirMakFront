@@ -8,10 +8,11 @@ import {HeaderComponent} from './components/shared/header/header.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import { AddApartmentComponent } from './components/add-property-component/add-property-component.component';
-import {FormsModule} from "@angular/forms";
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import {AddApartmentComponent} from './components/add-property-component/add-property-component.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     AppRoutingModule,
     NgOptimizedImage,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
