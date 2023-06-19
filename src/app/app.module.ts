@@ -8,8 +8,10 @@ import {HeaderComponent} from './components/shared/header/header.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
+import { AddApartmentComponent } from './components/add-property-component/add-property-component.component';
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {FormsModule} from "@angular/forms";
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    AddPropertyComponent
+    AddApartmentComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

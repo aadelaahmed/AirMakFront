@@ -1,8 +1,9 @@
-import { Review } from './review';
-import { User } from './user';
+import {Review} from './review';
+import {User} from './user';
 // @ts-ignore
-import { Image } from './image';
+import {Image} from './image';
 import {Address} from "./address";
+
 export class Property {
   private _id: number;
   private _user: User;
@@ -183,11 +184,11 @@ export class Property {
     this._propertyNo = value;
   }
 
-  get images(): [] {
+  get images(): Image[] {
     return this._images;
   }
 
-  set images(value: []) {
+  set images(value: Image[]) {
     this._images = value;
   }
 
