@@ -10,9 +10,10 @@ import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AddApartmentComponent} from './components/add-property-component/add-property-component.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
+import {LoginComponent} from './components/user/login/login.component';
+import {RegisterComponent} from './components/user/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     PageNotFoundComponent,
     AddApartmentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import {HttpClientModule} from "@angular/common/http";
     NgOptimizedImage,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -40,7 +40,7 @@ export class RegisterComponent {
     this.http.post('http://localhost:8080/users/register', requestRegistrationDTO).subscribe(
       (response: any) => {
         console.log('User registered successfully', response);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Error occurred while registering user', error);
