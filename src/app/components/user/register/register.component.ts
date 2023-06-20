@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 
-import { PopupMessageComponent } from '../shared/popup-message-component/popup-message-component.component';
+import {PopupMessageComponent} from '../../shared/popup-message-component/popup-message-component.component';
+import {UserService} from "../../../services/user.service";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,7 @@ export class RegisterComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private dialog: MatDialog,
+    private popupService: PopupService,
     private formBuilder: FormBuilder
   ) {
     this.registerForm = this.formBuilder.group({
@@ -31,13 +33,13 @@ export class RegisterComponent {
         Validators.minLength(8),
         Validators.maxLength(20),
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
-      )]],
+        )]],
       confirmPassword: ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(20),
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
-      )]],
+        )]],
     });
   }
 
@@ -64,35 +66,12 @@ export class RegisterComponent {
     this.http.post('http://localhost:8080/users/register', requestRegistrationDTO).subscribe(
       (response: any) => {
         console.log('User registered successfully', response);
-
-        const dialogRef: MatDialogRef<PopupMessageComponent> = this.dialog.open(PopupMessageComponent, {
-          width: '400px',
-          data: {
-            message: 'User Registered Successfully',
-            borderColor: '#e14d67',
-            borderSize: '2px'
-          }
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-          this.router.navigate(['/home']);
-        });
+        this.popupService.successPopup("User registered successfully")
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Error Occurred While Registering User', error);
-
-        const dialogRef: MatDialogRef<PopupMessageComponent> = this.dialog.open(PopupMessageComponent, {
-          width: '520px',
-          data: {
-            message: 'Error Occurred While Registering User',
-            borderColor: '#e14d67',
-            borderSize: '2px'
-          }
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-          // Handle the error, display an error message, etc.
-        });
+        this.popupService.errorPopup("Error Occurred While Registering User")
       }
     );
   }
@@ -114,7 +93,7 @@ export class RegisterComponent {
 
         const birthdate = new Date(control.value);
         if (birthdate > minAgeDate) {
-          return { minimumAge: true };
+          return {minimumAge: true};
         }
       }
 

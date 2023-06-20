@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginDTO} from "../../../dtos/users/login-dto.model";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public userService: UserService,
+    private popupService: PopupService,
     private router: Router
   ) {
   }
@@ -33,11 +35,12 @@ export class LoginComponent implements OnInit {
       this.userService.login(user).subscribe(
         {
           next: response => {
-            console.log("User is login", response);
-            this.router.navigate(['/home'])
+            console.log(response.payload.firstName)
+            this.popupService.successPopup("Welcome, " + response.payload.firstName);
+            this.router.navigate(['/home']);
           },
           error: err => {
-            console.log("Error when login", err);
+            this.popupService.errorPopup(err.payload);
           }
         }
       )
