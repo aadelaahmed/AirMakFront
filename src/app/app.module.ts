@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
     AddApartmentComponent,
     LoginComponent,
     RegisterComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {LoginDTO} from "../dtos/users/login-dto.model";
 import {Observable} from "rxjs";
 import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 import {ForgetPasswordDto} from "../dtos/users/forget-password-dto.model";
+import {ResetPassword} from "../dtos/users/reset-password.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,14 @@ export class UserService {
     return this._http.post("http://localhost:8080/users/forgot-password", forgetPasswordDto);
   }
 
+  verifyToken(token: string): Observable<any> {
+    return this._http.get(`http://localhost:8080/users/reset-password?token=${token}`);
+  }
+
+  resetPassword(resetPassword: ResetPassword): Observable<any> {
+    return this._http.post("http://localhost:8080/users/reset-password", resetPassword);
+  }
+
   match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
@@ -31,8 +40,8 @@ export class UserService {
       }
 
       if (control?.value !== checkControl?.value) {
-        controls.get(checkControlName)?.setErrors({ matching: true });
-        return { matching: true };
+        controls.get(checkControlName)?.setErrors({matching: true});
+        return {matching: true};
       } else {
         return null;
       }

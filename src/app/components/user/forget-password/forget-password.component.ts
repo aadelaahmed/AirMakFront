@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
 import {ForgetPasswordDto} from "../../../dtos/users/forget-password-dto.model";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'app-forget-password',
@@ -14,7 +15,8 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public userService: UserService,
+    private userService: UserService,
+    private popupService: PopupService,
     private router: Router
   ) {
   }
@@ -25,18 +27,25 @@ export class ForgetPasswordComponent implements OnInit {
     });
   }
 
-  updatePasswordButton() {
+  sendEmailButton() {
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
       const email: ForgetPasswordDto = new ForgetPasswordDto(formValue.email);
       this.userService.forgetPassword(email).subscribe(
         {
           next: response => {
-            console.log("Forget Password", response);
+            console.log(response.payload)
+            this.popupService.successPopup("Success To Sent Email");
             // this.router.navigate(['/home'])
           },
-          error: err => {
-            console.log("Error when forget password", err);
+          error: error => {
+            if (error.status === 400) {
+              this.popupService.errorPopup("Validation failed");
+            } else if (error.status === 404) {
+              this.popupService.errorPopup("Email not found");
+            } else {
+              this.popupService.errorPopup("Failed to send email");
+            }
           }
         }
       )
