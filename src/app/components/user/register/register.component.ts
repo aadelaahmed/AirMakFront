@@ -1,11 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
-
-import {PopupMessageComponent} from '../../shared/popup-message-component/popup-message-component.component';
-import {UserService} from "../../../services/user.service";
 import {PopupService} from "../../../services/popup.service";
 
 @Component({
