@@ -10,12 +10,13 @@ import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AddApartmentComponent} from './components/add-property-component/add-property-component.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
+import {LoginComponent} from './components/user/login/login.component';
+import {RegisterComponent} from './components/user/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupMessageComponent } from './components/shared/popup-message-component/popup-message-component.component';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PopupMessageComponent } from './components/shared/popup-message-compone
     AddApartmentComponent,
     LoginComponent,
     RegisterComponent,
+    ForgetPasswordComponent,
     PopupMessageComponent
   ],
   imports: [
