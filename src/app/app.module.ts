@@ -13,6 +13,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PopupMessageComponent } from './components/shared/popup-message-component/popup-message-component.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
     PageNotFoundComponent,
     AddApartmentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PopupMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import {HttpClientModule} from "@angular/common/http";
     NgOptimizedImage,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
