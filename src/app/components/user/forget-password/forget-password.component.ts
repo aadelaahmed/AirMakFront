@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
-import {LoginDTO} from "../../../dtos/login-dto.model";
+import {ForgetPasswordDto} from "../../../dtos/users/forget-password-dto.model";
 
 @Component({
   selector: 'app-forget-password',
@@ -21,25 +21,22 @@ export class ForgetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.forgetPasswordForm = this.formBuilder.group({
-      newPassword: [null, [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=])[A-Za-z\\d@#$%^&+=]+$"), Validators.minLength(8), Validators.maxLength(30)]],
-      confirmNewPassword: [null, [Validators.required]]
-    }, {
-      validators: this.userService.match('newPassword', 'confirmNewPassword')
+      email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
     });
   }
 
   updatePasswordButton() {
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
-      const user: LoginDTO = new LoginDTO(formValue.email, formValue.password);
-      this.userService.login(user).subscribe(
+      const email: ForgetPasswordDto = new ForgetPasswordDto(formValue.email);
+      this.userService.forgetPassword(email).subscribe(
         {
           next: response => {
-            console.log("User is login", response);
-            this.router.navigate(['/home'])
+            console.log("Forget Password", response);
+            // this.router.navigate(['/home'])
           },
           error: err => {
-            console.log("Error when login", err);
+            console.log("Error when forget password", err);
           }
         }
       )
