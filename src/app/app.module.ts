@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { ConfirmationCodeComponent } from './components/user/confirmation-code/confirmation-code.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     RegisterComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmationCodeComponent
   ],
   imports: [
     BrowserModule,

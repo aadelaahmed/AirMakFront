@@ -40,6 +40,20 @@ export class PopupService {
     });
   }
 
+  verifyConfirmationCodePopup(): string {
+    let code;
+    Swal.fire({
+      title: 'Verify User',
+      text: 'Insert Confirmation Code',
+      input: 'text',
+      inputLabel: 'Confirmation Code',
+      inputPlaceholder: 'Enter Your Code',
+    }).then((result) => {
+      code = result.value;
+    })
+    return code;
+  }
+
   constructor() {
   }
 }

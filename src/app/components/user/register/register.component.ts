@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import {PopupService} from "../../../services/popup.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent {
     private http: HttpClient,
     private router: Router,
     private popupService: PopupService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
@@ -59,17 +61,18 @@ export class RegisterComponent {
 
     console.log('UserDTO:', requestRegistrationDTO);
 
-    this.http.post('http://localhost:8080/users/register', requestRegistrationDTO).subscribe(
-      (response: any) => {
-        console.log('User registered successfully', response);
-        this.popupService.successPopup("User registered successfully")
-        this.router.navigate(['/home']);
-      },
-      (error) => {
-        console.error('Error Occurred While Registering User', error);
-        this.popupService.errorPopup("Error Occurred While Registering User")
+    this.http.post('http://localhost:8080/users/register', requestRegistrationDTO).subscribe({
+        next: response => {
+          console.log('User registered successfully', response);
+          this.popupService.successPopup("User registered successfully")
+          this.router.navigate(['/confirmation-email']);
+        },
+        error: error => {
+          console.error('Error Occurred While Registering User', error);
+          this.popupService.errorPopup("Error Occurred While Registering User")
+        }
       }
-    );
+    )
   }
 
   markFormGroupTouched(formGroup: FormGroup) {
@@ -86,13 +89,11 @@ export class RegisterComponent {
       if (control.value) {
         const today = new Date();
         const minAgeDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
-
         const birthdate = new Date(control.value);
         if (birthdate > minAgeDate) {
           return {minimumAge: true};
         }
       }
-
       return null;
     };
   }
