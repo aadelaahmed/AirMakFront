@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
@@ -60,8 +60,8 @@ export class RegisterComponent {
     };
 
     console.log('UserDTO:', requestRegistrationDTO);
-
-    this.http.post('http://localhost:8080/users/register', requestRegistrationDTO).subscribe({
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.http.post('http://localhost:8080/users/register', requestRegistrationDTO, {headers, withCredentials: true}).subscribe({
         next: response => {
           console.log('User registered successfully', response);
           this.popupService.successPopup("User registered successfully")

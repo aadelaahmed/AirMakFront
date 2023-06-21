@@ -30,7 +30,7 @@ export class UserService {
 
   verifyConfirmationCode(confirmationCode: string): Observable<any> {
     const headers = new HttpHeaders({'Content-Type': 'text/plain'});
-    return this._http.post(`${this.baseUrl}/confirmation-code`, confirmationCode, {headers});
+    return this._http.post(`${this.baseUrl}/confirmation-code`, confirmationCode, {headers, withCredentials: true});
   }
 
   resetPassword(resetPassword: ResetPassword): Observable<any> {
