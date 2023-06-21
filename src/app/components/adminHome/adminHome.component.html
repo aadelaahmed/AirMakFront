@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="card" style="width: 70rem;">
+        <div class="card-header">
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let packagee of packages;let currentIndex=index">
+                        <td scope="row"> {{packagee.id}}</td>
+                        <td> <a routerLink="/package/details/{{packagee.id}}">{{packagee.name}}</a> </td>
+                        <td>{{packagee.propertyCount}} </td>
+                        <td>{{packagee.price}} </td>
+                        <td>{{ packagee.duration}} </td>
+                        <td> <button (click)="delete(packagee.id)" class="btn btn-danger">DELETE</button></td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

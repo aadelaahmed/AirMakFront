@@ -7,7 +7,9 @@ import {LoginComponent} from "./components/user/login/login.component";
 import {RegisterComponent} from "./components/user/register/register.component";
 import {ForgetPasswordComponent} from "./components/user/forget-password/forget-password.component";
 import {ResetPasswordComponent} from "./components/user/reset-password/reset-password.component";
-
+import { AdminHomeComponent } from './components/adminHome/adminHome.component';
+import { PackageComponent } from './components/packages/packages.component';
+import { DetailsComponent } from './components/packageDetails/details.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
@@ -16,6 +18,9 @@ const routes: Routes = [
   {path: 'forget-password', component: ForgetPasswordComponent, title: 'City Tours - Forget Password'},
   {path: `reset-password`, component: ResetPasswordComponent, title: 'City Tours - Reset Password'},
   {path: 'property', component: AddApartmentComponent, title: 'City Tours - Add New Property'},
+  {path:'admin',component:AdminHomeComponent},
+  {path:'create',component:PackageComponent},
+  {path:'package/details/:id',component:DetailsComponent},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
 
