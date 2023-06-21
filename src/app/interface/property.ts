@@ -1,8 +1,7 @@
 import { Review } from './review';
 import { User } from './user';
-// @ts-ignore
-import { Image } from './image';
 import {Address} from "./address";
+import {Image} from "./image";
 export class Property {
   private _id: number;
   private _user: User;
