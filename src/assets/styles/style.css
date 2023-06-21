@@ -610,14 +610,14 @@ ul#top_links {
   float: right;
 }
 
-a#access_link, a#wishlist_link {
+a#access_link, a#wishlist_link, a#profile_link {
   position: relative;
   display: inline-block;
   padding-left: 20px;
   line-height: 20px;
 }
 
-#access_link:before, #wishlist_link:before {
+#access_link:before, #wishlist_link:before, #profile_link:before {
   font-style: normal;
   font-weight: normal;
   font-family: "fontello";
@@ -633,6 +633,10 @@ a#access_link, a#wishlist_link {
 
 #access_link:before {
   content: '\e9d1';
+}
+
+#profile_link:before {
+  content: '\1F9D1';
 }
 
 ul#top_links li {
