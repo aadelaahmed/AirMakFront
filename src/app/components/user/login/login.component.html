@@ -7,8 +7,12 @@
             <div class="text-center"><img src="../../../../assets/img/logo_sticky.png" alt="Image" width="160" height="34"></div>
             <hr>
             <form [formGroup]="loginForm" (ngSubmit)="signInButton()">
-              <a href="#0" class="social_bt facebook">Login with Facebook</a>
-              <a href="#0" class="social_bt google">Login with Google</a>
+              <a href="/google" class="social_bt facebook">Login with Facebook</a>
+              <a href="/google" class="social_bt google">Login with Google</a>
+<!--              <button class="btn btn-danger" #loginRef>-->
+<!--                Login with Google-->
+<!--              </button>-->
+
               <div class="divider"><span>Or</span></div>
               <div class="form-group">
                 <label for="email">Email</label>

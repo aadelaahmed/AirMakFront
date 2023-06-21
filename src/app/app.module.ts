@@ -14,7 +14,6 @@ import {LoginComponent} from './components/user/login/login.component';
 import {RegisterComponent} from './components/user/register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 
@@ -39,7 +38,6 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

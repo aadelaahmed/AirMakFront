@@ -30,6 +30,10 @@ export class UserService {
     return this._http.post("http://localhost:8080/users/reset-password", resetPassword);
   }
 
+  loginGoogle(): Observable<any> {
+    return this._http.get("http://localhost:8080/users/google")
+  }
+
   match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
