@@ -17,7 +17,8 @@ export class UserService {
   }
 
   login(loginDto: LoginDTO): Observable<any> {
-    return this._http.post(`${this.baseUrl}/login`, loginDto);
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this._http.post(`${this.baseUrl}/login`, loginDto,{headers, withCredentials: true});
   }
 
   forgetPassword(forgetPasswordDto: ForgetPasswordDto): Observable<any> {

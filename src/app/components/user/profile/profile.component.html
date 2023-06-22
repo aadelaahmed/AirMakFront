@@ -12,31 +12,20 @@
     <section>
       <div class="row">
         <div class="col-md-6">
-          <h4>Your profile</h4>
+          <h4>Your Profile</h4>
           <ul id="profile_summary">
-            <li>Username <span>info@clara.com</span>
-            </li>
-            <li>First name <span>Clara</span>
-            </li>
-            <li>Last name <span>Tomson</span>
-            </li>
-            <li>Phone number <span>+00 032 42366</span>
-            </li>
-            <li>Date of birth <span>13/04/1975</span>
-            </li>
-            <li>Street address <span>24 Rue de Rivoli</span>
-            </li>
-            <li>Town/City <span>Paris</span>
-            </li>
-            <li>Zip code <span>002843</span>
-            </li>
-            <li>Country <span>France</span>
-            </li>
+            <li>Email <span>{{ profileData?.email }}</span></li>
+            <li>First name <span>{{ profileData?.firstName }}</span></li>
+            <li>Last name <span>{{ profileData?.lastName }}</span></li>
+            <li>Phone number <span>{{ profileData?.phoneNumber }}</span></li>
+            <li>Date of birth <span>{{ profileData?.birthdate }}</span></li>
+            <li>Package <span>{{ profileData?.subscriptions }}</span></li>
+
           </ul>
         </div>
         <div class="col-md-6">
           <p>
-            <img src="img/tourist_guide_pic.jpg" alt="Image" class="img-fluid styled profile_pic">
+            <img src="assets/img/profile.png" alt="Image" class="img-fluid styled profile_pic">
           </p>
         </div>
       </div>
@@ -46,17 +35,17 @@
 
       <div class="row">
         <div class="col-md-12">
-          <h4>Edit profile</h4>
+          <h4>Edit Profile</h4>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label>First name</label>
+            <label>First Name</label>
             <input class="form-control" name="first_name" id="first_name" type="text">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label>Last name</label>
+            <label>Last Name</label>
             <input class="form-control" name="last_name" id="last_name" type="text">
           </div>
         </div>
@@ -66,7 +55,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>Phone number</label>
+            <label>Phone Number</label>
             <input class="form-control" name="email_2" id="email_2" type="text">
           </div>
         </div>
