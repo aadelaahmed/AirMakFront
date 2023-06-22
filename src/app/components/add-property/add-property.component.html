@@ -43,11 +43,11 @@
               <label>Price</label>
               <input class="form-control" formControlName="price" type="number" required>
               <div
-                *ngIf="formData.controls['price'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.get('price')?.hasError('required') && isSubmitted"
                 class="text-danger">
                 Price is required
               </div>
-              <div *ngIf="formData.get('price').errors?.['pattern'] && isSubmitted">Invalid Price.</div>
+              <div *ngIf="formData.get('price')?.hasError('pattern')  && isSubmitted">Invalid Price.</div>
             </div>
           </div>
           <div class="col-md-6">
@@ -243,7 +243,7 @@
                 class="text-danger">
                 Street Number is required
               </div>
-              <div *ngIf="formData.get('streetNo').errors?.['pattern'] && isSubmitted">Invalid Street Number.</div>
+              <div *ngIf="formData.controls['streetNo'].errors?.['pattern'] && isSubmitted">Invalid Street Number.</div>
             </div>
             <div class="form-group">
               <label>Country</label>

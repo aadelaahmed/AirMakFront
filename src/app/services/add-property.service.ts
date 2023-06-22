@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Property} from "../interface/property";
 import {LoadingBarService} from "./loading-bar.service";
 import {SuccessPopupService} from "./success-popup.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {SuccessPopupService} from "./success-popup.service";
 export class AddPropertyService {
   headers = new HttpHeaders({'Content-Type':'application/json'});
   baseUrl:string = "http://localhost:8080/properties";
-  constructor(private successPopUpMenu:SuccessPopupService, private httpClient: HttpClient) { }
+  constructor(private router: Router,private successPopUpMenu:SuccessPopupService, private httpClient: HttpClient) { }
   addProperty(property: Property) {
     this.httpClient.post(this.baseUrl, property,{headers:this.headers,withCredentials:true}).subscribe(
       () => {
@@ -19,6 +20,8 @@ export class AddPropertyService {
         this.successPopUpMenu.showSuccessPopupMenu();
         LoadingBarService.isLoading= false;
         // TODO: Navigate the user to the properties list
+        // this.router.navigate(['/details', id]);
+        this.router.navigate(['user/properties']);
       },
       (error) => {
         // Error handler

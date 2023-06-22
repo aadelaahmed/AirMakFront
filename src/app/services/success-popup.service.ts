@@ -14,7 +14,7 @@ export class SuccessPopupService {
       icon: 'success',
       title: 'Your property will be reviewed before publishing.',
       showConfirmButton: false,
-      timer: 1500
+      timer: 3500
     })
   }
 }

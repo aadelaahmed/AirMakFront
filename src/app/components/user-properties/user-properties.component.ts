@@ -13,7 +13,7 @@ export class UserPropertiesComponent implements OnInit{
   }
   ngOnInit() {
     //TODO:Replace with the actual user ID
-    const userId = 2;
+    const userId = 1;
     this.userPropertiesService.getPropertiesByUserId(userId).subscribe(
       (properties: Property[]) => {
         this.userProperties = properties;
