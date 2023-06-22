@@ -15,7 +15,7 @@ export class AdminHomeComponent implements OnInit {
 
   packages: Package[] = [];
    numbers: number[] = [];
-   numberOfPackages:number=5;
+   numberOfPackages:number=0;
    package = new BestPackage();
 
   constructor(private _http: HttpClient, private router: Router, private packageService: PackageService) {

@@ -45,7 +45,7 @@ export class  PendingComponent implements OnInit {
         next: reposnse => {
           console.log("yassin");
           console.log(reposnse);
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/pending']);
 
 
         },
