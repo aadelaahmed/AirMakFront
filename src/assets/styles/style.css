@@ -620,24 +620,23 @@ a#access_link, a#wishlist_link, a#profile_link {
 #access_link:before, #wishlist_link:before, #profile_link:before {
   font-style: normal;
   font-weight: normal;
-  font-family: "fontello";
   font-size: 15px;
   position: absolute;
   left: 0;
   top: 0;
 }
 
-#wishlist_link:before {
-  content: '\ee7a';
-}
+/*#wishlist_link:before {*/
+/*  content: '\E800';*/
+/*}*/
 
-#access_link:before {
-  content: '\e9d1';
-}
+/*#access_link:before {*/
+/*  content: '\&#x5a';*/
+/*}*/
 
-#profile_link:before {
-  content: '\1F9D1';
-}
+/*#profile_link:before {*/
+/*  content: '\1F9D1';*/
+/*}*/
 
 ul#top_links li {
   display: inline-block;

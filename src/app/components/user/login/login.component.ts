@@ -1,10 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginDTO} from "../../../dtos/users/login-dto.model";
 import {ApiService} from "../../../services/api.service";
 import {Router} from "@angular/router";
 import {PopupService} from "../../../services/popup.service";
 import {HttpHeaders} from "@angular/common/http";
+import {SharedService} from "../../../services/shared.service";
+import {NavbarService} from "../../../services/navbar.service";
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private popupService: PopupService,
+    private navbarService: NavbarService,
     private router: Router,
   ) {
   }
@@ -32,8 +35,6 @@ export class LoginComponent implements OnInit {
       password: [null, Validators.required]
     });
     // this.googleAuthSDK();
-
-
   }
 
   signInButton() {
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
       this.apiService.post("users/login", user, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
+            this.navbarService._loggedIn.next(true);
             console.log(response.payload.firstName)
             this.popupService.successPopup("Welcome, " + response.payload.firstName);
             this.router.navigate(['/home']);
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
       )
     }
   }
+
 
   // signInUsingGoogleButton() {
   //   const provider = new GoogleAuthProvider();

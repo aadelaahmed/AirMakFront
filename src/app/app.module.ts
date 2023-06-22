@@ -18,6 +18,7 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ConfirmationCodeComponent } from './components/user/confirmation-code/confirmation-code.component';
+import {SharedService} from "./services/shared.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ConfirmationCodeComponent } from './components/user/confirmation-code/c
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

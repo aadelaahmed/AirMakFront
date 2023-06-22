@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
   {path: 'login', component: LoginComponent, title: 'City Tours - Login'},
+  {path: 'logout', component: LoginComponent, title: 'City Tours - Login'},
   {path: 'register', component: RegisterComponent, title: 'City Tours - Register'},
   {path: 'forget-password', component: ForgetPasswordComponent, title: 'City Tours - Forget Password'},
   {path: 'reset-password', component: ResetPasswordComponent, title: 'City Tours - Reset Password'},
