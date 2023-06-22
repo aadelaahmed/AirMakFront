@@ -1,5 +1,5 @@
 export class Image {
-  private imagePath:string;
+  imagePath:string;
   constructor(imagePath:string) {
     this.imagePath = imagePath;
   }

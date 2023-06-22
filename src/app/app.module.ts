@@ -15,6 +15,8 @@ import { EditPropertyComponent } from './components/edit-property/edit-property.
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 import { ExploringComponent } from './components/exploring/exploring.component';
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
+import {AddPropertyService} from "./services/add-property/add-property.service";
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +37,9 @@ import {AddPropertyComponent} from "./components/add-property/add-property.compo
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AddPropertyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

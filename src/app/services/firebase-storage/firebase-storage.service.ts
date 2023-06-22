@@ -16,16 +16,32 @@ export class FirebaseStorageService {
     const storageRef = this.storage.ref(fileName);
 
     // Upload the file to the specified storage path
-    const uploadTask = this.storage.upload(fileName, file);
+    const uploadTask = storageRef.put(file);
 
     // Get the percentage changes of the upload progress
     const uploadPercentage = uploadTask.percentageChanges();
 
-    // Subscribe to the upload progress and handle completion
-    uploadTask.snapshotChanges().subscribe();
+    // Create a new Observable to handle the upload completion
+    return new Observable<string>(observer => {
+      // Subscribe to the upload progress
+      uploadPercentage.subscribe(progress => {
+        // You can handle the progress updates here if needed
+        console.log(`Upload Progress: ${progress}%`);
+      });
 
-    // Return an Observable of the download URL
-    return storageRef.getDownloadURL();
+      // Handle the upload completion
+      uploadTask.then(() => {
+        // Get the download URL of the uploaded file
+        storageRef.getDownloadURL().subscribe(downloadURL => {
+          // Emit the download URL to the observer
+          observer.next(downloadURL);
+          observer.complete();
+        });
+      }).catch(error => {
+        // Handle any errors that occur during the upload
+        observer.error(error);
+      });
+    });
   }
 
   deleteFile(fileUrl: string): Observable<void> {
