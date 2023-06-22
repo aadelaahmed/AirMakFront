@@ -8,10 +8,10 @@ import { PackageService } from 'src/app/services/package.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './adminHome.component.html',
-  styleUrls: ['./adminHome.component.css']
+  templateUrl: './pending.component.html',
+  styleUrls: ['./pending.component.css']
 })
-export class AdminHomeComponent implements OnInit {
+export class  PendingComponent implements OnInit {
 
   packages: Package[] = [];
    numbers: number[] = [];

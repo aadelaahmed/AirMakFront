@@ -19,6 +19,8 @@ import { ForgetPasswordComponent } from './components/user/forget-password/forge
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { PackageComponent } from './components/packages/packages.component';
 import { AdminHomeComponent } from './components/adminHome/adminHome.component';
+import {  PendingComponent} from './components/pending/pending.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { AdminHomeComponent } from './components/adminHome/adminHome.component';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     PackageComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    PendingComponent
   ],
   imports: [
     BrowserModule,

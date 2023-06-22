@@ -22,9 +22,9 @@ export class PackageComponent implements OnInit {
   ngOnInit(): void {
     this.packageForm = this._formBuilder.group({
       name:          ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      propertyCount: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      duration:      ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      price:         ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
+      propertyCount: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
+      duration:      ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
+      price:         ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
     });
 
     this.packageService.get().subscribe({

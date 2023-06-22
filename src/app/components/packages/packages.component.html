@@ -35,9 +35,9 @@
                   <div *ngIf="packageForm.get('propertyCount').errors?.['required']" class="text-danger">Property Count is
                     required</div>
                   <div *ngIf="packageForm.get('propertyCount').errors?.['minlength']" class="text-danger">Property Count
-                    must be at least 2 characters</div>
+                    must be at least 1 characters</div>
                   <div *ngIf="packageForm.get('propertyCount').errors?.['maxlength']" class="text-danger">Property Count
-                    cannot exceed 4 characters</div>
+                    cannot exceed 2 characters</div>
                 </div>
               </div>
 
@@ -50,9 +50,9 @@
                   <div *ngIf="packageForm.get('price').errors?.['required']" class="text-danger">Price is required
                   </div>
                   <div *ngIf="packageForm.get('price').errors?.['minlength']" class="text-danger">Price must be at
-                    least 2 characters</div>
+                    least 1 characters</div>
                   <div *ngIf="packageForm.get('price').errors?.['maxlength']" class="text-danger">Price cannot
-                    exceed 4 characters</div>
+                    exceed 2 characters</div>
                 </div>
               </div>
 
@@ -66,9 +66,9 @@
                   <div *ngIf="packageForm.get('duration').errors?.['required']" class="text-danger">Duration is
                     required</div>
                   <div *ngIf="packageForm.get('duration').errors?.['minlength']" class="text-danger">Duration must be
-                    at least 2 characters</div>
+                    at least 1 characters</div>
                   <div *ngIf="packageForm.get('duration').errors?.['maxlength']" class="text-danger">Duration cannot
-                    exceed 4 characters</div>
+                    exceed 2 characters</div>
                 </div>
               </div>
 

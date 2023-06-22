@@ -10,6 +10,7 @@ import {ResetPasswordComponent} from "./components/user/reset-password/reset-pas
 import { AdminHomeComponent } from './components/adminHome/adminHome.component';
 import { PackageComponent } from './components/packages/packages.component';
 import { DetailsComponent } from './components/packageDetails/details.component';
+import { PendingComponent } from './components/pending/pending.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
@@ -21,6 +22,8 @@ const routes: Routes = [
   {path:'admin',component:AdminHomeComponent},
   {path:'create',component:PackageComponent},
   {path:'package/details/:id',component:DetailsComponent},
+  {path:'pending',component:PendingComponent},
+
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
 
