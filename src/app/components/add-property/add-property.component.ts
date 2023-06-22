@@ -9,6 +9,7 @@ import {AddPropertyService} from "../../services/add-property.service";
 import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {LoadingBarService} from "../../services/loading-bar.service";
+import {SuccessPopupService} from "../../services/success-popup.service";
 
 @Component({
   selector: 'add-apartment',
@@ -83,14 +84,13 @@ export class AddPropertyComponent implements OnInit {
           this.uploadProgress = 100;
           this.isUploadFinished = true;
           this.uploadedImages = this.uploadedImages;
-          this.loadinBarService.hideLoadingBar();
           // Call the addProperty method here or perform further actions
           //this.onSubmit();
         },
         (error: any) => {
           // Handle any upload error
           console.error('Error uploading images:', error);
-          this.loadinBarService.hideLoadingBar();
+          LoadingBarService.isLoading= false;
 
         }
       );
@@ -100,16 +100,16 @@ export class AddPropertyComponent implements OnInit {
 
   onSubmit(fileList1: FileList, fileList2: FileList, fileList3: FileList): void {
     this.isFormValidated = this.formData.valid;
+    LoadingBarService.isLoading= true;
     if (!this.isFormValidated) {
       console.log("not validated");
+      LoadingBarService.isLoading= false;
     } else {
-      //TODO : upload images first.
       /*this.uploadImages(
         this.formData.get('img1').value,
         this.formData.get('img2').value,
         this.formData.get('img3').value
       );*/
-      this.loadinBarService.showLoadingBar();
       this.uploadImages(fileList1,fileList2,fileList3);
       console.log(this.formData);
       this.isSubmitted = true;
@@ -146,4 +146,6 @@ export class AddPropertyComponent implements OnInit {
       this.addPropertyService.addProperty(property);
     }
   }
+
+  protected readonly LoadingBarService = LoadingBarService;
 }

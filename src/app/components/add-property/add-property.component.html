@@ -5,7 +5,7 @@
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <h3>Add New Apartment</h3>
+            <h3>Add New Property</h3>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -193,6 +193,13 @@
         </div>
         <!-- End row -->
         <!-- Divider -->
+
+        <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+          <!-- Add your loading bar or spinner HTML content here -->
+          <!-- For example, you can use a CSS spinner -->
+          <div class="spinner"></div>
+        </div>
+
         <div class="row">
           <div class="col-md-12">
             <div class="divider"></div>
@@ -290,7 +297,8 @@
         </div>
         <hr>
 <!--        (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)"-->
-        <button  type="submit" class="btn_1 green">Add Apartment</button>
+<!--        class="btn_1 green"-->
+        <button id="submitBtn" type="submit" >Add Apartment</button>
         <section id="section-4"></section>
       </div>
     </form>
@@ -307,7 +315,7 @@
       <h5>Processed files</h5>
       <div class="list-group">
         <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of uploadedImages">
-          <span class="badge alert-success pull-right">Success</span>
+          <span style="margin-bottom: 2%;" class="badge alert-success pull-right">Success</span>
 <!--          {{ image.imagePath }}-->
         </a>
       </div>

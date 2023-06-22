@@ -5,11 +5,20 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class LoadingBarService {
-  private loadingBar: any;
+  //private loadingBar: any;
 
   constructor() { }
 
+  static isLoading: boolean = false;
+
   showLoadingBar(): void {
+    LoadingBarService.isLoading = true;
+  }
+
+  hideLoadingBar(): void {
+    LoadingBarService.isLoading = false;
+  }
+  /*showLoadingBar(): void {
     let timerInterval;
     this.loadingBar = Swal.fire({
       title: 'Auto close alert!',
@@ -27,7 +36,7 @@ export class LoadingBarService {
         clearInterval(timerInterval);
       }
     }).then((result) => {
-      /* Read more about handling dismissals below */
+      /!* Read more about handling dismissals below *!/
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log('I was closed by the timer');
       }
@@ -38,5 +47,5 @@ export class LoadingBarService {
     if (this.loadingBar) {
       this.loadingBar.close();
     }
-  }
+  }*/
 }
