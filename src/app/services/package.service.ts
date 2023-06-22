@@ -8,16 +8,37 @@ import { createPackage } from '../models/postPackage.model';
 })
 export class PackageService {
 
-  constructor(private _http:HttpClient) { }
-  get(){
-   return this._http.get<APIResponse>("http://localhost:8097/packages");
+  constructor(private _http: HttpClient) { }
+  get() {
+    return this._http.get<APIResponse>("http://localhost:8097/packages");
   }
-  post(pack:createPackage){
+  getCountOfSubscriptionsForPackage() {
+    return this._http.get<APIResponse>("http://localhost:8097/packages/packagesSubscriptions");
+
+
+  }
+  post(pack: createPackage) {
     console.log(pack)
-    return this._http.post<APIResponse>("http://localhost:8097/packages",pack);
+    return this._http.post<APIResponse>("http://localhost:8097/packages", pack);
   }
 
-  delete(id:number){
-    return this._http.delete<APIResponse>('http://localhost:8097/packages/'+id);
-   }
+  delete(id: number) {
+    return this._http.delete<APIResponse>('http://localhost:8097/packages/' + id);
+  }
+
+  update(pakcgaeId: string, price: string) {
+    console.log(pakcgaeId + ' ' + price + 'yy');
+    return this._http.put<APIResponse>('http://localhost:8097/packages/' + pakcgaeId + '?price=' + price, price);
+  }
+  getPackagesCount() {
+
+    return this._http.get<APIResponse>("http://localhost:8097/packages/count");
+
+  }
+
+  getBestPackage() {
+
+    return this._http.get<APIResponse>("http://localhost:8097/packages/bestPackage");
+
+  }
 }

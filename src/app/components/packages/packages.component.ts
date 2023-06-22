@@ -13,29 +13,23 @@ import { Package } from 'src/app/models/getPackage.model';
   styleUrls: ['./packages.component.css']
 })
 export class PackageComponent implements OnInit {
-  studentForm: FormGroup;
+  packageForm: FormGroup;
   packages: Package[] = [];
   constructor(private _http: HttpClient, private router: Router, private _formBuilder: FormBuilder, private packageService: PackageService) {
 
   }
 
   ngOnInit(): void {
-    this.studentForm = this._formBuilder.group({
-
+    this.packageForm = this._formBuilder.group({
       name:          ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       propertyCount: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
       duration:      ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
       price:         ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-
-
-
     });
 
     this.packageService.get().subscribe({
       next: response => {
         this.packages = response.payload;
-
-
       },
       error: error => { }
     });
@@ -43,15 +37,12 @@ export class PackageComponent implements OnInit {
 
   add(): void {
 
-    let student: createPackage = this.studentForm.value;
-
-
+    let student: createPackage = this.packageForm.value;
     this.packageService.post(student).subscribe({
       next: response => {
         console.log(response.payload);
         if (response.status) {
-          this.router.navigate(['/homee']);
-
+          this.router.navigate(['/admin']);
         }
         else {
 

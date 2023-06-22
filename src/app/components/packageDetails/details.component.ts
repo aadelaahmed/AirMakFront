@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { APIResponse } from 'src/app/models/api-response.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PackageService } from 'src/app/services/package.service';
 import { Package } from 'src/app/models/getPackage.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
@@ -11,41 +12,58 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  package=new Package();
-  studentFormEdit: FormGroup;
+  package = new Package();
+  packageFormEdit: FormGroup;
 
-  constructor(private _activatedRoute:ActivatedRoute,private _http:HttpClient,private _formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder,private _activatedRoute: ActivatedRoute, private router: Router, private _http: HttpClient, private packageService: PackageService) {
   }
+
   ngOnInit(): void {
 
-    
     this._activatedRoute.paramMap
-    .subscribe(parms=>{
-      let id=parms.get('id');
-    this.getPackageById(id);
+      .subscribe(parms => {
+        let id = parms.get('id');
+        this.getPackageById(id);
 
-    });
+      });
 
-    
+
   }
-  getPackageById(id:string|null)
-  {
-    this._http.get<APIResponse>('http://localhost:8097/packages/'+id)
-    .subscribe(
-      {
-        next:reponse=>{
-          this.package=reponse.payload;
+  getPackageById(id: string | null) {
+    this._http.get<APIResponse>('http://localhost:8097/packages/' + id)
+      .subscribe(
+        {
+          next: reponse => {
+            this.package = reponse.payload;
+            console.log(this.package)
+          }
         }
-      }
+      );
+  }
+
+
+
+  update(pakcgaeId:string,price:string): void {
+
+
+    this.packageService.update(pakcgaeId,price).subscribe({
+      next: response => {
+        console.log(response.payload);
+        if (response.status) {
+          this.router.navigate(['/admin']);
+        }
+        else {
+
+        }
+      },
+      error: error => { alert("Error"); }
+    }
     );
-  }
-  
 
-  
-  update(): void {
+
 
 
   }
 
-  
+
 }

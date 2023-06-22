@@ -1,13 +1,3 @@
-<!-- 
-<h4>Package Details</h4>
-<p> Id : {{package.id}}</p>
-<p> name : {{package.name}}</p>
-<p> propertyCount : {{package.propertyCount}}</p>
-<p> duration : {{package.duration}}</p>
-<p> price : {{package.price}}</p> 
-
-  -->
-
 
   
 <main>
@@ -20,7 +10,12 @@
                   height="34"></div>
               <hr>
   
-              <form (ngSubmit)="update()">
+              <form (ngSubmit)="update(packageID.value,packagePrice.value)">
+                <div class="form-group">
+                  <label>Package Id</label>
+                  <input type="number" class="form-control" placeholder="Id" #packageID formControlName="id" value="{{package.id}}" readonly>
+                </div>
+
                 <div class="form-group">
                   <label>Package Name</label>
                   <input type="text" class="form-control" placeholder="Name" formControlName="name" value="{{package.name}}" readonly>
@@ -29,25 +24,25 @@
   
                 <div class="form-group">
                   <label>Property Count</label>
-                  <input type="text" class="form-control" placeholder="propertyCount" formControlName="propertyCount" value="{{package.propertyCount}}" readonly>
+                  <input type="number" class="form-control" placeholder="propertyCount" formControlName="propertyCount" value="{{package.propertyCount}}" readonly>
               
                 </div>
   
   
                 <div class="form-group">
                   <label>Package Price</label>
-                  <input type="text" class="form-control" placeholder="price" formControlName="price" value="{{package.price}}">
+                  <input type="number" class="form-control" placeholder="Price" #packagePrice formControlName="price" value="{{package.price}}">
                   
                 </div>
   
   
                 <div class="form-group">
                   <label>Package Duration</label>
-                  <input type="text" class="form-control" placeholder="duration" formControlName="duration" value="{{package.duration}}" readonly>
+                  <input type="number" class="form-control" placeholder="duration" formControlName="duration" value="{{package.duration}}" readonly>
                 </div>
   
  
-                <button  (click)="update()" type="button"
+                <button  (click)="update(packageID.value,packagePrice.value)" type="button"
                   class="btn_full btn btn-primary">Update</button> 
   
   

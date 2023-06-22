@@ -1,96 +1,3 @@
-<!-- <div class="container">
-  <div class="card" style="width: 70rem;">
-    <div class="card-header">
-    </div>
-    <div class="row">
-
-
-
-
-      <div [formGroup]="studentForm">
-        <div class="form-group">
-          <input #inputFirstName [class.is-valid]="!studentForm.controls['name'].errors" formControlName="name"
-            type="text" class="form-control" placeholder="Enter name">
-          <div
-            *ngIf="studentForm.controls['name'].errors && (studentForm.controls['name'].touched || studentForm.controls['name'].dirty)">
-            <small *ngIf="studentForm.controls['name'].errors?.['required']" class="form-text text-danger">required
-              name</small>
-            <small *ngIf="studentForm.controls['name'].errors?.['minlength']" class="form-text text-danger">min
-              length 2</small>
-            <small *ngIf="studentForm.controls['name'].errors?.['maxlength']" class="form-text text-danger">max
-              length 4</small>
-          </div>
-        </div>
-
-
-
-        <div [formGroup]="studentForm">
-          <div class="form-group">
-            <input #inputLastName [class.is-valid]="!studentForm.controls['propertyCount'].errors" formControlName="propertyCount"
-              type="text" class="form-control" placeholder="Enter propertyCount">
-            <div
-              *ngIf="studentForm.controls['propertyCount'].errors && (studentForm.controls['propertyCount'].touched || studentForm.controls['propertyCount'].dirty)">
-              <small *ngIf="studentForm.controls['propertyCount'].errors?.['required']" class="form-text text-danger">required
-                count</small>
-              <small *ngIf="studentForm.controls['propertyCount'].errors?.['minlength']" class="form-text text-danger">min
-                length 5</small>
-              <small *ngIf="studentForm.controls['propertyCount'].errors?.['maxlength']" class="form-text text-danger">max
-                length 10</small>
-            </div>
-          </div>
-
-
-          <div [formGroup]="studentForm">
-            <div class="form-group">
-              <input #inputMobile [class.is-valid]="!studentForm.controls['price'].errors" formControlName="price"
-                type="text" class="form-control" placeholder="Enter price">
-              <div
-                *ngIf="studentForm.controls['price'].errors && (studentForm.controls['price'].touched || studentForm.controls['price'].dirty)">
-                <small *ngIf="studentForm.controls['price'].errors?.['required']"
-                  class="form-text text-danger">required duration</small>
-                <small *ngIf="studentForm.controls['price'].errors?.['maxlength']" class="form-text text-danger">
-                  length 11 Digit</small>
-                <small *ngIf="studentForm.controls['price'].errors?.['minlength']" class="form-text text-danger">
-                  length 11 Digit</small>
-
-              </div>
-            </div>
-
-
-          <div [formGroup]="studentForm">
-            <div class="form-group">
-              <input #inputMobile [class.is-valid]="!studentForm.controls['duration'].errors" formControlName="duration"
-                type="text" class="form-control" placeholder="Enter duration">
-              <div
-                *ngIf="studentForm.controls['duration'].errors && (studentForm.controls['duration'].touched || studentForm.controls['duration'].dirty)">
-                <small *ngIf="studentForm.controls['duration'].errors?.['required']"
-                  class="form-text text-danger">required duration</small>
-                <small *ngIf="studentForm.controls['duration'].errors?.['maxlength']" class="form-text text-danger">
-                  length 11 Digit</small>
-                <small *ngIf="studentForm.controls['duration'].errors?.['minlength']" class="form-text text-danger">
-                  length 11 Digit</small>
-
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-            <button [disabled]="studentForm.invalid" (click)="add()" type="button" class="btn btn-primary">Submit</button>
-
-
-
-
-          </div>
-
-        </div>
-      </div> 
-
-  -->
 
 
 <main>
@@ -103,17 +10,17 @@
                 height="34"></div>
             <hr>
 
-            <form [formGroup]="studentForm" (ngSubmit)="add()">
+            <form [formGroup]="packageForm" (ngSubmit)="add()">
               <div class="form-group">
                 <label>Package Name</label>
                 <input type="text" class="form-control" placeholder="Name" formControlName="name">
-                <div class="error-message" *ngIf="studentForm.get('name').invalid && studentForm.get('name').touched">
+                <div class="error-message" *ngIf="packageForm.get('name').invalid && packageForm.get('name').touched">
                   <!-- Display validation errors for firstName field -->
-                  <div *ngIf="studentForm.get('name').errors?.['required']" class="text-danger"> Name is required
+                  <div *ngIf="packageForm.get('name').errors?.['required']" class="text-danger"> Name is required
                   </div>
-                  <div *ngIf="studentForm.get('name').errors?.['minlength']" class="text-danger"> Name must be at
+                  <div *ngIf="packageForm.get('name').errors?.['minlength']" class="text-danger"> Name must be at
                     least 2 characters</div>
-                  <div *ngIf="studentForm.get('name').errors?.['maxlength']" class="text-danger"> Name cannot
+                  <div *ngIf="packageForm.get('name').errors?.['maxlength']" class="text-danger"> Name cannot
                     exceed 10 characters</div>
                 </div>
               </div>
@@ -123,13 +30,13 @@
                 <label>Property Count</label>
                 <input type="text" class="form-control" placeholder="propertyCount" formControlName="propertyCount">
                 <div class="error-message"
-                  *ngIf="studentForm.get('propertyCount').invalid && studentForm.get('propertyCount').touched">
+                  *ngIf="packageForm.get('propertyCount').invalid && packageForm.get('propertyCount').touched">
                   <!-- Display validation errors for firstName field -->
-                  <div *ngIf="studentForm.get('propertyCount').errors?.['required']" class="text-danger">Property Count is
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['required']" class="text-danger">Property Count is
                     required</div>
-                  <div *ngIf="studentForm.get('propertyCount').errors?.['minlength']" class="text-danger">Property Count
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['minlength']" class="text-danger">Property Count
                     must be at least 2 characters</div>
-                  <div *ngIf="studentForm.get('propertyCount').errors?.['maxlength']" class="text-danger">Property Count
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['maxlength']" class="text-danger">Property Count
                     cannot exceed 4 characters</div>
                 </div>
               </div>
@@ -138,13 +45,13 @@
               <div class="form-group">
                 <label>Package Price</label>
                 <input type="text" class="form-control" placeholder="price" formControlName="price">
-                <div class="error-message" *ngIf="studentForm.get('price').invalid && studentForm.get('price').touched">
+                <div class="error-message" *ngIf="packageForm.get('price').invalid && packageForm.get('price').touched">
                   <!-- Display validation errors for firstName field -->
-                  <div *ngIf="studentForm.get('price').errors?.['required']" class="text-danger">Price is required
+                  <div *ngIf="packageForm.get('price').errors?.['required']" class="text-danger">Price is required
                   </div>
-                  <div *ngIf="studentForm.get('price').errors?.['minlength']" class="text-danger">Price must be at
+                  <div *ngIf="packageForm.get('price').errors?.['minlength']" class="text-danger">Price must be at
                     least 2 characters</div>
-                  <div *ngIf="studentForm.get('price').errors?.['maxlength']" class="text-danger">Price cannot
+                  <div *ngIf="packageForm.get('price').errors?.['maxlength']" class="text-danger">Price cannot
                     exceed 4 characters</div>
                 </div>
               </div>
@@ -154,19 +61,19 @@
                 <label>Package Duration</label>
                 <input type="text" class="form-control" placeholder="duration" formControlName="duration">
                 <div class="error-message"
-                  *ngIf="studentForm.get('duration').invalid && studentForm.get('duration').touched">
+                  *ngIf="packageForm.get('duration').invalid && packageForm.get('duration').touched">
                   <!-- Display validation errors for firstName field -->
-                  <div *ngIf="studentForm.get('duration').errors?.['required']" class="text-danger">Duration is
+                  <div *ngIf="packageForm.get('duration').errors?.['required']" class="text-danger">Duration is
                     required</div>
-                  <div *ngIf="studentForm.get('duration').errors?.['minlength']" class="text-danger">Duration must be
+                  <div *ngIf="packageForm.get('duration').errors?.['minlength']" class="text-danger">Duration must be
                     at least 2 characters</div>
-                  <div *ngIf="studentForm.get('duration').errors?.['maxlength']" class="text-danger">Duration cannot
+                  <div *ngIf="packageForm.get('duration').errors?.['maxlength']" class="text-danger">Duration cannot
                     exceed 4 characters</div>
                 </div>
               </div>
 
 
-              <button [disabled]="studentForm.invalid" (click)="add()" type="button"
+              <button [disabled]="packageForm.invalid" (click)="add()" type="button"
                 class="btn_full btn btn-primary">Add</button>
 
 
