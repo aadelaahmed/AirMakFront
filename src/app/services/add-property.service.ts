@@ -13,6 +13,7 @@ export class AddPropertyService {
   baseUrl:string = "http://localhost:8080/properties";
   constructor(private router: Router,private successPopUpMenu:SuccessPopupService, private httpClient: HttpClient) { }
   addProperty(property: Property) {
+    console.log("start adding the property");
     this.httpClient.post(this.baseUrl, property,{headers:this.headers,withCredentials:true}).subscribe(
       () => {
         // Success handler
@@ -20,7 +21,6 @@ export class AddPropertyService {
         this.successPopUpMenu.showSuccessPopupMenu();
         LoadingBarService.isLoading= false;
         // TODO: Navigate the user to the properties list
-        // this.router.navigate(['/details', id]);
         this.router.navigate(['user/properties']);
       },
       (error) => {

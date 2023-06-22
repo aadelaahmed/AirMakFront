@@ -36,7 +36,6 @@
           </div>
         </div>
         <!-- End row -->
-
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -298,7 +297,7 @@
         <hr>
 <!--        (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)"-->
 <!--        class="btn_1 green"-->
-        <button id="submitBtn" type="submit" >Add Apartment</button>
+        <button id="submitBtn" type="submit" >Add Property</button>
         <section id="section-4"></section>
       </div>
     </form>
@@ -314,7 +313,7 @@
     <div class="js-upload-finished" *ngIf="isUploadFinished">
       <h5>Processed files</h5>
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of uploadedImages">
+        <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of property.images">
           <span style="margin-bottom: 2%;" class="badge alert-success pull-right">Success</span>
 <!--          {{ image.imagePath }}-->
         </a>

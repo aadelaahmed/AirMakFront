@@ -28,12 +28,11 @@ export class FirebaseStorageService {
         // You can handle the progress updates here if needed
         console.log(`Upload Progress: ${progress}%`);
       });
-
       // Handle the upload completion
       uploadTask.then(() => {
         // Get the download URL of the uploaded file
         storageRef.getDownloadURL().subscribe(downloadURL => {
-          // Emit the download URL to the observer
+          // Emit the download URL tgo the observer
           observer.next(downloadURL);
           observer.complete();
         });
