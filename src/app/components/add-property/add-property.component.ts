@@ -8,6 +8,7 @@ import {Image} from "../../interface/image";
 import {AddPropertyService} from "../../services/add-property.service";
 import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {LoadingBarService} from "../../services/loading-bar.service";
 
 @Component({
   selector: 'add-apartment',
@@ -22,7 +23,7 @@ export class AddPropertyComponent implements OnInit {
   uploadedImages: Image[] = [];
   isFormValidated: boolean = false;
 
-  constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+  constructor(private loadinBarService:LoadingBarService,private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -63,7 +64,6 @@ export class AddPropertyComponent implements OnInit {
       const uploadObservable3 = this.storageService.uploadFile(fileImg3);
 
       uploadObservables.push(uploadObservable1, uploadObservable2, uploadObservable3);
-
       // Combine all upload Observables into a single Observable
       const combinedObservable = forkJoin(uploadObservables);
 
@@ -83,23 +83,34 @@ export class AddPropertyComponent implements OnInit {
           this.uploadProgress = 100;
           this.isUploadFinished = true;
           this.uploadedImages = this.uploadedImages;
+          this.loadinBarService.hideLoadingBar();
           // Call the addProperty method here or perform further actions
-          this.onSubmit();
+          //this.onSubmit();
         },
         (error: any) => {
           // Handle any upload error
           console.error('Error uploading images:', error);
+          this.loadinBarService.hideLoadingBar();
+
         }
       );
     }
   }
 
 
-  onSubmit(): void {
+  onSubmit(fileList1: FileList, fileList2: FileList, fileList3: FileList): void {
     this.isFormValidated = this.formData.valid;
     if (!this.isFormValidated) {
       console.log("not validated");
     } else {
+      //TODO : upload images first.
+      /*this.uploadImages(
+        this.formData.get('img1').value,
+        this.formData.get('img2').value,
+        this.formData.get('img3').value
+      );*/
+      this.loadinBarService.showLoadingBar();
+      this.uploadImages(fileList1,fileList2,fileList3);
       console.log(this.formData);
       this.isSubmitted = true;
       const address = new Address();
@@ -127,6 +138,7 @@ export class AddPropertyComponent implements OnInit {
       property.propertyNo = this.formData.get('property_number').value;
       property.images = [];
       property.images = this.uploadedImages;
+      property.propertyState = "PENDING";
       console.log("test images in property -> " + property.images);
       //TODO : get current user id
       property.user = new User();

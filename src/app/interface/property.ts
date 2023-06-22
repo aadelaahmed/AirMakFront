@@ -21,7 +21,7 @@ export class Property {
   wifi: number;
   images: Image[];
   reviews: Review[];
-
+  propertyState:string;
   constructor() {
     this.images = [];
     this.reviews = [];

@@ -1,7 +1,7 @@
 <main>
   <div class="margin_100 container">
 <!--    (ngSubmit)="onSubmit()"-->
-    <form [formGroup]="formData" (ngSubmit)="onSubmit()" >
+    <form [formGroup]="formData" (ngSubmit)="onSubmit(fileInput1.files,fileInput2.files,fileInput3.files)" >
       <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -47,7 +47,7 @@
                 class="text-danger">
                 Price is required
               </div>
-              <div *ngIf="formData.get('price').errors?.['pattern']">Invalid Price.</div>
+              <div *ngIf="formData.get('price').errors?.['pattern'] && isSubmitted">Invalid Price.</div>
             </div>
           </div>
           <div class="col-md-6">
@@ -94,7 +94,7 @@
                 class="text-danger">
                 Floor Number is required
               </div>
-              <div *ngIf="formData.get('floor_no').errors?.['pattern']">Invalid Floor Number.</div>
+              <div *ngIf="formData.get('floor_no').errors?.['pattern'] && isSubmitted">Invalid Floor Number.</div>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@
                 class="text-danger">
                 Bedroom Count is required
               </div>
-              <div *ngIf="formData.get('bedroom_count').errors?.['pattern']">Invalid BedRoom Count.</div>
+              <div *ngIf="formData.get('bedroom_count').errors?.['pattern'] && isSubmitted">Invalid BedRoom Count.</div>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
                 class="text-danger">
                 Bathroom Count is required
               </div>
-              <div *ngIf="formData.get('bathroom_count').errors?.['pattern']">Invalid Bathroom Count.</div>
+              <div *ngIf="formData.get('bathroom_count').errors?.['pattern'] && isSubmitted" >Invalid Bathroom Count.</div>
             </div>
           </div>
           <div class="col-md-6">
@@ -187,7 +187,7 @@
                 class="text-danger">
                 Property Number is required
               </div>
-              <div *ngIf="formData.get('property_number').errors?.['pattern']">Invalid PropertyNumber.</div>
+              <div *ngIf="formData.get('property_number').errors?.['pattern'] && isSubmitted">Invalid PropertyNumber.</div>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@
                 class="text-danger">
                 Street Number is required
               </div>
-              <div *ngIf="formData.get('streetNo').errors?.['pattern']">Invalid Street Number.</div>
+              <div *ngIf="formData.get('streetNo').errors?.['pattern'] && isSubmitted">Invalid Street Number.</div>
             </div>
             <div class="form-group">
               <label>Country</label>
@@ -257,7 +257,7 @@
                 class="text-danger">
                 Longitude is required
               </div>
-              <div *ngIf="formData.get('lng')?.['pattern']">Invalid Longitude.</div>
+              <div *ngIf="formData.get('lng')?.['pattern'] && isSubmitted">Invalid Longitude.</div>
             </div>
             <div class="form-group">
               <label>Latitude</label>
@@ -267,7 +267,7 @@
                 class="text-danger">
                 Latitude is required
               </div>
-              <div *ngIf="formData.get('lat').errors?.['pattern']">Invalid Latitude.</div>
+              <div *ngIf="formData.get('lat').errors?.['pattern'] && isSubmitted">Invalid Latitude.</div>
             </div>
           </div>
         </div>
@@ -289,17 +289,13 @@
           </div>
         </div>
         <hr>
-        <button (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)" type="submit" class="btn_1 green">Add Apartment</button>
+<!--        (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)"-->
+        <button  type="submit" class="btn_1 green">Add Apartment</button>
         <section id="section-4"></section>
       </div>
     </form>
-    <div class="form-inline upload_1">
-      <div class="form-group">
-        <input #fileInput class="input_file" type="file" name="files[]" multiple required>
-      </div>
-    </div>
-<!--    <button (click)="tryUploadImages(fileInput.files)">Try uploading image</button>-->
-    <!-- Progress Bar -->
+
+    <!-- Progress Bar for images only-->
     <div class="progress">
       <div class="progress-bar" role="progressbar" [style.width.%]="uploadProgress">
         {{ uploadProgress }}% Complete
