@@ -1,0 +1,320 @@
+<main>
+  <div class="margin_100 container">
+<!--    (ngSubmit)="onSubmit()"-->
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()" >
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Add New Apartment</h3>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Property Type</label>
+              <select class="form-control" formControlName="property_type" required>
+                <option value="">Select...</option>
+                <option value="apartment">Apartment</option>
+                <option value="room">Room</option>
+                <!-- Add more options for property types if needed -->
+              </select>
+              <div
+                *ngIf="formData.controls['property_type'].errors  && isSubmitted"
+                class="text-danger">
+                Property Type is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control" formControlName="description" rows="3" required></textarea>
+              <div
+                *ngIf="formData.controls['description'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Description is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Price</label>
+              <input class="form-control" formControlName="price" type="number" required>
+              <div
+                *ngIf="formData.controls['price'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Price is required
+              </div>
+              <div *ngIf="formData.get('price').errors?.['pattern']">Invalid Price.</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Availability</label>
+              <select class="form-control" formControlName="availability" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div
+                *ngIf="formData.controls['availability'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Availability is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Listing Type</label>
+              <select class="form-control" formControlName="listing_type" required>
+                <option value="">Select...</option>
+                <option value="rent">Rent</option>
+                <option value="sale">Sale</option>
+                <!-- Add more options for listing types if needed -->
+              </select>
+              <div
+                *ngIf="formData.controls['listing_type'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Listing Type is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Floor Number</label>
+              <input class="form-control" formControlName="floor_no" type="number" required>
+              <div
+                *ngIf="formData.controls['floor_no'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Floor Number is required
+              </div>
+              <div *ngIf="formData.get('floor_no').errors?.['pattern']">Invalid Floor Number.</div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Wi-Fi</label>
+              <select class="form-control" formControlName="wifi" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div
+                *ngIf="formData.controls['wifi'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Wi-Fi is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Bedroom Count</label>
+              <input class="form-control" formControlName="bedroom_count" type="number" required>
+              <div
+                *ngIf="formData.controls['bedroom_count'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Bedroom Count is required
+              </div>
+              <div *ngIf="formData.get('bedroom_count').errors?.['pattern']">Invalid BedRoom Count.</div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Bathroom Count</label>
+              <input class="form-control" formControlName="bathroom_count" type="number" required>
+              <div
+                *ngIf="formData.controls['bathroom_count'].errors?.['required'] && (formData.controls['bathroom_count'].dirty) && isSubmitted"
+                class="text-danger">
+                Bathroom Count is required
+              </div>
+              <div *ngIf="formData.get('bathroom_count').errors?.['pattern']">Invalid Bathroom Count.</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Air Conditioning</label>
+              <select class="form-control" formControlName="air_conditioning" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div
+                *ngIf="formData.controls['air_conditioning'].errors?.['required'] && (formData.controls['air_conditioning'].dirty) && isSubmitted"
+                class="text-danger">
+                Air Conditioning is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>TV</label>
+              <select class="form-control" formControlName="tv" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div
+                *ngIf="formData.controls['tv'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                TV is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Property Number</label>
+              <input class="form-control" formControlName="property_number" type="number" required>
+              <div
+                *ngIf="formData.controls['property_number'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Property Number is required
+              </div>
+              <div *ngIf="formData.get('property_number').errors?.['pattern']">Invalid PropertyNumber.</div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+        <!-- Divider -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="divider"></div>
+          </div>
+        </div>
+        <!-- End Divider -->
+
+        <!-- Address Section -->
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Address Details</h4>
+          </div>
+        </div>
+
+        <!-- Address details -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Street</label>
+              <input class="form-control" formControlName="street" type="text" required>
+              <div
+                *ngIf="formData.controls['street'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Street is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <input class="form-control" formControlName="city" type="text" required>
+              <div
+                *ngIf="formData.controls['city'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                City is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Street Number</label>
+              <input class="form-control" formControlName="streetNo" type="number" required>
+              <div
+                *ngIf="formData.controls['streetNo'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Street Number is required
+              </div>
+              <div *ngIf="formData.get('streetNo').errors?.['pattern']">Invalid Street Number.</div>
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <input class="form-control" formControlName="country" type="text" required>
+              <div
+                *ngIf="formData.controls['country'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Country is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Longitude</label>
+              <input class="form-control" formControlName="lng" type="number" required>
+              <div
+                *ngIf="formData.controls['lng'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                Longitude is required
+              </div>
+              <div *ngIf="formData.get('lng')?.['pattern']">Invalid Longitude.</div>
+            </div>
+            <div class="form-group">
+              <label>Latitude</label>
+              <input class="form-control" formControlName="lat" type="number" required>
+              <div
+                *ngIf="formData.controls['lat'].errors?.['required']  && isSubmitted"
+                class="text-danger">
+                Latitude is required
+              </div>
+              <div *ngIf="formData.get('lat').errors?.['pattern']">Invalid Latitude.</div>
+            </div>
+          </div>
+        </div>
+        <!-- End Address details -->
+        <!-- google map -->
+        <div id="map"></div>
+        <hr>
+        <h4>Upload Property Images</h4>
+        <div class="form-inline upload_1">
+          <div class="form-group">
+            <input #fileInput1 formControlName="img1" class="input_file" type="file" name="files[]" id="js-upload-files" multiple required>
+            <input #fileInput2 formControlName="img2" class="input_file" type="file" name="files[]" id="js2-upload-files" multiple required>
+            <input #fileInput3 formControlName="img3" class="input_file" type="file" name="files[]" id="js3-upload-files" multiple required>
+          </div>
+          <div
+            *ngIf="(formData.controls['img1'].errors?.['required'] || formData.controls['img2'].errors?.['required'] || formData.controls['img3'].errors?.['required'])  && isSubmitted"
+            class="text-danger">
+            Three Images are required
+          </div>
+        </div>
+        <hr>
+        <button (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)" type="submit" class="btn_1 green">Add Apartment</button>
+        <section id="section-4"></section>
+      </div>
+    </form>
+    <div class="form-inline upload_1">
+      <div class="form-group">
+        <input #fileInput class="input_file" type="file" name="files[]" multiple required>
+      </div>
+    </div>
+<!--    <button (click)="tryUploadImages(fileInput.files)">Try uploading image</button>-->
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [style.width.%]="uploadProgress">
+        {{ uploadProgress }}% Complete
+      </div>
+    </div>
+
+    <!-- Upload Finished -->
+    <div class="js-upload-finished" *ngIf="isUploadFinished">
+      <h5>Processed files</h5>
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of uploadedImages">
+          <span class="badge alert-success pull-right">Success</span>
+<!--          {{ image.imagePath }}-->
+        </a>
+      </div>
+    </div>
+  </div>
+</main>

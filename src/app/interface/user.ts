@@ -3,7 +3,7 @@ import { Review } from './review';
 import { Subscription } from './subscription';
 
 export class User {
-  private id: number;
+  id: number;
   private firstName: string;
   private lastName: string;
   private birthdate: Date;
