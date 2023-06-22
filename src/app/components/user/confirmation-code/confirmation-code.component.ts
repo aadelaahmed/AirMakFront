@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../../services/user.service";
+import {ApiService} from "../../../services/api.service";
 import {PopupService} from "../../../services/popup.service";
 import {Router} from "@angular/router";
-import {ForgetPasswordDto} from "../../../dtos/users/forget-password-dto.model";
-import {NgIf} from "@angular/common";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-confirmation-code',
@@ -16,7 +15,7 @@ export class ConfirmationCodeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private apiService: ApiService,
     private popupService: PopupService,
     private router: Router
   ) {
@@ -31,7 +30,13 @@ export class ConfirmationCodeComponent implements OnInit {
   sendEmailButton() {
     if (this.confirmEmailForm.valid) {
       const formValue = this.confirmEmailForm.value;
-      this.userService.verifyConfirmationCode(formValue.code).subscribe(
+      const headers = new HttpHeaders({
+        'Content-Type': 'text/plain',
+      });
+      this.apiService.post("users/confirmation-code", formValue.code.trim(), {
+        headers,
+        withCredentials: true
+      }).subscribe(
         {
           next: response => {
             console.log(response.payload)

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {SwalComponent} from "@sweetalert2/ngx-sweetalert2";
 import Swal from "sweetalert2";
 
 @Injectable({
@@ -38,20 +37,6 @@ export class PopupService {
       confirmButtonText: "OK",
       confirmButtonColor: "#0072bc"
     });
-  }
-
-  verifyConfirmationCodePopup(): string {
-    let code;
-    Swal.fire({
-      title: 'Verify User',
-      text: 'Insert Confirmation Code',
-      input: 'text',
-      inputLabel: 'Confirmation Code',
-      inputPlaceholder: 'Enter Your Code',
-    }).then((result) => {
-      code = result.value;
-    })
-    return code;
   }
 
   constructor() {

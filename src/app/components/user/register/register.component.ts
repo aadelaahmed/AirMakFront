@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import {PopupService} from "../../../services/popup.service";
-import {UserService} from "../../../services/user.service";
+import {ApiService} from "../../../services/api.service";
 
 @Component({
   selector: 'app-register',
@@ -14,11 +14,10 @@ export class RegisterComponent {
   registerForm: FormGroup;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private popupService: PopupService,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private apiService: ApiService
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
@@ -32,12 +31,9 @@ export class RegisterComponent {
         Validators.maxLength(20),
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
         )]],
-      confirmPassword: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
-        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
-        )]],
+      confirmPassword: ['', [Validators.required,]],
+    }, {
+      validators: this.apiService.match('password', 'confirmPassword')
     });
   }
 
@@ -61,7 +57,7 @@ export class RegisterComponent {
 
     console.log('UserDTO:', requestRegistrationDTO);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.http.post('http://localhost:8080/users/register', requestRegistrationDTO, {headers, withCredentials: true}).subscribe({
+    this.apiService.post('users/register', requestRegistrationDTO, {headers, withCredentials: true}).subscribe({
         next: response => {
           console.log('User registered successfully', response);
           this.popupService.successPopup("User registered successfully")

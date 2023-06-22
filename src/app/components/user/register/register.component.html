@@ -37,7 +37,7 @@
                   Minimum age requirement is 15 years old.
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <label>Phone Number</label>
                 <input type="tel" class="form-control" placeholder="Phone number" formControlName="phoneNumber">
@@ -72,8 +72,13 @@
                 <input type="password" class="form-control" placeholder="Confirm password" formControlName="confirmPassword">
                 <div class="error-message" *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched">
                   <!-- Display validation errors for confirmPassword field -->
-                  <div *ngIf="registerForm.get('confirmPassword').errors?.['required']" class="text-danger">Confirm Password is required</div>
-                  <div *ngIf="registerForm.get('confirmPassword').errors?.['mustMatch']" class="text-danger">Passwords do not match</div>
+                  <small class="form-text text-danger"
+                         *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Password is
+                    required.
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="registerForm.get('confirmPassword')?.hasError('matching')">Passwords do not match.
+                  </small>
                 </div>
               </div>
               <div id="pass-info" class="clearfix"></div>
