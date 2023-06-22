@@ -2,10 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {Address} from "../../interface/address";
 import {User} from "../../interface/user";
 import {Property} from "../../interface/property";
-import {FirebaseStorageService} from "../../services/firebase-storage/firebase-storage.service";
+import {FirebaseStorageService} from "../../services/firebase-storage.service";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Image} from "../../interface/image";
-import {AddPropertyService} from "../../services/add-property/add-property.service";
+import {AddPropertyService} from "../../services/add-property.service";
 import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 

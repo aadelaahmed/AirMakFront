@@ -15,8 +15,9 @@ import { EditPropertyComponent } from './components/edit-property/edit-property.
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 import { ExploringComponent } from './components/exploring/exploring.component';
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
-import {AddPropertyService} from "./services/add-property/add-property.service";
+import {AddPropertyService} from "./services/add-property.service";
 import {HttpClientModule} from "@angular/common/http";
+import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import {HttpClientModule} from "@angular/common/http";
     EditPropertyComponent,
     PropertyDetailsComponent,
     ExploringComponent,
-    AddPropertyComponent
+    AddPropertyComponent,
+    UserPropertiesComponent
   ],
   imports: [
     BrowserModule,

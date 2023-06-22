@@ -17,6 +17,7 @@ export class Property {
   airCondition: number;
   tv: number;
   availability: number;
+  publishDate: Date;
   wifi: number;
   images: Image[];
   reviews: Review[];

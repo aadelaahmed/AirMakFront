@@ -1,0 +1,40 @@
+<main>
+  <section id="user_properties">
+
+    <div *ngFor="let property of userProperties" class="strip_booking">
+      <div id="card" class="row">
+        <div class="col-lg-2 col-md-2">
+          <div class="date">
+            <span class="month">{{ getPropertyMonth(property) }}</span>
+            <span class="day"><strong>{{ getPropertyDay(property) }}</strong>{{ getPropertyDaySuffix(property) }}</span>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-5">
+          <h3 class="hotel_booking">{{ property.address.city }} - {{ property.propertyType }}</h3>
+        </div>
+        <div class="col-lg-2 col-md-3">
+          <ul class="info_booking">
+            <li><strong>Price</strong> {{ property.price }}</li>
+            <li><strong>Bedrooms</strong> {{ property.bedRoomCount }}</li>
+            <li><strong>Bathrooms</strong> {{ property.bathRoomCount }}</li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-2">
+          <div class="booking_buttons">
+            <a href="#0" class="btn_2">Edit</a>
+            <a href="#0" class="btn_3">Cancel</a>
+          </div>
+        </div>
+      </div>
+      <!-- End row -->
+    </div>
+    <div *ngIf="userProperties.length === 0">
+      <div class="empty-list-message">
+        <h2>No properties found</h2>
+        <p>Start by adding a property to your list!</p>
+      </div>
+    </div>
+    <!-- End strip booking -->
+  </section>
+  <!-- End section 1 -->
+</main>

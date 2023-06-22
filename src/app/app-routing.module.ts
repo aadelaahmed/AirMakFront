@@ -4,12 +4,14 @@ import {HomeComponent} from "./components/home/home.component";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {EditPropertyComponent} from "./components/edit-property/edit-property.component";
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
+import {UserPropertiesComponent} from "./components/user-properties/user-properties.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
   {path: 'edit/property', component: EditPropertyComponent, title: 'Edit Property'},
   {path: 'add/property', component: AddPropertyComponent, title: 'Add Property'},
+  {path: 'user/properties', component: UserPropertiesComponent, title: 'User\'s Properties'},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
 

@@ -1,0 +1,26 @@
+#card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 32px;
+  margin-right: 32px;
+}
+.strip_booking:not(:first-child) {
+  margin-top: 16px;
+}
+.empty-list-message {
+  text-align: center;
+  margin: 50px auto;
+}
+
+.empty-list-message h2 {
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.empty-list-message p {
+  font-size: 18px;
+  color: #777;
+}
