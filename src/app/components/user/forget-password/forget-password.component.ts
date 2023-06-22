@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../../services/user.service";
+import {ApiService} from "../../../services/api.service";
 import {Router} from "@angular/router";
 import {ForgetPasswordDto} from "../../../dtos/users/forget-password-dto.model";
 import {PopupService} from "../../../services/popup.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-forget-password',
@@ -15,7 +16,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private apiService: ApiService,
     private popupService: PopupService,
     private router: Router
   ) {
@@ -31,7 +32,10 @@ export class ForgetPasswordComponent implements OnInit {
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
       const email: ForgetPasswordDto = new ForgetPasswordDto(formValue.email);
-      this.userService.forgetPassword(email).subscribe(
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+      this.apiService.post("users/forgot-password", email, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
             console.log(response.payload)

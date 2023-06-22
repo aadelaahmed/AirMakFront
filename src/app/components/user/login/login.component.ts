@@ -1,13 +1,10 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginDTO} from "../../../dtos/users/login-dto.model";
-import {UserService} from "../../../services/user.service";
+import {ApiService} from "../../../services/api.service";
 import {Router} from "@angular/router";
 import {PopupService} from "../../../services/popup.service";
-import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
-import firebase from "firebase/compat";
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
-import {getAuth, signInWithPopup} from "@angular/fire/auth";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -23,10 +20,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private apiService: ApiService,
     private popupService: PopupService,
     private router: Router,
-    private _ngZone: NgZone
   ) {
   }
 
@@ -44,7 +40,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
       const user: LoginDTO = new LoginDTO(formValue.email, formValue.password);
-      this.userService.login(user).subscribe(
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
+      this.apiService.post("users/login", user, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
             console.log(response.payload.firstName)
