@@ -20,6 +20,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { ConfirmationCodeComponent } from './components/user/confirmation-code/confirmation-code.component';
 import {SharedService} from "./services/shared.service";
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
+import { UpdatePasswordComponent } from './components/user/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditProfileComponent } from './components/user/edit-profile/edit-profil
     ResetPasswordComponent,
     ProfileComponent,
     ConfirmationCodeComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,

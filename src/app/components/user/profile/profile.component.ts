@@ -36,4 +36,8 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['profile/edit-profile'])
   }
 
+  updatePasswordButton() {
+    this.router.navigate(['profile/update-password'])
+  }
+
 }

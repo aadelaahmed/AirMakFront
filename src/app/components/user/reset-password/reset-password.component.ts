@@ -24,7 +24,6 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
-
   }
 
   ngOnInit(): void {
