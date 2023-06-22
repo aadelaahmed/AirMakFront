@@ -9,12 +9,11 @@ import {UserPropertiesService} from "../../services/user-properties.service";
 })
 export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
-  userId = 1;
   constructor(private userPropertiesService:UserPropertiesService) {
   }
   ngOnInit() {
     //TODO:Replace with the actual user ID
-    const userId = 1;
+    const userId = 2;
     this.userPropertiesService.getPropertiesByUserId(userId).subscribe(
       (properties: Property[]) => {
         this.userProperties = properties;
@@ -30,7 +29,7 @@ export class UserPropertiesComponent implements OnInit{
     // Implement logic to retrieve and format the month based on the property's date
     // Example:
     // const date = new Date(property.date);
-    const date = new Date();
+    const date = new Date(property.publishDate);
     return date.toLocaleString('en-us', { month: 'short' });
   }
 
@@ -38,7 +37,7 @@ export class UserPropertiesComponent implements OnInit{
     // Implement logic to retrieve and format the day based on the property's date
     // Example:
     // const date = new Date(property.date);
-    const date = new Date();
+    const date = new Date(property.publishDate);
     return date.getDate();
   }
 
@@ -47,7 +46,7 @@ export class UserPropertiesComponent implements OnInit{
     Example:*/
     //TODO: get the date of publishing property.
     // const date = new Date(property.date);
-    const date = new Date();
+    const date = new Date(property.publishDate);
     const day = date.getDate();
     if (day === 1 || day === 21 || day === 31) {
       return 'st';

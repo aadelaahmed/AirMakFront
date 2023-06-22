@@ -11,7 +11,8 @@
 }
 .empty-list-message {
   text-align: center;
-  margin: 50px auto;
+  margin-top: 50vh;
+  transform: translateY(-50%);
 }
 
 .empty-list-message h2 {
@@ -23,4 +24,10 @@
 .empty-list-message p {
   font-size: 18px;
   color: #777;
+}
+
+.pending {
+  filter: blur(1px);
+  opacity: 0.5;
+  pointer-events: none;
 }

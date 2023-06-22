@@ -1,7 +1,6 @@
 <main>
   <section id="user_properties">
-
-    <div *ngFor="let property of userProperties" class="strip_booking">
+    <div *ngFor="let property of userProperties" [class.pending]="property.propertyState.toLowerCase() === 'pending'" class="strip_booking">
       <div id="card" class="row">
         <div class="col-lg-2 col-md-2">
           <div class="date">
