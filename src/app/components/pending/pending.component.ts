@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PendingProperty } from 'src/app/models/PendingProperty.model';
 import { PendingService } from 'src/app/services/pending.service';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class  PendingComponent implements OnInit {
 
   pendingProperty: PendingProperty[] = [];
 
-  constructor(private _http: HttpClient, private router: Router, private pendingService: PendingService) {
+  constructor(    private popupService: PopupService,
+    private _http: HttpClient, private router: Router, private pendingService: PendingService) {
   }
 
   ngOnInit(): void {
@@ -43,15 +45,17 @@ export class  PendingComponent implements OnInit {
     this.pendingService.update(id).subscribe(
       {
         next: reposnse => {
-          console.log("yassin");
           console.log(reposnse);
+          this.popupService.successPopup(reposnse.payload);
+
           this.router.navigate(['/pending']);
 
 
         },
         error: error => { 
-              
-          
+          this.popupService.errorPopup(error.payload);
+
+           
         }
 
       }
