@@ -29,6 +29,7 @@
     "firebase": "^9.22.2",
     "firebaseui": "^6.0.2",
     "font-awesome": "^4.7.0",
+    "ngx-cookie-service": "^16.0.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.12",
     "tslib": "^2.3.0",
