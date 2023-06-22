@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import {PopupService} from "../../../services/popup.service";
 import {ApiService} from "../../../services/api.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent {
     private router: Router,
     private popupService: PopupService,
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
@@ -33,7 +35,7 @@ export class RegisterComponent {
         )]],
       confirmPassword: ['', [Validators.required,]],
     }, {
-      validators: this.apiService.match('password', 'confirmPassword')
+      validators: this.userService.match('password', 'confirmPassword')
     });
   }
 

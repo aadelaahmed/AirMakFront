@@ -21,12 +21,16 @@ export class ApiService {
     return this._http.get<any>(`${this.baseUrl}/${url}/${id}`)
   }
 
+  get(url: string, headers: any) : Observable<any>{
+    return this._http.get<any>(`${this.baseUrl}/${url}`, headers)
+  }
+
   post(url: string, body: any, headers: any) : Observable<any>{
     return this._http.post<any>(`${this.baseUrl}/${url}`, body, headers)
   }
 
-  put(url: string, body: any) : Observable<any> {
-    return this._http.put<any>(`${this.baseUrl}/${url}`, body)
+  put(url: string, body: any, headers: any) : Observable<any> {
+    return this._http.put<any>(`${this.baseUrl}/${url}`, body, headers)
   }
 
   delete(url: string, id: number) : Observable<any> {
@@ -35,23 +39,5 @@ export class ApiService {
 
   verifyToken(token: string): Observable<any> {
     return this._http.get(`${this.baseUrl}/reset-password?token=${token}`);
-  }
-
-  match(controlName: string, checkControlName: string): ValidatorFn {
-    return (controls: AbstractControl) => {
-      const control = controls.get(controlName);
-      const checkControl = controls.get(checkControlName);
-
-      if (checkControl?.errors && !checkControl.errors['matching']) {
-        return null;
-      }
-
-      if (control?.value !== checkControl?.value) {
-        controls.get(checkControlName)?.setErrors({matching: true});
-        return {matching: true};
-      } else {
-        return null;
-      }
-    };
   }
 }

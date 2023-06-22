@@ -19,6 +19,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { ConfirmationCodeComponent } from './components/user/confirmation-code/confirmation-code.component';
 import {SharedService} from "./services/shared.service";
+import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {SharedService} from "./services/shared.service";
     ForgetPasswordComponent,
     ResetPasswordComponent,
     ProfileComponent,
-    ConfirmationCodeComponent
+    ConfirmationCodeComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

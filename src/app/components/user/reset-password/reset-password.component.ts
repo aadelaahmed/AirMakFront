@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ResetPassword} from "../../../dtos/users/reset-password.model";
 import {PopupService} from "../../../services/popup.service";
 import {HttpHeaders} from "@angular/common/http";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-reset-password',
@@ -20,7 +21,8 @@ export class ResetPasswordComponent implements OnInit {
     private apiService: ApiService,
     private popupService: PopupService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
 
   }
@@ -33,7 +35,7 @@ export class ResetPasswordComponent implements OnInit {
       newPassword: [null, [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=])[A-Za-z\\d@#$%^&+=]+$"), Validators.minLength(8), Validators.maxLength(30)]],
       confirmNewPassword: [null, [Validators.required]]
     }, {
-      validators: this.apiService.match('newPassword', 'confirmNewPassword')
+      validators: this.userService.match('newPassword', 'confirmNewPassword')
     });
   }
 
