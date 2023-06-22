@@ -1,13 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {Address} from "../../interface/address";
-import {User} from "../../interface/user";
-import {Property} from "../../interface/property";
-import {FirebaseStorageService} from "../../services/firebase-storage/firebase-storage.service";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Image} from "../../interface/image";
-import {AddPropertyService} from "../../services/add-property/add-property.service";
-import {forkJoin, Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import { Component, OnInit } from "@angular/core";
+import { Address } from "../../interface/address";
+import { User } from "../../interface/user";
+import { Property } from "../../interface/property";
+import { FirebaseStorageService } from "../../services/firebase-storage/firebase-storage.service";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Image } from "../../interface/image";
+import { AddPropertyService } from "../../services/add-property/add-property.service";
+import { forkJoin, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'add-apartment',
@@ -21,6 +21,12 @@ export class AddPropertyComponent implements OnInit {
   isUploadFinished: boolean = false;
   uploadedImages: Image[] = [];
   isFormValidated: boolean = false;
+
+  propertyPositionFromMap: any;
+  centerPointForMap: google.maps.LatLngLiteral = {
+    lat: 30.182102629242127,
+    lng: 30.58154140412807
+  };
 
   constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
   }
@@ -52,7 +58,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   uploadImages(fileList1: FileList, fileList2: FileList, fileList3: FileList): void {
-    if (this.isFormValidated){
+    if (this.isFormValidated) {
       const fileImg1 = fileList1[0];
       const fileImg2 = fileList2[0];
       const fileImg3 = fileList3[0];
@@ -114,7 +120,7 @@ export class AddPropertyComponent implements OnInit {
       const property = new Property();
       property.address = address;
       property.propertyType = this.formData.get('property_type').value;
-      property.desc = this.formData.get('description').value;
+      property.description = this.formData.get('description').value;
       property.price = this.formData.get('price').value;
       property.availability = this.formData.get('availability').value;
       property.listingType = this.formData.get('listing_type').value;
@@ -133,5 +139,13 @@ export class AddPropertyComponent implements OnInit {
       property.user.id = 1;
       this.addPropertyService.addProperty(property);
     }
+  }
+
+  click(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.propertyPositionFromMap = event.latLng.toJSON();
+    console.log(this.propertyPositionFromMap);
+    console.log(this.propertyPositionFromMap.lat);
+    console.log(this.propertyPositionFromMap.lng);
+
   }
 }

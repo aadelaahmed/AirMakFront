@@ -272,8 +272,14 @@
           </div>
         </div>
         <!-- End Address details -->
+
         <!-- google map -->
-        <div id="map"></div>
+        <div id="map">
+          <google-map height="400px" width="750px" [center]="centerPointForMap" [zoom]="8" (mapClick)="click($event)">
+            <map-marker *ngIf="propertyPositionFromMap" [position]="propertyPositionFromMap" [draggable]="true"></map-marker>
+          </google-map>
+        </div>
+
         <hr>
         <h4>Upload Property Images</h4>
         <div class="form-inline upload_1">

@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -37,7 +38,8 @@ import {HttpClientModule} from "@angular/common/http";
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [AddPropertyService],
   bootstrap: [AppComponent]
