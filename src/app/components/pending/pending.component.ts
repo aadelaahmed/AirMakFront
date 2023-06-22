@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BestPackage } from 'src/app/models/BestPackage.model';
-import { APIResponse } from 'src/app/models/api-response.model';
-import { Package } from 'src/app/models/getPackage.model';
-import { PackageService } from 'src/app/services/package.service';
+import { PendingProperty } from 'src/app/models/PendingProperty.model';
+import { PendingService } from 'src/app/services/pending.service';
 
 @Component({
   selector: 'app-home',
@@ -13,19 +11,16 @@ import { PackageService } from 'src/app/services/package.service';
 })
 export class  PendingComponent implements OnInit {
 
-  packages: Package[] = [];
-   numbers: number[] = [];
-   numberOfPackages:number=5;
-   package = new BestPackage();
+  pendingProperty: PendingProperty[] = [];
 
-  constructor(private _http: HttpClient, private router: Router, private packageService: PackageService) {
+  constructor(private _http: HttpClient, private router: Router, private pendingService: PendingService) {
   }
 
   ngOnInit(): void {
     
-    this.packageService.get().subscribe({
+    this.pendingService.get().subscribe({
       next: response => {
-        this.packages = response.payload;
+        this.pendingProperty = response.payload;
       
 
       },
@@ -33,55 +28,29 @@ export class  PendingComponent implements OnInit {
     });
 
     
-      this.packageService.getCountOfSubscriptionsForPackage().subscribe({
-        next: response => {
-       
-          this.numbers = response.payload;
-
-  
-        },
-        error: error => { }
-      });
     
-      this.packageService.getPackagesCount().subscribe({
-        next: response => {
-       
-          this.numberOfPackages = response.payload;
-
-  
-        },
-        error: error => { }
-      });
-
-      this.packageService.getBestPackage().subscribe({
-        next: response => {
-       
-          this.package = response.payload;
-
-  
-        },
-        error: error => { }
-      });
     
+     
+
+   
 
   }
 
 
-  delete(id: number) {
+  accept(id: number) {
    
 
-    this.packageService.delete(id).subscribe(
+    this.pendingService.update(id).subscribe(
       {
         next: reposnse => {
-          alert(reposnse.payload);
-
+          console.log("yassin");
+          console.log(reposnse);
           this.router.navigate(['/admin']);
 
 
         },
         error: error => { 
               
-           alert("this package has subscriptions")
           
         }
 

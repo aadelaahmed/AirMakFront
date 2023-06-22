@@ -29,27 +29,25 @@
 </div>
 
 
- <div class="strip_booking" *ngFor="let packagee of packages;let currentIndex=index">
+ <div class="strip_booking" *ngFor="let pending of pendingProperty;let currentIndex=index">
     <div class="row">
         <div class="col-lg-2 col-md-6">
 
         </div>
             <div class="col-lg-6 col-md-5">
                 
-                <h3 class="hotel_booking"><a>{{packagee.name}}</a><span>Propet Count: {{packagee.propertyCount}}</span></h3>
+                <h3 class="hotel_booking">id: {{pending.id}}</h3>
             </div>
             <div class="col-lg-2 col-md-3">
                 <ul class="info_booking">
-                    <li><strong>Price</strong> {{packagee.price}}</li>
-                    <li><strong>Duration</strong> {{ packagee.duration}}  Day</li>
-                    <li><strong>Subscribition</strong> {{ numbers[currentIndex]}} </li>
+                    <li><strong>Property State</strong> {{pending.propertyState}}</li>
                      
                 </ul>
             </div>
     
         <div class="col-lg-2 col-md-2">
             <div class="booking_buttons">
-                <button (click)="delete(packagee.id)" class="btn_2">Delete</button>
+                <button (click)="accept(pending.id)" class="btn_2">Accept</button>
             </div>
         </div>
     </div>
