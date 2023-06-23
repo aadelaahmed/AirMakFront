@@ -1,0 +1,16 @@
+.container-profile {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.h1-profile {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 10rem;
+
+}

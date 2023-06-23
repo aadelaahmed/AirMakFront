@@ -1,0 +1,128 @@
+<main>
+  <div class="container-profile">
+    <img src="assets/img/notgeneric_bg1.jpg" alt="Snow" style="width:100%;">
+    <div class="centered">
+      <h1 class="h1-profile text-white display-1">EDIT PROFILE</h1>
+    </div>
+  </div>
+  <div class="margin_60 container">
+    <section>
+      <form [formGroup]="editProfileForm" (ngSubmit)="updateProfileButton()">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Edit Profile</h4>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input class="form-control" name="first_name" id="first_name" type="text"
+                     value="{{profileDate?.firstName}}"
+                     [class.is-valid]="!editProfileForm.controls['firstName'].errors" formControlName="firstName"
+              >
+              <div class="error-message"
+                   *ngIf="editProfileForm.get('firstName').invalid && editProfileForm.get('firstName').touched">
+                <!-- Display validation errors for firstName field -->
+                <div *ngIf="editProfileForm.get('firstName').errors?.['required']" class="text-danger">First Name is
+                  required
+                </div>
+                <div *ngIf="editProfileForm.get('firstName').errors?.['minlength']" class="text-danger">First Name must
+                  be at least 2 characters
+                </div>
+                <div *ngIf="editProfileForm.get('firstName').errors?.['maxlength']" class="text-danger">First Name
+                  cannot exceed 10 characters
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input class="form-control" name="last_name" id="last_name" type="text"
+                     value="{{profileDate?.lastName}}"
+                     [class.is-valid]="!editProfileForm.controls['lastName'].errors" formControlName="lastName"
+              >
+              <div class="error-message"
+                   *ngIf="editProfileForm.get('lastName').invalid && editProfileForm.get('lastName').touched">
+                <!-- Display validation errors for lastName field -->
+                <div *ngIf="editProfileForm.get('lastName').errors?.['required']" class="text-danger">Last Name is
+                  required
+                </div>
+                <div *ngIf="editProfileForm.get('lastName').errors?.['minlength']" class="text-danger">Last Name must be
+                  at least 2 characters
+                </div>
+                <div *ngIf="editProfileForm.get('lastName').errors?.['maxlength']" class="text-danger">Last Name cannot
+                  exceed 10 characters
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="phone_number">Phone Number</label>
+              <input class="form-control" name="phone_number" id="phone_number" type="tel"
+                     value="{{profileDate?.phoneNumber}}"
+                     [class.is-valid]="!editProfileForm.controls['phoneNumber'].errors" formControlName="phoneNumber"
+              >
+              <div class="error-message"
+                   *ngIf="editProfileForm.get('phoneNumber').invalid && editProfileForm.get('phoneNumber').touched">
+                <!-- Display validation errors for phoneNumber field -->
+                <div *ngIf="editProfileForm.get('phoneNumber').errors?.['required']" class="text-danger">Phone Number is
+                  required
+                </div>
+                <div *ngIf="editProfileForm.get('phoneNumber').errors?.['pattern']" class="text-danger">Please format it
+                  as
+                  01xxxxxxxxx
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="date">Date of birth <small>(dd/mm/yyyy)</small>
+              </label>
+              <input class="form-control" name="email" id="date" type="date" onfocus="(this.type='date')"
+                     value="{{profileDate?.birthdate}}"
+                     [class.is-valid]="!editProfileForm.controls['birthdate'].errors" formControlName="birthdate"
+              >
+              <div class="error-message"
+                   *ngIf="editProfileForm.get('birthdate').invalid && editProfileForm.get('birthdate').touched">
+                <div *ngIf="editProfileForm.get('birthdate').errors?.['required']" class="text-danger">
+                  Birthdate is required.
+                </div>
+                <div *ngIf="editProfileForm.get('birthdate').errors?.['minimumAge']" class="text-danger">
+                  Minimum age requirement is 15 years old.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control" name="email" id="email" type="email" value="{{profileDate?.email}}"
+                     [class.is-valid]="!editProfileForm.controls['email'].errors" formControlName="email"
+              >
+              <div class="error-message"
+                   *ngIf="editProfileForm.get('email').invalid && editProfileForm.get('email').touched">
+                <!-- Display validation errors for email field -->
+                <div *ngIf="editProfileForm.get('email').errors?.['required']" class="text-danger">Email is required
+                </div>
+                <div *ngIf="editProfileForm.get('email').errors?.['pattern']" class="text-danger">Please format it as
+                  example@example.com
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End row -->
+        <hr>
+        <button type="submit" class="btn_1 green">Update Profile</button>
+      </form>
+    </section>
+  </div>
+</main>
