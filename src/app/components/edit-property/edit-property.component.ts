@@ -30,10 +30,12 @@ export class EditPropertyComponent implements OnInit {
       this.populateData(observableProperty);
     }else{
       //TODO: handle if there is an error when fetching the property by id.
+      //navigate to 404 error page
     }
     this.formData = this.formBuilder.group({
       description: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      // price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      price: ['', [Validators.required]],
       //availability: ['', Validators.required],
       listingType: ['', Validators.required],
       bedroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
@@ -56,18 +58,17 @@ export class EditPropertyComponent implements OnInit {
         this.formData.patchValue({
           description: property.desc,
           price: property.price,
-          availability: property.availability,
+          // availability: property.availability,
           listingType: property.listingType,
           bedroom_count: property.bedRoomCount,
           bathroom_count: property.bathRoomCount,
           airCondition: property.airCondition,
           wifi: property.wifi,
           tv: property.tv,
-          property_number: property.propertyNo
         });
         console.log("current value screen for listingtype ->"+this.formData.get('listingType').value);
         console.log("current value screen for airCondition ->"+ this.formData.get('airCondition').value);
-        console.log("current value screen for property.airCondition ->"+ property.listingType);
+        console.log("current value screen for property.listingType ->"+ property.listingType);
         console.log("current value screen for property.airCondition ->"+ property.airCondition);
       },
       (error: any) => {
@@ -97,9 +98,13 @@ export class EditPropertyComponent implements OnInit {
       updatedProperty.user = new User();
       //TODO: get user id from opened session.
       updatedProperty.user.id = 1;
+      console.log("check data in invalid form ->"+JSON.stringify(this.formData.value));
       this.editPropertyService.editProperty(updatedProperty);
     }else{
       LoadingBarService.isLoading = false;
+      //console.log("check data in invalid form ->"+JSON.stringify(this.formData));
+      console.log("check data in invalid form ->"+JSON.stringify(this.formData.value));
+      console.log("unvalid edit form");
     }
   }
 

@@ -3,6 +3,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Property} from "../interface/property";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import Swal from "sweetalert2";
+import {LoadingBarService} from "./loading-bar.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,8 @@ export class UserPropertiesService {
 
   headers = new HttpHeaders({'Content-Type':'application/json'});
   baseUrl:string = "http://localhost:8080/properties/user";
-  constructor(private httpClient: HttpClient) { }
+  deleteUrl:string = "http://localhost:8080/properties";
+  constructor(private httpClient: HttpClient,private router:Router) { }
 
 
   getPropertiesByUserId(userId: number): Observable<Property[]> {
@@ -25,5 +29,33 @@ export class UserPropertiesService {
         return properties;
       })
     );
+  }
+
+  deleteProperty(propertyId: number) {
+    LoadingBarService.isLoading= true;
+    this.httpClient.delete(this.deleteUrl + `/${propertyId}`, {
+      headers: this.headers,
+      withCredentials: true
+    }).subscribe(
+      () => {
+        // Success handler
+        console.log('Property deleted successfully');
+        //this.successPopUpMenu.showSuccessPopupMenu('Your property will be reviewed before publishing.');
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        LoadingBarService.isLoading= false;
+        // TODO: Navigate the user to the properties list
+        this.router.navigate(['user/properties']);
+      },
+      (error) => {
+        // Error handler
+        LoadingBarService.isLoading= false;
+        console.error('Error adding property:', error);
+      }
+    );
+
   }
 }

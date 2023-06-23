@@ -31,3 +31,12 @@
   opacity: 0.5;
   pointer-events: none;
 }
+#editBtn{
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  color:white;
+}
+#deleteBtn{
+  /*background: #800000;*/
+  background: #d33;
+  color: white;
+}

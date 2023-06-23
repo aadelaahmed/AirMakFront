@@ -18,6 +18,7 @@ import {AddPropertyComponent} from "./components/add-property/add-property.compo
 import {AddPropertyService} from "./services/add-property.service";
 import {HttpClientModule} from "@angular/common/http";
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
+import { TryEditComponent } from './components/try-edit/try-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { UserPropertiesComponent } from './components/user-properties/user-prope
     PropertyDetailsComponent,
     ExploringComponent,
     AddPropertyComponent,
-    UserPropertiesComponent
+    UserPropertiesComponent,
+    TryEditComponent
   ],
   imports: [
     BrowserModule,

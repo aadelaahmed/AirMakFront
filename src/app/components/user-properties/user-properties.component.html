@@ -1,6 +1,7 @@
 <main>
   <section id="user_properties">
-    <div *ngFor="let property of userProperties" [class.pending]="property.propertyState.toLowerCase() === 'pending'" class="strip_booking">
+<!--    [class.pending]="property.propertyState.toLowerCase() === 'pending'"-->
+    <div *ngFor="let property of userProperties; let currentIndex = index" [class.pending]="property.propertyState.toLowerCase() === 'pending'"  class="strip_booking" >
       <div id="card" class="row">
         <div class="col-lg-2 col-md-2">
           <div class="date">
@@ -21,8 +22,8 @@
         </div>
         <div class="col-lg-2 col-md-2">
           <div class="booking_buttons">
-            <a href="#0" class="btn_2" (click)="editProperty(property.id)">Edit</a>
-            <a href="#0" class="btn_3">Cancel</a>
+            <a id = "editBtn"  class="btn_2" (click)="editProperty(property.id)">Edit</a>
+            <a id = "deleteBtn"  class="btn_3" (click)="deleteProperty(property.id,currentIndex)">Delete</a>
           </div>
         </div>
       </div>
