@@ -10,6 +10,16 @@ import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {LoadingBarService} from "../../services/loading-bar.service";
 import {SuccessPopupService} from "../../services/success-popup.service";
+import { Component, OnInit } from "@angular/core";
+import { Address } from "../../interface/address";
+import { User } from "../../interface/user";
+import { Property } from "../../interface/property";
+import { FirebaseStorageService } from "../../services/firebase-storage/firebase-storage.service";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Image } from "../../interface/image";
+import { AddPropertyService } from "../../services/add-property/add-property.service";
+import { forkJoin, Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'add-apartment',
@@ -26,6 +36,13 @@ export class AddPropertyComponent implements OnInit {
   property = new Property();
 
   constructor(private loadinBarService:LoadingBarService,private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+  propertyPositionFromMap: any;
+  centerPointForMap: google.maps.LatLngLiteral = {
+    lat: 30.182102629242127,
+    lng: 30.58154140412807
+  };
+
+  constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -142,6 +159,14 @@ export class AddPropertyComponent implements OnInit {
     } else {
       this.uploadImages(fileList1,fileList2,fileList3);
     }
+  }
+
+  click(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.propertyPositionFromMap = event.latLng.toJSON();
+    console.log(this.propertyPositionFromMap);
+    console.log(this.propertyPositionFromMap.lat);
+    console.log(this.propertyPositionFromMap.lng);
+
   }
 
   protected readonly LoadingBarService = LoadingBarService;

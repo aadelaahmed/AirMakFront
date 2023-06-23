@@ -7,7 +7,7 @@ export class User {
   private firstName: string;
   private lastName: string;
   private birthdate: Date;
-  private phoneNumber: string;
+  phoneNumber: string;
   private email: string;
   private password: string;
   private properties: Property[];

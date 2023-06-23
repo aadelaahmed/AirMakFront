@@ -9,7 +9,7 @@ export class Property {
   propertyType: string;
   listingType: string;
   price: number;
-  desc: string;
+  description: string;
   floorNo: number;
   propertyNo: number;
   bedRoomCount: number;

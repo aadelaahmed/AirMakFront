@@ -6,6 +6,7 @@ import {EditPropertyComponent} from "./components/edit-property/edit-property.co
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
 import {UserPropertiesComponent} from "./components/user-properties/user-properties.component";
 import {TryEditComponent} from "./components/try-edit/try-edit.component";
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'try/:id', component: TryEditComponent, title: 'Try User\'s Properties'},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

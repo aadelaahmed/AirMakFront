@@ -1,0 +1,9 @@
+.custom-marker {
+  /* Custom styles for the marker label */
+  background-color: #ff0000;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
