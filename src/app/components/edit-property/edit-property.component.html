@@ -68,9 +68,9 @@
           <div class="col-md-6">
             <div class="form-group">
               <label>Bedroom Count</label>
-              <input class="form-control" formControlName="bedRoomCount" type="number" required>
+              <input class="form-control" formControlName="bedroom_count" type="number" required>
               <div
-                *ngIf="formData.controls['bedRoomCount'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.controls['bedroom_count'].errors?.['required'] && isSubmitted"
                 class="text-danger">
                 Bedroom Count is required
               </div>
@@ -79,9 +79,9 @@
           <div class="col-md-6">
             <div class="form-group">
               <label>Bathroom Count</label>
-              <input class="form-control" formControlName="bathRoomCount" type="number" required>
+              <input class="form-control" formControlName="bathroom_count" type="number" required>
               <div
-                *ngIf="formData.controls['bathRoomCount'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.controls['bathroom_count'].errors?.['required'] && isSubmitted"
                 class="text-danger">
                 Bathroom Count is required
               </div>

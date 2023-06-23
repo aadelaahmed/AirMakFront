@@ -24,6 +24,7 @@ export class EditPropertyComponent implements OnInit {
 
   ngOnInit(): void {
     this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("propertyId ->"+ this.propertyId);
     let observableProperty = this.editPropertyService.getPropertyById(this.propertyId);
     if (observableProperty != null){
       this.populateData(observableProperty);
@@ -50,6 +51,8 @@ export class EditPropertyComponent implements OnInit {
       (property: Property) => {
         LoadingBarService.isLoading= false;
         this.currentProperty = property;
+        console.log("fetched property ->"+property);
+        console.log("currentProperty ->"+this.currentProperty);
         this.formData.patchValue({
           description: property.desc,
           price: property.price,
@@ -62,6 +65,10 @@ export class EditPropertyComponent implements OnInit {
           tv: property.tv,
           property_number: property.propertyNo
         });
+        console.log("current value screen for listingtype ->"+this.formData.get('listingType').value);
+        console.log("current value screen for airCondition ->"+ this.formData.get('airCondition').value);
+        console.log("current value screen for property.airCondition ->"+ property.listingType);
+        console.log("current value screen for property.airCondition ->"+ property.airCondition);
       },
       (error: any) => {
         // Handle error
