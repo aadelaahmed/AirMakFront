@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createPackage } from 'src/app/models/postPackage.model';
 import { PackageService } from 'src/app/services/package.service';
 import { Package } from 'src/app/models/getPackage.model';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-tasks',
@@ -15,7 +16,7 @@ import { Package } from 'src/app/models/getPackage.model';
 export class PackageComponent implements OnInit {
   packageForm: FormGroup;
   packages: Package[] = [];
-  constructor(private _http: HttpClient, private router: Router, private _formBuilder: FormBuilder, private packageService: PackageService) {
+  constructor(private popupService: PopupService,private _http: HttpClient, private router: Router, private _formBuilder: FormBuilder, private packageService: PackageService) {
 
   }
 
@@ -40,15 +41,17 @@ export class PackageComponent implements OnInit {
     let student: createPackage = this.packageForm.value;
     this.packageService.post(student).subscribe({
       next: response => {
-        console.log(response.payload);
-        if (response.status) {
-          this.router.navigate(['/admin']);
-        }
-        else {
+        
+        this.popupService.successPopup("Package Created");
 
-        }
+          this.router.navigate(['/admin']);
+        
+       
       },
-      error: error => { alert("Error"); }
+      error: error => {
+
+
+       }
     }
     );
 

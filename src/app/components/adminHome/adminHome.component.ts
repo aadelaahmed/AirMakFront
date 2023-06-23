@@ -89,7 +89,6 @@ export class AdminHomeComponent implements OnInit {
 
         },
         error: error => { 
-          console.log(error)
 
           
         }
