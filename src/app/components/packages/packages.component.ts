@@ -25,7 +25,7 @@ export class PackageComponent implements OnInit {
       name:          ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       propertyCount: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
       duration:      ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
-      price:         ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2)]],
+      price:         ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
     });
 
     this.packageService.get().subscribe({
