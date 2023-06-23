@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Property} from "../../interface/property";
 import {UserPropertiesService} from "../../services/user-properties.service";
+import {Router} from "@angular/router";
+import {LoadingBarService} from "../../services/loading-bar.service";
 
 @Component({
   selector: 'app-user-properties',
@@ -9,22 +11,27 @@ import {UserPropertiesService} from "../../services/user-properties.service";
 })
 export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
-  constructor(private userPropertiesService:UserPropertiesService) {
+  constructor(private router: Router,private userPropertiesService:UserPropertiesService) {
   }
   ngOnInit() {
     //TODO:Replace with the actual user ID
+    LoadingBarService.isLoading= true;
     const userId = 1;
     this.userPropertiesService.getPropertiesByUserId(userId).subscribe(
       (properties: Property[]) => {
+        LoadingBarService.isLoading= false;
         this.userProperties = properties;
         console.log("user properties ->"+this.userProperties);
       },
       (error) => {
+        LoadingBarService.isLoading= false;
         console.error('Error retrieving properties:', error);
       }
     );
   }
-
+  editProperty(propertyId:number){
+    this.router.navigate(['/property/edit', propertyId]);
+  }
   getPropertyMonth(property: Property): string {
     // Implement logic to retrieve and format the month based on the property's date
     // Example:
@@ -59,4 +66,6 @@ export class UserPropertiesComponent implements OnInit{
     }
     return '';
   }
+
+  protected readonly LoadingBarService = LoadingBarService;
 }

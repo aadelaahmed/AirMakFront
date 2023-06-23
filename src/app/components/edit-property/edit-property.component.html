@@ -31,21 +31,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Availability</label>
-              <select class="form-control" formControlName="availability" required>
-                <option value="">Select...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
-              <div
-                *ngIf="formData.controls['availability'].errors?.['required'] && isSubmitted"
-                class="text-danger">
-                Availability is required
-              </div>
-            </div>
-          </div>
+
           <div class="col-md-6">
             <div class="form-group">
               <label>Listing Type</label>
@@ -58,6 +44,21 @@
                 *ngIf="formData.controls['listingType'].errors?.['required'] && isSubmitted"
                 class="text-danger">
                 Listing Type is required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>TV</label>
+              <select class="form-control" formControlName="tv" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+              <div
+                *ngIf="formData.controls['tv'].errors?.['required'] && isSubmitted"
+                class="text-danger">
+                TV is required
               </div>
             </div>
           </div>
@@ -137,17 +138,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Property Number</label>
-              <input class="form-control" formControlName="propertyNo" type="number" required>
-              <div
-                *ngIf="formData.controls['property_number'].errors?.['required'] && isSubmitted"
-                class="text-danger">
-                Property Number is required
-              </div>
-            </div>
-          </div>
+
         </div>
         <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
           <!-- Add your loading bar or spinner HTML content here -->

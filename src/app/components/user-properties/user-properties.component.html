@@ -20,12 +20,17 @@
         </div>
         <div class="col-lg-2 col-md-2">
           <div class="booking_buttons">
-            <a href="#0" class="btn_2">Edit</a>
+            <a href="#0" class="btn_2" (click)="editProperty(property.id)">Edit</a>
             <a href="#0" class="btn_3">Cancel</a>
           </div>
         </div>
       </div>
       <!-- End row -->
+    </div>
+    <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+      <!-- Add your loading bar or spinner HTML content here -->
+      <!-- For example, you can use a CSS spinner -->
+      <div class="spinner"></div>
     </div>
     <div *ngIf="userProperties.length === 0">
       <div class="empty-list-message">

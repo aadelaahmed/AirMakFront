@@ -18,7 +18,7 @@ export class AddPropertyService {
       () => {
         // Success handler
         console.log('Property added successfully');
-        this.successPopUpMenu.showSuccessPopupMenu();
+        this.successPopUpMenu.showSuccessPopupMenu('Your property will be reviewed before publishing.');
         LoadingBarService.isLoading= false;
         // TODO: Navigate the user to the properties list
         this.router.navigate(['user/properties']);

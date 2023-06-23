@@ -8,7 +8,7 @@ export class SuccessPopupService {
 
   constructor() { }
 
-  showSuccessPopupMenu(){
+  showSuccessPopupMenu(message:string){
     /*Swal.fire({
       position: 'center',
       icon: 'success',
@@ -18,7 +18,7 @@ export class SuccessPopupService {
     })*/
     Swal.fire(
       'Good job!',
-      'Your property will be reviewed before publishing.',
+      message,
       'success'
     )
   }

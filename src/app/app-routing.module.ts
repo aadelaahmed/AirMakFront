@@ -9,8 +9,8 @@ import {UserPropertiesComponent} from "./components/user-properties/user-propert
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full', title: 'City Tours - Home'},
   {path: 'home', component: HomeComponent, title: 'City Tours - Home'},
-  {path: 'edit/property', component: EditPropertyComponent, title: 'Edit Property'},
-  {path: 'add/property', component: AddPropertyComponent, title: 'Add Property'},
+  {path: 'property/edit/:id', component: EditPropertyComponent, title: 'Edit Property'},
+  {path: 'property/add', component: AddPropertyComponent, title: 'Add Property'},
   {path: 'user/properties', component: UserPropertiesComponent, title: 'User\'s Properties'},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
