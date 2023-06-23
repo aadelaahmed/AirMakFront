@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {APIResponse} from '../models/api-response.model';
 import {HttpClient} from '@angular/common/http';
 import {createPackage} from '../models/postPackage.model';
+import { Response } from '../interface/response';
+import { Observable } from 'rxjs';
+import { ChargeDetails } from '../interface/payments/chargeDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +42,9 @@ export class PackageService {
   getBestPackage() {
     return this._http.get<APIResponse>("http://localhost:8080/packages/bestPackage");
   }
+
+  public getPackages(): Observable<Response<any>> {
+    const url = "http://127.0.0.1:8080/packages";
+    return this._http.get<Response<any>>(url);
+}
 }

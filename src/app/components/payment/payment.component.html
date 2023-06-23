@@ -1,0 +1,185 @@
+
+<main>
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a>
+                </li>
+                <li><a href="#">Category</a>
+                </li>
+                <li>Page active</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End position -->
+
+    <div class="container margin_60">
+        <div class="row">
+            <div class="col-lg-8 add_bottom_15">
+
+                <div class="form_title">
+                    <h3><strong>1</strong>Payment Information</h3>
+                </div>
+                <div class="step">
+                    <div class="form-group">
+                        <label>Name on card</label>
+                        <input type="text" class="form-control"
+                            id="name_card_bookign" name="name_card_bookign">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Card number</label>
+                                <input type="text" id="card_number"
+                                    name="card_number"
+                                    [(ngModel)]="creditCard.number"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <img src="assets/img/cards.png" width="207"
+                                height="43" alt="Cards" class="cards">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Expiration date</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input
+                                            [(ngModel)]="creditCard.exp_month"
+                                            type="text" id="expire_month"
+                                            name="expire_month"
+                                            class="form-control"
+                                            placeholder="MM">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input [(ngModel)]="creditCard.exp_year"
+                                            type="text" id="expire_year"
+                                            name="expire_year"
+                                            class="form-control"
+                                            placeholder="Year">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Security code</label>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <input [(ngModel)]="creditCard.cvc"
+                                                type="text" id="ccv" name="ccv"
+                                                class="form-control"
+                                                placeholder="CCV">
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <img src="assets/img/icon_ccv.gif"
+                                            width="50" height="29" alt="ccv"><small>Last
+                                            3 digits</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End row -->
+                </div>
+                <!--End step -->
+
+                <!--End step -->
+
+                <div id="policy">
+                    <h4>Cancellation policy</h4>
+                    <div class="form-group">
+                        <label class="container_check">
+                            I accept terms and conditions and general policy.
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <a [class.disabled-link]="isLoading" [class.loading]="isLoading"
+                        (click)="payNow()" class="btn_1 green medium">Book now</a>
+                </div>
+            </div>
+
+            <aside class="col-lg-4">
+                <div class="box_style_1">
+                    <h3 class="inner">- Summary -</h3>
+                    <table class="table table_summary">
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Package Name
+                                </td>
+                                <td class="text-end">
+                                    {{packages.name}}
+                                </td>
+                            </tr>
+
+                            <tr class="total">
+                                <td>
+                                    Cost
+                                </td>
+                                <td class="text-end">
+                                    ${{packages.price}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a class="btn_full_outline" href="#"><i class="icon-right"></i>
+                        Continue shopping</a>
+                </div>
+                <div class="box_style_4">
+                    <i class="icon_set_1_icon-57"></i>
+                    <h4>Need <span>Help?</span></h4>
+                    <a href="tel://004542344599" class="phone">+45 423 445 99</a>
+                    <small>Monday to Friday 9.00am - 7.30pm</small>
+                </div>
+            </aside>
+
+        </div>
+        <!--End row -->
+    </div>
+    <!--End container -->
+</main>
+<!-- End main -->
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+    .disabled-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+    .loading {
+  position: relative;
+}
+
+.loading:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+</style>

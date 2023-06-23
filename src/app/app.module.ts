@@ -1,30 +1,40 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {HomeComponent} from './components/home/home.component';
-import {HeaderComponent} from './components/shared/header/header.component';
-import {FooterComponent} from './components/shared/footer/footer.component';
-import {NgOptimizedImage} from "@angular/common";
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {AddApartmentComponent} from './components/add-property-component/add-property-component.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LoginComponent} from './components/user/login/login.component';
-import {RegisterComponent} from './components/user/register/register.component';
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ForgetPasswordComponent} from './components/user/forget-password/forget-password.component';
-import {ResetPasswordComponent} from './components/user/reset-password/reset-password.component';
-import {ProfileComponent} from './components/user/profile/profile.component';
-import {ConfirmationCodeComponent} from './components/user/confirmation-code/confirmation-code.component';
-import {EditProfileComponent} from './components/user/edit-profile/edit-profile.component';
-import {UpdatePasswordComponent} from './components/user/update-password/update-password.component';
-import {SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule} from '@abacritt/angularx-social-login';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { NgOptimizedImage } from "@angular/common";
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AddApartmentComponent } from './components/add-property-component/add-property-component.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { ConfirmationCodeComponent } from './components/user/confirmation-code/confirmation-code.component';
+import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
+import { UpdatePasswordComponent } from './components/user/update-password/update-password.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+
+import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentConfirmationComponent } from './components/payment-confirmation/payment-confirmation.component';
+import { PropertyDiscoveryComponent } from './components/property-discovery/property-discovery.component';
+import { UserPackagesComponent } from './components/userPackages/userPackages.component';
+import { PendingComponent } from './components/pending/pending.component';
+import { AdminHomeComponent } from './components/adminHome/adminHome.component';
+import { PackageComponent } from './components/packages/packages.component';
+
 import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +51,14 @@ import {
     ProfileComponent,
     ConfirmationCodeComponent,
     EditProfileComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    PaymentComponent,
+    PaymentConfirmationComponent,
+    UserPackagesComponent,
+    PropertyDiscoveryComponent,
+    PackageComponent,
+    AdminHomeComponent,
+    PendingComponent
   ],
   imports: [
     BrowserModule,

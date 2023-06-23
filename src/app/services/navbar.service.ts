@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class NavbarService {
   private _loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  
   constructor() {}
 
   isLoggedIn(): Observable<boolean> {
