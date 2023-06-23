@@ -6,8 +6,8 @@
         <div class="col-6"><i class="icon-phone"></i><strong>+201552938027</strong></div>
         <div class="col-6">
           <ul id="top_links">
-            <li><a routerLink="/login" class="fa-icon-sign-in" id="access_link">Sign in</a></li>
-            <li><a routerLink="/profile/view-profile" class="fa-icon-user" id="profile_link">Profile</a></li>
+            <li *ngIf="isSignInButtonVisible"><a routerLink="/login" class="fa-icon-sign-in" id="access_link">Sign in</a></li>
+            <li *ngIf="!isSignInButtonVisible"><a routerLink="/profile/view-profile" class="fa-icon-user" id="profile_link">Profile</a></li>
           </ul>
         </div>
       </div><!-- End row -->
@@ -31,7 +31,7 @@
           <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
           <ul style="display: flex; list-style-type: none;">
             <li class="submenu">
-              <a href="javascript:void(0);"><i class="icon-home"></i>Home</a>
+              <a routerLink="/home"><i class="icon-home"></i>Home</a>
             <li class="submenu">
             <li class="submenu">
               <a href="javascript:void(0);"><i class="icon-money"></i>Buy</a>
@@ -45,15 +45,14 @@
             <li class="submenu">
               <a href="javascript:void(0);"><i class="icon-info"></i>About</a>
             </li>
-            <li class="submenu" style="margin-left: auto">
+            <li class="submenu" style="margin-left:30ch; ">
+              <a href="javascript:void(0);" style="color:#e14d67"><i class="icon-heart"></i>AirMak Your Home</a>
+            </li>
+            <li class="submenu" style="margin-left: auto; ">
               <img class="rounded-circle " src="assets/img/profile.png" width="30" height="30"/>
               <i class="icon-down-open-mini"></i>
               <ul>
-                <li *ngIf="!isLoggedIn"><a routerLink="/login">Log in</a></li>
-                <li *ngIf="!isLoggedIn"><a routerLink="/register">Sign Up</a></li>
-                <li *ngIf="isLoggedIn"><a >Logout</a></li>
-                <hr>
-                <li><a routerLink="/profile">Airmak your home</a></li>
+                <li *ngIf="!isSignInButtonVisible"><a href="javascript:void(0);" (click)="logout()">Logout</a></li>
               </ul>
             </li>
           </ul>

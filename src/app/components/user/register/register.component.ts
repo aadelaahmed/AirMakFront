@@ -1,10 +1,9 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
-import {PopupService} from "../../../services/popup.service";
-import {ApiService} from "../../../services/api.service";
-import {UserService} from "../../../services/user.service";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ApiService } from "../../../services/api.service";
+import { PopupService } from "../../../services/popup.service";
 
 @Component({
   selector: 'app-register',
@@ -13,13 +12,14 @@ import {UserService} from "../../../services/user.service";
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  emailExists: boolean = false;
 
   constructor(
     private router: Router,
-    private popupService: PopupService,
     private formBuilder: FormBuilder,
+    private http: HttpClient,
     private apiService: ApiService,
-    private userService: UserService
+    private popupService: PopupService
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
@@ -33,16 +33,35 @@ export class RegisterComponent {
         Validators.maxLength(20),
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
         )]],
-      confirmPassword: ['', [Validators.required,]],
-    }, {
-      validators: this.userService.match('password', 'confirmPassword')
+      confirmPassword: ['', [Validators.required]],
     });
+  }
+
+  ngOnInit() {
+    this.registerForm.get('email').valueChanges.subscribe(() => {
+      this.emailExists = false; // Reset the emailExists flag when the email value changes
+    });
+  }
+
+  checkEmailExists() {
+    const email = this.registerForm.get('email').value;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.get<boolean>('http://localhost:8080/users/check-email/' + email, { headers, withCredentials: true })
+      .subscribe(
+        (exists) => {
+          this.emailExists = exists;
+          console.log(this.emailExists);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 
   registerUser(event: Event) {
     event.preventDefault();
 
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.emailExists) {
       // Display validation errors and prevent form submission
       this.markFormGroupTouched(this.registerForm);
       return;
@@ -58,19 +77,18 @@ export class RegisterComponent {
     };
 
     console.log('UserDTO:', requestRegistrationDTO);
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.apiService.post('users/register', requestRegistrationDTO, {headers, withCredentials: true}).subscribe({
-        next: response => {
-          console.log('User registered successfully', response);
-          this.popupService.successPopup("User registered successfully")
-          this.router.navigate(['/confirmation-email']);
-        },
-        error: error => {
-          console.error('Error Occurred While Registering User', error);
-          this.popupService.errorPopup("Error Occurred While Registering User")
-        }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.apiService.post('users/register', requestRegistrationDTO, { headers, withCredentials: true }).subscribe({
+      next: response => {
+        console.log('User registered successfully', response);
+        this.popupService.successPopup('User registered successfully');
+        this.router.navigate(['/confirmation-email']);
+      },
+      error: error => {
+        console.error('Error Occurred While Registering User', error);
+        this.popupService.errorPopup('Error Occurred While Registering User');
       }
-    )
+    });
   }
 
   markFormGroupTouched(formGroup: FormGroup) {
@@ -89,7 +107,7 @@ export class RegisterComponent {
         const minAgeDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
         const birthdate = new Date(control.value);
         if (birthdate > minAgeDate) {
-          return {minimumAge: true};
+          return { minimumAge: true };
         }
       }
       return null;

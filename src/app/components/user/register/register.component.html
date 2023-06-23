@@ -49,13 +49,15 @@
               </div>
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email" (input)="checkEmailExists()">
                 <div class="error-message" *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched">
                   <!-- Display validation errors for email field -->
                   <div *ngIf="registerForm.get('email').errors?.['required']" class="text-danger">Email is required</div>
                   <div *ngIf="registerForm.get('email').errors?.['pattern']" class="text-danger">Please format it as example@example.com</div>
                 </div>
-              </div>
+                <div  *ngIf="emailExists" style="color:#DC3545">Email Already Exists!</div>
+                <div  *ngIf="!registerForm.get('email').errors && !emailExists" style="color:green">Email Is Available!</div>
+              </div>              
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="Password" formControlName="password">

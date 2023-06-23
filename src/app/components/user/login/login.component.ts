@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   private accessToken = '';
+  isUserLoggedIn: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +50,20 @@ export class LoginComponent implements OnInit {
       }
       console.log("user -->> ", user);
     });
+
+    this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
+      this.isUserLoggedIn = isLoggedIn;
+      if (this.isUserLoggedIn) {
+        this.router.navigate(['home']);
+      } else {
+        this.loginForm = this.formBuilder.group({
+          email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+          password: [null, Validators.required]
+        });
+      }
+    });
   }
+
 
   handleGoogleLogin(idToken: string): void {
     const headers = new HttpHeaders({
@@ -59,6 +73,7 @@ export class LoginComponent implements OnInit {
     const token: TokenDto = new TokenDto(idToken);
     this.apiService.post("api/google", token, {headers, withCredentials: true}).subscribe({
       next: response => {
+        this.navbarService.setLoggedIn(true);
         this.popupService.successPopup("Welcome, " + response.payload.firstName);
         this.router.navigate(['/home']);
       },
@@ -68,7 +83,6 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
 
   signInButton() {
     if (this.loginForm.valid) {
@@ -80,7 +94,7 @@ export class LoginComponent implements OnInit {
       this.apiService.post("users/login", user, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
-            this.navbarService._loggedIn.next(true);
+            this.navbarService.setLoggedIn(true);
             console.log(response.payload.firstName)
             this.popupService.successPopup("Welcome, " + response.payload.firstName);
             this.router.navigate(['/home']);
@@ -92,30 +106,4 @@ export class LoginComponent implements OnInit {
       )
     }
   }
-
-  signOut(): void {
-    this.authService.signOut();
-  }
-
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  getAccessToken(): void {
-    this.authService.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken => this.accessToken = accessToken);
-  }
-
-  getGoogleCalendarData(): void {
-    if (!this.accessToken) return;
-
-    this.apiService
-      .get('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-        headers: {Authorization: `Bearer ${this.accessToken}`},
-      })
-      .subscribe((events) => {
-        alert('Look at your console');
-        console.log('events', events);
-      });
-  }
-
 }
