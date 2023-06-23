@@ -15,27 +15,28 @@ export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
 
   constructor(private router: Router,private userPropertiesService:UserPropertiesService) {
+
+  }
+  ngOnInit() {
+    LoadingBarService.isLoading= true;
     //TODO:Replace with the actual user ID
     const userId = 1;
     this.userPropertiesService.getPropertiesByUserId(userId)
       .subscribe(
-      (properties: Property[]) => {
-        this.userProperties = [];
-        LoadingBarService.isLoading= false;
-        for (const property of properties) {
-          if (property.propertyState.toLowerCase() === 'pending' || property.propertyState.toLowerCase() === 'publish')
-            this.userProperties.push(property);
+        (properties: Property[]) => {
+          this.userProperties = [];
+          LoadingBarService.isLoading= false;
+          for (const property of properties) {
+            if (property.propertyState.toLowerCase() === 'pending' || property.propertyState.toLowerCase() === 'publish')
+              this.userProperties.push(property);
+          }
+          console.log("user properties ->"+this.userProperties);
+        },
+        (error) => {
+          LoadingBarService.isLoading= false;
+          console.error('Error retrieving properties:', error);
         }
-        console.log("user properties ->"+this.userProperties);
-      },
-      (error) => {
-        LoadingBarService.isLoading= false;
-        console.error('Error retrieving properties:', error);
-      }
-    );
-  }
-  ngOnInit() {
-    LoadingBarService.isLoading= true;
+      );
   }
   editProperty(propertyId:number){
     console.log("editproperty btn clicked ->"+propertyId);

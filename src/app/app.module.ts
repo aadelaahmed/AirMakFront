@@ -1,14 +1,4 @@
-import {NgModule} from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {HomeComponent} from './components/home/home.component';
-import {HeaderComponent} from './components/shared/header/header.component';
-import {FooterComponent} from './components/shared/footer/footer.component';
-import {NgOptimizedImage} from "@angular/common";
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {firebaseConfig} from "../environments/environment";
@@ -17,7 +7,6 @@ import { PropertyDetailsComponent } from './components/property-details/property
 import { ExploringComponent } from './components/exploring/exploring.component';
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
 import {AddPropertyService} from "./services/add-property.service";
-import {HttpClientModule} from "@angular/common/http";
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,7 +18,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NgOptimizedImage } from "@angular/common";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AddApartmentComponent } from './components/add-property-component/add-property-component.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -69,7 +57,6 @@ import {
     ExploringComponent,
     AddPropertyComponent,
     UserPropertiesComponent,
-    AddApartmentComponent,
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
@@ -95,7 +82,7 @@ import {
     ReactiveFormsModule,
     BrowserAnimationsModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
@@ -104,6 +91,7 @@ import {
     GoogleMapsModule
   ],
   providers: [
+    AddPropertyService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -126,7 +114,7 @@ import {
       } as SocialAuthServiceConfig,
     }
   ],
-  providers: [AddPropertyService],
+  // providers: [AddPropertyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

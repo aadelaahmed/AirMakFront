@@ -27,7 +27,7 @@ export class Property {
     this.reviews = [];
   }
 
-  public id: number;
+ /* public id: number;
   public user: User;
   public address: Address;
   public propertyType: string;
@@ -43,6 +43,6 @@ export class Property {
   public tv: number;
   public propertyNo: number;
   public images: Image[];
-  public reviews: Review[];
+  public reviews: Review[];*/
 
 }

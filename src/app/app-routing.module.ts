@@ -6,7 +6,6 @@ import {EditPropertyComponent} from "./components/edit-property/edit-property.co
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
 import {UserPropertiesComponent} from "./components/user-properties/user-properties.component";
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
-import {AddApartmentComponent} from "./components/add-property-component/add-property-component.component";
 import {LoginComponent} from "./components/user/login/login.component";
 import {RegisterComponent} from "./components/user/register/register.component";
 import {ForgetPasswordComponent} from "./components/user/forget-password/forget-password.component";
@@ -40,7 +39,6 @@ const routes: Routes = [
   {path: 'forget-password', component: ForgetPasswordComponent, title: 'City Tours - Forget Password'},
   {path: 'reset-password', component: ResetPasswordComponent, title: 'City Tours - Reset Password'},
   {path: 'confirmation-email', component: ConfirmationCodeComponent, title: 'City Tours - Confirmation Email'},
-  {path: 'property', component: AddApartmentComponent, title: 'City Tours - Add New Property'},
   {path: 'profile/view-profile', component: ProfileComponent, title: 'City Tours - My Profile'},
   {path: 'profile/edit-profile', component: EditProfileComponent, title: 'City Tours - Edit Profile'},
   {path: 'profile/update-password', component: UpdatePasswordComponent, title: 'City Tours - Update Password'},
@@ -48,7 +46,7 @@ const routes: Routes = [
   {path: 'payment', component: PaymentComponent, title: 'payment'},
   {path: 'confirmation', component: PaymentConfirmationComponent, title: 'confirmation'},
   {path: 'packages', component: UserPackagesComponent, title: 'packages'},
-  {path: 'discoverproperty', component: PropertyDiscoveryComponent, title: 'property'},
+  {path: 'property/discovery', component: PropertyDiscoveryComponent, title: 'property'},
 
   {path:'admin',component:AdminHomeComponent},
   {path:'create',component:PackageComponent},
