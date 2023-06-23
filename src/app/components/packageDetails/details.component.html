@@ -12,7 +12,7 @@
   
               <form (ngSubmit)="update(packageID.value,packagePrice.value)">
                 <div class="form-group">
-                  <label>Package Id</label>
+                  <label>Package ID</label>
                   <input type="number" class="form-control" placeholder="Id" #packageID formControlName="id" value="{{package.id}}" readonly>
                 </div>
 
@@ -31,8 +31,8 @@
   
                 <div class="form-group">
                   <label>Package Price</label>
-                  <input type="number" class="form-control" placeholder="Price" #packagePrice formControlName="price" value="{{package.price}}">
-                  
+                  <input type="number" class="form-control" placeholder="Price" #packagePrice formControlName="price" value="{{package.price}}" min="0">
+                 
                 </div>
   
   

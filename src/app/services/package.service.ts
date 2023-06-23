@@ -27,7 +27,6 @@ export class PackageService {
   }
 
   update(pakcgaeId: string, price: string) {
-    console.log(pakcgaeId + ' ' + price + 'yy');
     return this._http.put<APIResponse>('http://localhost:8097/packages/' + pakcgaeId + '?price=' + price, price);
   }
   getPackagesCount() {

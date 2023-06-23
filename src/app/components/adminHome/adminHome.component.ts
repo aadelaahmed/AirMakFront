@@ -5,6 +5,7 @@ import { BestPackage } from 'src/app/models/BestPackage.model';
 import { APIResponse } from 'src/app/models/api-response.model';
 import { Package } from 'src/app/models/getPackage.model';
 import { PackageService } from 'src/app/services/package.service';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class AdminHomeComponent implements OnInit {
    numberOfPackages:number=0;
    package = new BestPackage();
 
-  constructor(private _http: HttpClient, private router: Router, private packageService: PackageService) {
+  constructor(    private popupService: PopupService,
+    private _http: HttpClient, private router: Router, private packageService: PackageService) {
   }
 
   ngOnInit(): void {
@@ -73,15 +75,22 @@ export class AdminHomeComponent implements OnInit {
     this.packageService.delete(id).subscribe(
       {
         next: reposnse => {
-          alert(reposnse.payload);
+         
+          if(reposnse.status=='NOT_FOUND'){
+            this.popupService.errorPopup("Package Has Subscribtion");
 
+          }
+          if(reposnse.status=='OK'){
+            this.popupService.successPopup("Package Deleted");
+
+          }
           this.router.navigate(['/admin']);
 
 
         },
         error: error => { 
-              
-           alert("this package has subscriptions")
+          console.log(error)
+
           
         }
 

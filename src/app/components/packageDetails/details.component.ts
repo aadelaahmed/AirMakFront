@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { APIResponse } from 'src/app/models/api-response.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PackageService } from 'src/app/services/package.service';
 import { Package } from 'src/app/models/getPackage.model';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +16,7 @@ export class DetailsComponent implements OnInit {
   package = new Package();
   packageFormEdit: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private _activatedRoute: ActivatedRoute, private router: Router, private _http: HttpClient, private packageService: PackageService) {
+  constructor(private popupService: PopupService,private formBuilder: FormBuilder,private _activatedRoute: ActivatedRoute, private router: Router, private _http: HttpClient, private packageService: PackageService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +26,10 @@ export class DetailsComponent implements OnInit {
         let id = parms.get('id');
         this.getPackageById(id);
 
+      });
+
+      this.packageFormEdit = this.formBuilder.group({
+        price:         ['', [Validators.required]],
       });
 
 
@@ -50,6 +55,8 @@ export class DetailsComponent implements OnInit {
       next: response => {
         console.log(response.payload);
         if (response.status) {
+          this.popupService.successPopup('Update Successfuly');
+
           this.router.navigate(['/admin']);
         }
         else {
