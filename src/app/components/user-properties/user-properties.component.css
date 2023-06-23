@@ -1,0 +1,43 @@
+#card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 32px;
+  margin-right: 32px;
+  cursor: pointer;
+}
+.strip_booking:not(:first-child) {
+  margin-top: 16px;
+}
+.empty-list-message {
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+}
+
+.empty-list-message h2 {
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.empty-list-message p {
+  font-size: 18px;
+  color: #777;
+}
+
+.pending {
+  filter: blur(0.5px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+#editBtn{
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  color:white;
+}
+#deleteBtn{
+  /*background: #800000;*/
+  background: #d33;
+  color: white;
+}

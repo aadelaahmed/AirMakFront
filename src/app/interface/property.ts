@@ -14,13 +14,14 @@ export class Property {
   propertyNo: number;
   bedRoomCount: number;
   bathRoomCount: number;
-  tv: boolean;
-  wifi: boolean;
-  airCondition: boolean;
-  availability: boolean;
+  airCondition: number;
+  tv: number;
+  availability: number;
+  publishDate: Date;
+  wifi: number;
   images: Image[];
   reviews: Review[];
-
+  propertyState:string;
   constructor() {
     this.images = [];
     this.reviews = [];

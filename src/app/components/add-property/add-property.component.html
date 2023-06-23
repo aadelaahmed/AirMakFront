@@ -1,11 +1,11 @@
 <main>
   <div class="margin_100 container">
 <!--    (ngSubmit)="onSubmit()"-->
-    <form [formGroup]="formData" (ngSubmit)="onSubmit()" >
+    <form [formGroup]="formData" (ngSubmit)="onSubmit(fileInput1.files,fileInput2.files,fileInput3.files)" >
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <h3>Add New Apartment</h3>
+            <h3>Add New Property</h3>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -36,18 +36,17 @@
           </div>
         </div>
         <!-- End row -->
-
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label>Price</label>
               <input class="form-control" formControlName="price" type="number" required>
               <div
-                *ngIf="formData.controls['price'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.get('price')?.hasError('required') && isSubmitted"
                 class="text-danger">
                 Price is required
               </div>
-              <div *ngIf="formData.get('price').errors?.['pattern']">Invalid Price.</div>
+              <div *ngIf="formData.get('price')?.hasError('pattern')  && isSubmitted">Invalid Price.</div>
             </div>
           </div>
           <div class="col-md-6">
@@ -94,7 +93,7 @@
                 class="text-danger">
                 Floor Number is required
               </div>
-              <div *ngIf="formData.get('floor_no').errors?.['pattern']">Invalid Floor Number.</div>
+              <div *ngIf="formData.get('floor_no').errors?.['pattern'] && isSubmitted">Invalid Floor Number.</div>
             </div>
           </div>
         </div>
@@ -125,7 +124,7 @@
                 class="text-danger">
                 Bedroom Count is required
               </div>
-              <div *ngIf="formData.get('bedroom_count').errors?.['pattern']">Invalid BedRoom Count.</div>
+              <div *ngIf="formData.get('bedroom_count').errors?.['pattern'] && isSubmitted">Invalid BedRoom Count.</div>
             </div>
           </div>
         </div>
@@ -141,7 +140,7 @@
                 class="text-danger">
                 Bathroom Count is required
               </div>
-              <div *ngIf="formData.get('bathroom_count').errors?.['pattern']">Invalid Bathroom Count.</div>
+              <div *ngIf="formData.get('bathroom_count').errors?.['pattern'] && isSubmitted" >Invalid Bathroom Count.</div>
             </div>
           </div>
           <div class="col-md-6">
@@ -187,12 +186,19 @@
                 class="text-danger">
                 Property Number is required
               </div>
-              <div *ngIf="formData.get('property_number').errors?.['pattern']">Invalid PropertyNumber.</div>
+              <div *ngIf="formData.get('property_number').errors?.['pattern'] && isSubmitted">Invalid PropertyNumber.</div>
             </div>
           </div>
         </div>
         <!-- End row -->
         <!-- Divider -->
+
+        <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+          <!-- Add your loading bar or spinner HTML content here -->
+          <!-- For example, you can use a CSS spinner -->
+          <div class="spinner"></div>
+        </div>
+
         <div class="row">
           <div class="col-md-12">
             <div class="divider"></div>
@@ -236,7 +242,7 @@
                 class="text-danger">
                 Street Number is required
               </div>
-              <div *ngIf="formData.get('streetNo').errors?.['pattern']">Invalid Street Number.</div>
+              <div *ngIf="formData.controls['streetNo'].errors?.['pattern'] && isSubmitted">Invalid Street Number.</div>
             </div>
             <div class="form-group">
               <label>Country</label>
@@ -249,26 +255,26 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <label>Longitude</label>
-              <input class="form-control" formControlName="lng" type="number" required>
-              <div
-                *ngIf="formData.controls['lng'].errors?.['required'] && isSubmitted"
-                class="text-danger">
-                Longitude is required
-              </div>
-              <div *ngIf="formData.get('lng')?.['pattern']">Invalid Longitude.</div>
-            </div>
-            <div class="form-group">
-              <label>Latitude</label>
-              <input class="form-control" formControlName="lat" type="number" required>
-              <div
-                *ngIf="formData.controls['lat'].errors?.['required']  && isSubmitted"
-                class="text-danger">
-                Latitude is required
-              </div>
-              <div *ngIf="formData.get('lat').errors?.['pattern']">Invalid Latitude.</div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label>Longitude</label>-->
+<!--              <input class="form-control" formControlName="lng" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['lng'].errors?.['required'] && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Longitude is required-->
+<!--              </div>-->
+<!--              <div *ngIf="formData.get('lng')?.['pattern'] && isSubmitted">Invalid Longitude.</div>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label>Latitude</label>-->
+<!--              <input class="form-control" formControlName="lat" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['lat'].errors?.['required']  && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Latitude is required-->
+<!--              </div>-->
+<!--              <div *ngIf="formData.get('lat').errors?.['pattern'] && isSubmitted">Invalid Latitude.</div>-->
+<!--            </div>-->
           </div>
         </div>
         <!-- End Address details -->
@@ -295,17 +301,14 @@
           </div>
         </div>
         <hr>
-        <button (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)" type="submit" class="btn_1 green">Add Apartment</button>
+<!--        (click)="uploadImages(fileInput1.files,fileInput2.files,fileInput3.files)"-->
+<!--        class="btn_1 green"-->
+        <button id="submitBtn" type="submit" >Add Property</button>
         <section id="section-4"></section>
       </div>
     </form>
-    <div class="form-inline upload_1">
-      <div class="form-group">
-        <input #fileInput class="input_file" type="file" name="files[]" multiple required>
-      </div>
-    </div>
-<!--    <button (click)="tryUploadImages(fileInput.files)">Try uploading image</button>-->
-    <!-- Progress Bar -->
+
+    <!-- Progress Bar for images only-->
     <div class="progress">
       <div class="progress-bar" role="progressbar" [style.width.%]="uploadProgress">
         {{ uploadProgress }}% Complete
@@ -316,8 +319,8 @@
     <div class="js-upload-finished" *ngIf="isUploadFinished">
       <h5>Processed files</h5>
       <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of uploadedImages">
-          <span class="badge alert-success pull-right">Success</span>
+        <a href="#" class="list-group-item list-group-item-success" *ngFor="let image of property.images">
+          <span style="margin-bottom: 2%;" class="badge alert-success pull-right">Success</span>
 <!--          {{ image.imagePath }}-->
         </a>
       </div>
