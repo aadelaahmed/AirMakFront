@@ -1,14 +1,36 @@
 import {Component} from "@angular/core";
 import {Address} from "../../interface/address";
 import {Property} from "../../interface/property";
-
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import { AngularFireModule } from '@angular/fire/compat';
+import {FirebaseStorageService} from "../../services/firebase-storage.service";
 @Component({
   selector: 'add-apartment',
   template: 'your-html-template', // Replace with your HTML template code
 })
-export class AddApartmentComponent {
+export class AddPropertyComponent {
   formData: any = {}; // Property to hold form data
+  constructor(private storageService: FirebaseStorageService) {}
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.uploadImage(file);
+  }
+
+  uploadImage(file: File) {
+    this.storageService.uploadFile(file).subscribe(
+      (downloadUrl: string) => {
+        // Handle the download URL returned after successful upload
+        console.log('Image uploaded. Download URL:', downloadUrl);
+        //TODO:
+        // Here you can pass the download URL to the server or perform any further actions
+      },
+      (error: any) => {
+        // Handle the upload error
+        console.error('Error uploading image:', error);
+      }
+    );
+  }
   onSubmit() {
     const address = new Address();
     address.street = this.formData.street;

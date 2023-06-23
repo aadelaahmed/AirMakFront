@@ -8,19 +8,15 @@ import {HeaderComponent} from './components/shared/header/header.component';
 import {FooterComponent} from './components/shared/footer/footer.component';
 import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {AddApartmentComponent} from './components/add-property-component/add-property-component.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LoginComponent} from './components/user/login/login.component';
-import {RegisterComponent} from './components/user/register/register.component';
-import {HttpClientModule} from "@angular/common/http";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
-import { ForgetPasswordComponent } from './components/user/forget-password/forget-password.component';
-import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
-import { PackageComponent } from './components/packages/packages.component';
-import { AdminHomeComponent } from './components/adminHome/adminHome.component';
-import {  PendingComponent} from './components/pending/pending.component';
-
+import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
+import {FormsModule} from "@angular/forms";
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { PaymentComponent } from './components/payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PaymentConfirmationComponent } from './components/payment-confirmation/payment-confirmation.component';
+import { PackagesComponent } from './components/packages/packages.component';
+import { PropertyDiscoveryComponent } from './components/property-discovery/property-discovery.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,24 +24,19 @@ import {  PendingComponent} from './components/pending/pending.component';
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    AddApartmentComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgetPasswordComponent,
-    ResetPasswordComponent,
-    PackageComponent,
-    AdminHomeComponent,
-    PendingComponent
+    AddPropertyComponent,
+    PaymentComponent,
+    PaymentConfirmationComponent,
+    PackagesComponent,
+    PropertyDiscoveryComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgOptimizedImage,
-    HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatDialogModule
+    AngularFireStorageModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,6 +12,5 @@ export class Subscription {
   private price: number;
   private discount: number | null;
   private startDate: Date;
-
   // Constructors, getters, and setters
 }
