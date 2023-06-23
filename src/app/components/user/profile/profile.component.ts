@@ -1,6 +1,7 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,35 +10,45 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   profileData: any;
+  isUserLoggedIn: boolean;
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private navbarService: NavbarService
   ) {
   }
 
   ngOnInit() {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const options = {headers, withCredentials: true};
+    this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
+      this.isUserLoggedIn = isLoggedIn;
+      if (!this.isUserLoggedIn) {
+        this.router.navigate(['login']);
+        return; // Stop further execution
+      }
 
-    this.http.get<any>('http://localhost:8080/users/profile/view-profile', options)
-      .subscribe(
-        response => {
-          console.log(response.payload)
-          this.profileData = response.payload;
-        },
-        error => {
-          console.error(error);
-        }
-      );
+      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+      const options = { headers, withCredentials: true };
+
+      this.http.get<any>('http://localhost:8080/users/profile/view-profile', options)
+        .subscribe(
+          response => {
+            console.log(response.payload);
+            this.profileData = response.payload;
+          },
+          error => {
+            console.error(error);
+          }
+        );
+    });
   }
 
   editProfileButton() {
-    this.router.navigate(['profile/edit-profile'])
+    this.router.navigate(['profile/edit-profile']);
   }
 
   updatePasswordButton() {
-    this.router.navigate(['profile/update-password'])
+    this.router.navigate(['profile/update-password']);
   }
 
 }

@@ -15,7 +15,7 @@ import {NavbarService} from "../../../services/navbar.service";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  isUserLoggedIn: boolean;
   title = 'loginGoogle';
   auth2: any;
   @ViewChild('loginRef', {static: true}) loginElement!: ElementRef;
@@ -30,12 +30,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      password: [null, Validators.required]
+    this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
+      this.isUserLoggedIn = isLoggedIn;
+      if (this.isUserLoggedIn) {
+        this.router.navigate(['home']);
+      } else {
+        this.loginForm = this.formBuilder.group({
+          email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+          password: [null, Validators.required]
+        });
+      }
     });
-    // this.googleAuthSDK();
   }
+
+
 
   signInButton() {
     if (this.loginForm.valid) {
@@ -47,7 +55,7 @@ export class LoginComponent implements OnInit {
       this.apiService.post("users/login", user, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
-            this.navbarService._loggedIn.next(true);
+            this.navbarService.setLoggedIn(true);
             console.log(response.payload.firstName)
             this.popupService.successPopup("Welcome, " + response.payload.firstName);
             this.router.navigate(['/home']);
