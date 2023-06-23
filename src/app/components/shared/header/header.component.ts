@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {ApiService} from 'src/app/services/api.service';
 import {HttpHeaders} from '@angular/common/http';
 import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
     private navbarService: NavbarService,
     private router: Router,
     private apiService: ApiService,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private popupService: PopupService
   ) {
   }
 
@@ -39,13 +41,12 @@ export class HeaderComponent implements OnInit {
         // Clear the logged-in status in the navbar service
         this.navbarService.setLoggedIn(false);
         this.signOut();
-        // Redirect to the login page
-        window.location.href = '/home';
+        this.popupService.successPopup("We Miss you")
+        this.router.navigate(['/home'])
       },
       (error) => {
         console.log('error');
-        // Handle any error that occurs during the logout process
-        window.location.href = '/home';
+        this.popupService.errorPopup("Failed Logout")
       }
     );
   }
