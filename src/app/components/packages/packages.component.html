@@ -1,0 +1,86 @@
+
+
+<main>
+  <section id="hero" class="login">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+          <div id="login">
+            <div class="text-center"><img src="../../../../assets/img/logo_sticky.png" alt="Image" width="160"
+                height="34"></div>
+            <hr>
+
+            <form [formGroup]="packageForm" (ngSubmit)="add()">
+              <div class="form-group">
+                <label>Package Name</label>
+                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                <div class="error-message" *ngIf="packageForm.get('name').invalid && packageForm.get('name').touched">
+                  <!-- Display validation errors for firstName field -->
+                  <div *ngIf="packageForm.get('name').errors?.['required']" class="text-danger"> Name is required
+                  </div>
+                  <div *ngIf="packageForm.get('name').errors?.['minlength']" class="text-danger"> Name must be at
+                    least 2 characters</div>
+                  <div *ngIf="packageForm.get('name').errors?.['maxlength']" class="text-danger"> Name cannot
+                    exceed 10 characters</div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label>Property Count</label>
+                <input type="text" class="form-control" placeholder="propertyCount" formControlName="propertyCount">
+                <div class="error-message"
+                  *ngIf="packageForm.get('propertyCount').invalid && packageForm.get('propertyCount').touched">
+                  <!-- Display validation errors for firstName field -->
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['required']" class="text-danger">Property Count is
+                    required</div>
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['minlength']" class="text-danger">Property Count
+                    must be at least 1 characters</div>
+                  <div *ngIf="packageForm.get('propertyCount').errors?.['maxlength']" class="text-danger">Property Count
+                    cannot exceed 2 characters</div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label>Package Price</label>
+                <input type="text" class="form-control" placeholder="price" formControlName="price">
+                <div class="error-message" *ngIf="packageForm.get('price').invalid && packageForm.get('price').touched">
+                  <!-- Display validation errors for firstName field -->
+                  <div *ngIf="packageForm.get('price').errors?.['required']" class="text-danger">Price is required
+                  </div>
+                  <div *ngIf="packageForm.get('price').errors?.['minlength']" class="text-danger">Price must be at
+                    least 1 characters</div>
+                  <div *ngIf="packageForm.get('price').errors?.['maxlength']" class="text-danger">Price cannot
+                    exceed 2 characters</div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label>Package Duration</label>
+                <input type="text" class="form-control" placeholder="duration" formControlName="duration">
+                <div class="error-message"
+                  *ngIf="packageForm.get('duration').invalid && packageForm.get('duration').touched">
+                  <!-- Display validation errors for firstName field -->
+                  <div *ngIf="packageForm.get('duration').errors?.['required']" class="text-danger">Duration is
+                    required</div>
+                  <div *ngIf="packageForm.get('duration').errors?.['minlength']" class="text-danger">Duration must be
+                    at least 1 characters</div>
+                  <div *ngIf="packageForm.get('duration').errors?.['maxlength']" class="text-danger">Duration cannot
+                    exceed 2 characters</div>
+                </div>
+              </div>
+
+
+              <button [disabled]="packageForm.invalid" (click)="add()" type="button"
+                class="btn_full btn btn-primary">Add</button>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
