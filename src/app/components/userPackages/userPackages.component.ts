@@ -6,10 +6,10 @@ import { PackageService } from 'src/app/services/package.service';
 
 @Component({
   selector: 'app-packages',
-  templateUrl: './packages.component.html',
-  styleUrls: ['./packages.component.css']
+  templateUrl: './userPackages.component.html',
+  styleUrls: ['./userPackages.component.css']
 })
-export class PackagesComponent {
+export class UserPackagesComponent {
   public packages: Packages[];
 
   constructor(private packageService: PackageService, private router: Router) {

@@ -10,13 +10,11 @@ import {NgOptimizedImage} from "@angular/common";
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import { AddPropertyComponent } from './components/add-property-component/add-property-component.component';
 import {FormsModule} from "@angular/forms";
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { PaymentComponent } from './components/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentConfirmationComponent } from './components/payment-confirmation/payment-confirmation.component';
-import { PackagesComponent } from './components/packages/packages.component';
 import { PropertyDiscoveryComponent } from './components/property-discovery/property-discovery.component';
+import { UserPackagesComponent } from './components/userPackages/userPackages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +25,7 @@ import { PropertyDiscoveryComponent } from './components/property-discovery/prop
     AddPropertyComponent,
     PaymentComponent,
     PaymentConfirmationComponent,
-    PackagesComponent,
+    UserPackagesComponent,
     PropertyDiscoveryComponent,
   ],
   imports: [
@@ -35,7 +33,6 @@ import { PropertyDiscoveryComponent } from './components/property-discovery/prop
     AppRoutingModule,
     NgOptimizedImage,
     FormsModule,
-    AngularFireStorageModule,
     HttpClientModule
   ],
   providers: [],
