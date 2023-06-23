@@ -5,7 +5,6 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {EditPropertyComponent} from "./components/edit-property/edit-property.component";
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
 import {UserPropertiesComponent} from "./components/user-properties/user-properties.component";
-import {TryEditComponent} from "./components/try-edit/try-edit.component";
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 
 const routes: Routes = [
@@ -14,7 +13,7 @@ const routes: Routes = [
   {path: 'property/edit/:id', component: EditPropertyComponent, title: 'Edit Property'},
   {path: 'property/add', component: AddPropertyComponent, title: 'Add Property'},
   {path: 'user/properties', component: UserPropertiesComponent, title: 'User\'s Properties'},
-  {path: 'try/:id', component: TryEditComponent, title: 'Try User\'s Properties'},
+  {path: 'property/details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails'},
   {path: '**', component: PageNotFoundComponent, pathMatch: 'full', title: 'City Tours - Page Not Found'}
 ];
 

@@ -56,7 +56,7 @@ export class EditPropertyComponent implements OnInit {
         console.log("fetched property ->"+property);
         console.log("currentProperty ->"+this.currentProperty);
         this.formData.patchValue({
-          description: property.desc,
+          description: property.description,
           price: property.price,
           // availability: property.availability,
           listingType: property.listingType,

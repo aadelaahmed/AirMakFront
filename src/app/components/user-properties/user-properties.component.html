@@ -2,7 +2,7 @@
   <section id="user_properties">
 <!--    [class.pending]="property.propertyState.toLowerCase() === 'pending'"-->
     <div *ngFor="let property of userProperties; let currentIndex = index" [class.pending]="property.propertyState.toLowerCase() === 'pending'"  class="strip_booking" >
-      <div id="card" class="row">
+      <div (click)="moveToPropertyDetails(property.id)" id="card" class="row">
         <div class="col-lg-2 col-md-2">
           <div class="date">
             <span class="month">{{ getPropertyMonth(property) }}</span>

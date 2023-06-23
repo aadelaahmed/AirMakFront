@@ -40,6 +40,7 @@ export class UserPropertiesService {
       () => {
         // Success handler
         console.log('Property deleted successfully');
+        location.reload();
         //this.successPopUpMenu.showSuccessPopupMenu('Your property will be reviewed before publishing.');
         Swal.fire(
           'Deleted!',
@@ -47,8 +48,7 @@ export class UserPropertiesService {
           'success'
         )
         LoadingBarService.isLoading= false;
-        // TODO: Navigate the user to the properties list
-        this.router.navigate(['user/properties']);
+        //this.router.navigate(['user/properties']);
       },
       (error) => {
         // Error handler

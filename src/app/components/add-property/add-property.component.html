@@ -255,26 +255,26 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <label>Longitude</label>
-              <input class="form-control" formControlName="lng" type="number" required>
-              <div
-                *ngIf="formData.controls['lng'].errors?.['required'] && isSubmitted"
-                class="text-danger">
-                Longitude is required
-              </div>
-              <div *ngIf="formData.get('lng')?.['pattern'] && isSubmitted">Invalid Longitude.</div>
-            </div>
-            <div class="form-group">
-              <label>Latitude</label>
-              <input class="form-control" formControlName="lat" type="number" required>
-              <div
-                *ngIf="formData.controls['lat'].errors?.['required']  && isSubmitted"
-                class="text-danger">
-                Latitude is required
-              </div>
-              <div *ngIf="formData.get('lat').errors?.['pattern'] && isSubmitted">Invalid Latitude.</div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label>Longitude</label>-->
+<!--              <input class="form-control" formControlName="lng" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['lng'].errors?.['required'] && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Longitude is required-->
+<!--              </div>-->
+<!--              <div *ngIf="formData.get('lng')?.['pattern'] && isSubmitted">Invalid Longitude.</div>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label>Latitude</label>-->
+<!--              <input class="form-control" formControlName="lat" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['lat'].errors?.['required']  && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Latitude is required-->
+<!--              </div>-->
+<!--              <div *ngIf="formData.get('lat').errors?.['pattern'] && isSubmitted">Invalid Latitude.</div>-->
+<!--            </div>-->
           </div>
         </div>
         <!-- End Address details -->

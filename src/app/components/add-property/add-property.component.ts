@@ -10,16 +10,6 @@ import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {LoadingBarService} from "../../services/loading-bar.service";
 import {SuccessPopupService} from "../../services/success-popup.service";
-import { Component, OnInit } from "@angular/core";
-import { Address } from "../../interface/address";
-import { User } from "../../interface/user";
-import { Property } from "../../interface/property";
-import { FirebaseStorageService } from "../../services/firebase-storage/firebase-storage.service";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Image } from "../../interface/image";
-import { AddPropertyService } from "../../services/add-property/add-property.service";
-import { forkJoin, Observable } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'add-apartment',
@@ -34,18 +24,48 @@ export class AddPropertyComponent implements OnInit {
   isFormValidated: boolean = false;
   address = new Address();
   property = new Property();
-
-  constructor(private loadinBarService:LoadingBarService,private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
   propertyPositionFromMap: any;
-  centerPointForMap: google.maps.LatLngLiteral = {
-    lat: 30.182102629242127,
-    lng: 30.58154140412807
-  };
-
-  constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+  centerPointForMap: google.maps.LatLngLiteral;
+  lat:number = null;
+  lng:number = null;
+  ngOnInit() {
+    this.isSubmitted = false;
+    this.formData = this.formBuilder.group({
+      property_type: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      availability: ['', Validators.required],
+      listing_type: ['', Validators.required],
+      floor_no: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      wifi: ['', Validators.required],
+      bedroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      bathroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      air_conditioning: ['', Validators.required],
+      tv: ['', Validators.required],
+      property_number: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      streetNo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      country: ['', Validators.required],
+      /*lng: ['', [Validators.required, Validators.pattern(/^-?\d{1,3}(\.\d{1,6})?$/)]],
+      lat: ['', [Validators.required, Validators.pattern(/^-?\d{1,2}(\.\d{1,6})?$/)]],*/
+      img1: ['', Validators.required],
+      img2: ['', Validators.required],
+      img3: ['', Validators.required],
+    });
   }
 
-  ngOnInit(): void {
+  constructor(private loadinBarService: LoadingBarService, private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+    this.centerPointForMap = {
+      lat: 30.182102629242127,
+      lng: 30.58154140412807
+    };
+  }
+
+  /*constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+  }*/
+
+  /*ngOnInit() {
     this.isSubmitted = false;
     this.formData = this.formBuilder.group({
       property_type: ['', Validators.required],
@@ -70,10 +90,10 @@ export class AddPropertyComponent implements OnInit {
       img2: ['', Validators.required],
       img3: ['', Validators.required],
     });
-  }
+  }*/
 
-  uploadImages(fileList1: FileList, fileList2: FileList, fileList3: FileList): void {
-    if (this.isFormValidated){
+  uploadImages(fileList1: FileList, fileList2: FileList, fileList3: FileList) {
+    if (this.isFormValidated) {
       this.property.images = [];
       const fileImg1 = fileList1[0];
       const fileImg2 = fileList2[0];
@@ -105,14 +125,14 @@ export class AddPropertyComponent implements OnInit {
         (error: any) => {
           // Handle any upload error
           console.error('Error uploading images:', error);
-          LoadingBarService.isLoading= false;
+          LoadingBarService.isLoading = false;
 
         }
       );
     }
   }
 
-  addNewProperty(){
+  addNewProperty() {
     console.log("check how many success executed");
     this.uploadProgress = 100;
     this.isUploadFinished = true;
@@ -123,12 +143,12 @@ export class AddPropertyComponent implements OnInit {
     this.address.city = this.formData.get('city').value;
     this.address.streetNo = this.formData.get('streetNo').value;
     this.address.country = this.formData.get('country').value;
-    this.address.lng = this.formData.get('lng').value;
-    this.address.lat = this.formData.get('lat').value;
+    /*this.address.lng = this.formData.get('lng').value;
+    this.address.lat = this.formData.get('lat').value;*/
     console.log(this.formData.get('city').value);
     this.property.address = this.address;
     this.property.propertyType = this.formData.get('property_type').value;
-    this.property.desc = this.formData.get('description').value;
+    this.property.description = this.formData.get('description').value;
     this.property.price = this.formData.get('price').value;
     this.property.availability = this.formData.get('availability').value;
     this.property.listingType = this.formData.get('listing_type').value;
@@ -146,18 +166,26 @@ export class AddPropertyComponent implements OnInit {
     //TODO : get current user id
     this.property.user = new User();
     this.property.user.id = 1;
-    console.log("check on images ->"+this.property.images[2]);
+    console.log("check on images ->" + this.property.images[2]);
     this.addPropertyService.addProperty(this.property);
   }
-  onSubmit(fileList1: FileList, fileList2: FileList, fileList3: FileList): void {
+
+  onSubmit(fileList1
+             :
+             FileList, fileList2
+             :
+             FileList, fileList3
+             :
+             FileList
+  ) {
     this.isFormValidated = this.formData.valid;
     this.isSubmitted = true;
-    LoadingBarService.isLoading= true;
-    if (!this.isFormValidated) {
+    LoadingBarService.isLoading = true;
+    if (!this.isFormValidated || this.lat == null || this.lng == null) {
       console.log("not validated");
-      LoadingBarService.isLoading= false;
+      LoadingBarService.isLoading = false;
     } else {
-      this.uploadImages(fileList1,fileList2,fileList3);
+      this.uploadImages(fileList1, fileList2, fileList3);
     }
   }
 
@@ -166,7 +194,8 @@ export class AddPropertyComponent implements OnInit {
     console.log(this.propertyPositionFromMap);
     console.log(this.propertyPositionFromMap.lat);
     console.log(this.propertyPositionFromMap.lng);
-
+    this.lng = this.propertyPositionFromMap.lng;
+    this.lat = this.propertyPositionFromMap.lat;
   }
 
   protected readonly LoadingBarService = LoadingBarService;

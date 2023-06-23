@@ -13,14 +13,14 @@ import {map} from "rxjs/operators";
 })
 export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
+
   constructor(private router: Router,private userPropertiesService:UserPropertiesService) {
     //TODO:Replace with the actual user ID
-    LoadingBarService.isLoading= true;
-    this.userProperties = [];
     const userId = 1;
     this.userPropertiesService.getPropertiesByUserId(userId)
       .subscribe(
       (properties: Property[]) => {
+        this.userProperties = [];
         LoadingBarService.isLoading= false;
         for (const property of properties) {
           if (property.propertyState.toLowerCase() === 'pending' || property.propertyState.toLowerCase() === 'publish')
@@ -35,20 +35,7 @@ export class UserPropertiesComponent implements OnInit{
     );
   }
   ngOnInit() {
-    /*//TODO:Replace with the actual user ID
     LoadingBarService.isLoading= true;
-    const userId = 1;
-    this.userPropertiesService.getPropertiesByUserId(userId).subscribe(
-      (properties: Property[]) => {
-        LoadingBarService.isLoading= false;
-        this.userProperties = properties;
-        console.log("user properties ->"+this.userProperties);
-      },
-      (error) => {
-        LoadingBarService.isLoading= false;
-        console.error('Error retrieving properties:', error);
-      }
-    );*/
   }
   editProperty(propertyId:number){
     console.log("editproperty btn clicked ->"+propertyId);
@@ -76,6 +63,9 @@ export class UserPropertiesComponent implements OnInit{
         this.userProperties.splice(index);
       }
     })
+  }
+  moveToPropertyDetails(propertyId:number){
+    this.router.navigate(['property/details', propertyId]);
   }
   getPropertyDay(property: Property): number {
     // Implement logic to retrieve and format the day based on the property's date
