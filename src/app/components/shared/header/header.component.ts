@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
         // Clear the logged-in status in the navbar service
         this.navbarService.setLoggedIn(false);
         this.signOut();
-        this.popupService.successPopup("We Miss you")
+        this.popupService.successPopup("We Will Miss you")
         this.router.navigate(['/home'])
       },
       (error) => {

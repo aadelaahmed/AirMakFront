@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { NavbarService } from 'src/app/services/navbar.service';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,15 +12,19 @@ import { NavbarService } from 'src/app/services/navbar.service';
 export class ProfileComponent implements OnInit {
   profileData: any;
   isUserLoggedIn: boolean;
+  userID: string;
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private sessionStorageService: SessionStorageService
   ) {
   }
 
   ngOnInit() {
+    this.userID = this.sessionStorageService.getItem('userID');
+    console.log('User ID in Profile Component: ', this.userID);
     this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
       this.isUserLoggedIn = isLoggedIn;
       if (!this.isUserLoggedIn) {

@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {PopupService} from "../../../services/popup.service";
 import {HttpHeaders} from "@angular/common/http";
 import {NavbarService} from "../../../services/navbar.service";
+import { SessionStorageService } from '../../../services/session-storage.service';
 import {
   FacebookLoginProvider,
   GoogleLoginProvider,
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
     private popupService: PopupService,
     private navbarService: NavbarService,
     private router: Router,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private sessionStorageService: SessionStorageService
   ) {
   }
 
@@ -91,19 +93,37 @@ export class LoginComponent implements OnInit {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
       });
+  
+      // First API call to authenticate the user
       this.apiService.post("users/login", user, {headers, withCredentials: true}).subscribe(
         {
           next: response => {
             this.navbarService.setLoggedIn(true);
             console.log(response.payload.firstName)
             this.popupService.successPopup("Welcome, " + response.payload.firstName);
-            this.router.navigate(['/home']);
+            this.sessionStorageService.setItem('accessToken', response.accessToken);
+            this.sessionStorageService.setItem('userEmail', formValue.email);
+  
+            // Second API call to get the user ID
+            this.apiService.get("users/getUserIdByEmail?email=" + formValue.email, { headers, withCredentials: true }).subscribe(
+              (userIdResponse: any) => {
+                const userId = userIdResponse;
+                console.log('current userId= ',userId);
+                this.sessionStorageService.setItem('userID', userId);
+  
+                this.router.navigate(['/home']);
+              },
+              (error: any) => {
+                this.popupService.errorPopup("Error retrieving userID");
+              }
+            );
           },
           error: err => {
             this.popupService.errorPopup("Invalid email or password");
           }
         }
-      )
+      );
     }
   }
+  
 }
