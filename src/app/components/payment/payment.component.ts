@@ -47,7 +47,6 @@ export class PaymentComponent implements OnInit{
 
       var paymentRequest: PaymentRequest = new PaymentRequest();
       paymentRequest.setPackageID(this.packages.id);
-      paymentRequest.setUserID(1);
 
       const paymentDetails = new PaymentDetails();
       paymentDetails.setCardToken(response.id);
@@ -58,7 +57,7 @@ export class PaymentComponent implements OnInit{
       this.paymentService.subscribeOnPackage(paymentRequest).subscribe(result => {
         console.log("result in payment : " + result);
 
-        this.router.navigate(['/confirmation'], { queryParams: result.payload });
+        this.router.navigate(['user/confirmation'], { queryParams: result.payload });
         this.isLoading = false;
       });
     } catch (error) {

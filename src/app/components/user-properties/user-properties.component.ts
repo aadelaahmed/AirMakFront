@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LoadingBarService} from "../../services/loading-bar.service";
 import Swal from "sweetalert2";
 import {map} from "rxjs/operators";
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 @Component({
   selector: 'app-user-properties',
@@ -14,14 +15,15 @@ import {map} from "rxjs/operators";
 export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
 
-  constructor(private router: Router,private userPropertiesService:UserPropertiesService) {
+  constructor(private router: Router,private userPropertiesService:UserPropertiesService, private sessionStorage:SessionStorageService) {
 
   }
   ngOnInit() {
     LoadingBarService.isLoading= true;
     //TODO:Replace with the actual user ID
-    const userId = 1;
-    this.userPropertiesService.getPropertiesByUserId(userId)
+    const id = this.sessionStorage.getItem("userID");
+    console.log("add USer prop : " + id);
+    this.userPropertiesService.getPropertiesByUserId(id)
       .subscribe(
         (properties: Property[]) => {
           this.userProperties = [];

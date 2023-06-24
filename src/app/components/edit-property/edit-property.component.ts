@@ -8,6 +8,7 @@ import {Property} from "../../interface/property";
 import {UpdatePropertyDTO} from "../../interface/update-property";
 import {user} from "@angular/fire/auth";
 import {User} from "../../interface/user";
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class EditPropertyComponent implements OnInit {
   isSubmitted = false;
   propertyId:number;
   currentProperty:Property;
-  constructor(private editPropertyService:EditPropertyService, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+  constructor(private editPropertyService:EditPropertyService, private route: ActivatedRoute, private formBuilder: FormBuilder,  private sessionStorage:SessionStorageService) { }
 
   ngOnInit(): void {
     this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -97,7 +98,8 @@ export class EditPropertyComponent implements OnInit {
       updatedProperty.id = this.currentProperty.id;
       updatedProperty.user = new User();
       //TODO: get user id from opened session.
-      updatedProperty.user.id = 1;
+      updatedProperty.user.id = this.sessionStorage.getItem("userID");
+
       console.log("check data in invalid form ->"+JSON.stringify(this.formData.value));
       this.editPropertyService.editProperty(updatedProperty);
     }else{

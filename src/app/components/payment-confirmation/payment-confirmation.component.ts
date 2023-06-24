@@ -43,6 +43,6 @@ export class PaymentConfirmationComponent implements OnInit{
 
 
   public refund(){
-    this.paymentService.refund(this.chargeDetails.charge_id);
+    this.paymentService.refund();
   }
 }

@@ -29,6 +29,6 @@ export class UserPackagesComponent implements OnInit{
 
   
   subscribeNow(selectedPackages:Packages) {
-    this.router.navigate(['/payment'], { queryParams: selectedPackages});
+    this.router.navigate(['user/payment'], { queryParams: selectedPackages});
   }
 }

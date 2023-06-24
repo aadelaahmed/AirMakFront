@@ -10,6 +10,7 @@ import {forkJoin, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {LoadingBarService} from "../../services/loading-bar.service";
 import {SuccessPopupService} from "../../services/success-popup.service";
+import { SessionStorageService } from "src/app/services/session-storage.service";
 
 @Component({
   selector: 'add-apartment',
@@ -55,7 +56,7 @@ export class AddPropertyComponent implements OnInit {
     });
   }
 
-  constructor(private loadinBarService: LoadingBarService, private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
+  constructor(private loadinBarService: LoadingBarService, private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder,  private sessionStorage:SessionStorageService) {
     this.centerPointForMap = {
       lat: 30.182102629242127,
       lng: 30.58154140412807
@@ -165,7 +166,8 @@ export class AddPropertyComponent implements OnInit {
     console.log("test images in property -> " + this.property.images);
     //TODO : get current user id
     this.property.user = new User();
-    this.property.user.id = 1;
+    this.property.user.id = this.sessionStorage.getItem("userID");
+
     console.log("check on images ->" + this.property.images[2]);
     this.addPropertyService.addProperty(this.property);
   }

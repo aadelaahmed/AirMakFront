@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {SessionStorageService} from 'src/app/services/session-storage.service';
-import {AuthGuardService} from "../../../services/auth-guard.service";
 import {ApiService} from "../../../services/api.service";
+import { AuthGuardService } from 'src/app/services/authGuard.service';
 
 @Component({
   selector: 'app-profile',

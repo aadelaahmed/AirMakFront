@@ -4,10 +4,10 @@ import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {LoginDTO} from "../../../dtos/users/login-dto.model";
 import {TokenDto} from "../../../dtos/users/token-dto.model";
 import {ApiService} from "../../../services/api.service";
-import {AuthGuardService} from "../../../services/auth-guard.service";
 import {PopupService} from "../../../services/popup.service";
 import {SessionStorageService} from '../../../services/session-storage.service';
 import {Router} from "@angular/router";
+import { AuthGuardService } from 'src/app/services/authGuard.service';
 
 @Component({
   selector: 'app-login',
