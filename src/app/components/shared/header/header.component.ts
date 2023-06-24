@@ -53,13 +53,12 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
-
   hasSubscription() {
     this.subscriptionService.HasActiveSubscription().subscribe(data => {
       this.hasActiveSubscription = data.payload as boolean;
       console.log(this.hasActiveSubscription)
       if(this.hasActiveSubscription){
-        //redirect to add 
+        //redirect to add
         this.router.navigate(['/property/add']);
       } else {
         //redirect to packages

@@ -42,6 +42,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { LoginComponent } from './components/user/login/login.component';
     PackageComponent,
     AdminHomeComponent,
     PendingComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

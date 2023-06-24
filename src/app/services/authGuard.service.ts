@@ -18,9 +18,9 @@ export class AuthGuardService {
     return this.sessionStorage.getItem(key) !== null;
   }
 
-  logoutAndNavigateToLogin(): void {
-    this.sessionStorage.clearAllItems();
-    this.router.navigate(['user/login']);
+  getRole() {
+    return this.sessionStorage.getItem("role");
   }
+
 
 }

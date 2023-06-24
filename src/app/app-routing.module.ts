@@ -23,6 +23,7 @@ import { PackageComponent } from './components/packages/packages.component';
 import { DetailsComponent } from './components/packageDetails/details.component';
 import { PendingComponent } from './components/pending/pending.component';
 import { authGuard } from "./auth/auth.guard";
+import {AdminComponent} from "./components/admin/admin.component";
 
 const routes: Routes = [
   {
@@ -70,6 +71,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminHomeComponent, data: { title: 'City Tours - Property' } },
+      { path: 'add-admin', component: AdminComponent, data: { title: 'City Tours - Add Admin' } },
       { path: 'create-package', component: PackageComponent, data: { title: 'City Tours - Create Package' } },
       { path: 'package/details/:id', component: DetailsComponent, data: { title: 'City Tours - Package Details' } },
       { path: 'pending', component: PendingComponent, data: { title: 'City Tours - Pending' } }
