@@ -36,28 +36,20 @@ export class PropertyDetailsComponent {
           lng: this.property.address.lng
         };
         console.log(this.property);
-        console.log("/////////////////")
       },
       (error) => {
         console.log("//////////eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee///////")
         console.error(error);
-        console.log("/////////////////")
       }
 
     );
   }
 
   ngOnInit() {
-    this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
+    // this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
     this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log('Property ID in propertyDetails:', this.propertyId);
     this.getAndDisplayProperty(this.propertyId);
-    /*this.route.queryParams.subscribe(params => {
-      this.propertyId = params['id'];
-      //this.propertyId = 51;
-      console.log('Property ID:', this.propertyId);
-      this.getAndDisplayProperty(this.propertyId);
-    });*/
   }
 
   onZoomChanged(event:any) {
