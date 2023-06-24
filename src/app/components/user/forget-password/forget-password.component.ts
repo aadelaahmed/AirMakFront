@@ -32,10 +32,8 @@ export class ForgetPasswordComponent implements OnInit {
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
       const email: ForgetPasswordDto = new ForgetPasswordDto(formValue.email);
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-      this.apiService.post("users/forgot-password", email, {headers, withCredentials: true}).subscribe(
+
+      this.apiService.post("users/forgot-password", email).subscribe(
         {
           next: response => {
             console.log(response.payload)

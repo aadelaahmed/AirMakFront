@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionStorageService {
+
+  constructor(private router: Router) {
+  }
+
   getItem(key: string): any {
     const item = sessionStorage.getItem(key);
     return item ? JSON.parse(item) : null;
@@ -17,7 +22,8 @@ export class SessionStorageService {
     sessionStorage.removeItem(key);
   }
 
-  clear(): void {
+  clearAllItems(): void {
     sessionStorage.clear();
   }
+
 }

@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {NavbarService} from "../../../services/navbar.service";
-import {BehaviorSubject} from "rxjs";
 import {Router} from '@angular/router';
 import {ApiService} from 'src/app/services/api.service';
-import {HttpHeaders} from '@angular/common/http';
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {PopupService} from "../../../services/popup.service";
+import {SessionStorageService} from "../../../services/session-storage.service";
+import {AuthGuardService} from "../../../services/auth-guard.service";
 
 @Component({
   selector: 'app-header',
@@ -13,36 +12,32 @@ import {PopupService} from "../../../services/popup.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isSignInButtonVisible: boolean;
 
   constructor(
-    private navbarService: NavbarService,
     private router: Router,
     private apiService: ApiService,
     private authService: SocialAuthService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private sessionStorageService: SessionStorageService,
+    private authGuardService: AuthGuardService
   ) {
   }
 
   ngOnInit() {
-    this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
-      this.isSignInButtonVisible = !isLoggedIn;
-    });
+  }
+
+  get isSignInButtonVisible(): boolean {
+    return !this.authGuardService.isLoggedIn("userID");
   }
 
   logout() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
     // Call the logout API on the server
-    this.apiService.get('users/logout', {headers, withCredentials: true}).subscribe(
+    this.apiService.get('users/logout').subscribe(
       () => {
-        // Clear the logged-in status in the navbar service
-        this.navbarService.setLoggedIn(false);
+        this.sessionStorageService.removeItem('userID');
         this.signOut();
         this.popupService.successPopup("We Will Miss you")
-        this.router.navigate(['/home'])
+        this.router.navigate(['/user/home'])
       },
       (error) => {
         console.log('error');

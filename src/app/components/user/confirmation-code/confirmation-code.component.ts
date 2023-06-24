@@ -30,18 +30,12 @@ export class ConfirmationCodeComponent implements OnInit {
   sendEmailButton() {
     if (this.confirmEmailForm.valid) {
       const formValue = this.confirmEmailForm.value;
-      const headers = new HttpHeaders({
-        'Content-Type': 'text/plain',
-      });
-      this.apiService.post("users/confirmation-code", formValue.code.trim(), {
-        headers,
-        withCredentials: true
-      }).subscribe(
+      this.apiService.postTextPlain("users/confirmation-code", formValue.code.trim()).subscribe(
         {
           next: response => {
             console.log(response.payload)
             this.popupService.successPopup("Success Confirm Code")
-            this.router.navigate(['/home'])
+            this.router.navigate(['/user/home'])
           },
           error: error => {
             if (error.status === 500) {

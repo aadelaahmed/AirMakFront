@@ -17,7 +17,7 @@ export class PendingService {
 
 
   update(id: number) {
-    return this._http.put<APIResponse>('http://localhost:8097/properties/publish/' + id, id);
+    return this._http.put<APIResponse>('http://localhost:8080/properties/publish/' + id, id);
   }
 
 

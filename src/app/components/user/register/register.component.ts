@@ -81,11 +81,11 @@ export class RegisterComponent {
 
     console.log('UserDTO:', requestRegistrationDTO);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.apiService.post('users/register', requestRegistrationDTO, { headers, withCredentials: true }).subscribe({
+    this.apiService.post('users/register', requestRegistrationDTO).subscribe({
       next: response => {
         console.log('User registered successfully', response);
         this.popupService.successPopup('User registered successfully');
-        this.router.navigate(['/confirmation-email']);
+        this.router.navigate(['/user/register/confirmation-email']);
       },
       error: error => {
         console.error('Error Occurred While Registering User', error);
