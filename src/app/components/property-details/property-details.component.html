@@ -9,9 +9,10 @@
 </head>
 
 <body>
-  <section class="parallax-window" data-natural-width="1400" data-natural-height="470">
-    <div>
-      <img [src]="selectedImage" style="max-width: 100%; max-height: 100%; object-fit: none;" >
+  <section class="parallax-window">
+    <br><br><br><br><br><br>
+    <div style="width: auto;">
+      <img [src]="selectedImage" style="max-width: 100%; max-height: 100%; object-fit: fill; object-position: 50% 50%;" >
     </div>
     <div class="parallax-content-2">
       <div class="container">
@@ -69,6 +70,8 @@
 
           <div id="Img_carousel" class="slider-pro">
             <div class="sp-slides">
+
+              <!-- <img id="big-image" [src]="selectedImage" alt="Big Image"> -->
 
               <!-- Small Square Images -->
               <div class="small-images-container">

@@ -19,7 +19,9 @@
   </div>
   <!-- End Map -->
 
-  <google-map *ngIf="isLoaded" height="400px" width="1680px" [center]="map.center" [zoom]="map.zoom">
+  <br><br>
+
+  <google-map *ngIf="isLoaded" height="400px" width="1280px" [center]="map.center" [zoom]="map.zoom">
     <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
     <map-marker #marker="mapMarker" *ngFor="let property of properties"
       [position]="{lat: property.address.lat, lng: property.address.lng}"
