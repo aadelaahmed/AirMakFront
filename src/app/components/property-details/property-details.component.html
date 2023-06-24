@@ -10,24 +10,19 @@
 
 <body>
   <section class="parallax-window" data-natural-width="1400" data-natural-height="470">
+    <div>
+      <img [src]="selectedImage" style="max-width: 100%; max-height: 100%; object-fit: none;" >
+    </div>
     <div class="parallax-content-2">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
             <h1>{{ property.propertyType + " for " + property.listingType }}</h1>
             <span>{{ property.address.street + ", " + property.address.city + ", " + property.address.country }}</span>
-            <!-- <span class="rating">
-              <i class="icon-smile voted"></i>
-              <i class="icon-smile voted"></i>
-              <i class="icon-smile voted"></i>
-              <i class="icon-smile voted"></i>
-              <i class="icon-smile"></i>
-              <small>(75)</small>
-            </span> -->
           </div>
           <div class="col-md-4">
             <div id="price_single_main">
-              Per Month <span><sup>$</sup>{{ property.price }}</span>
+              <i *ngIf="property.listingType == 'RENT'"> Per Month </i> <span><sup>$</sup>{{ property.price }}</span>
             </div>
           </div>
         </div>
@@ -75,78 +70,13 @@
           <div id="Img_carousel" class="slider-pro">
             <div class="sp-slides">
 
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" [src]="imageUrl"
-                  data-src="img/slider_single_tour/1_medium.jpg" data-small="img/slider_single_tour/1_small.jpg"
-                  data-medium="img/slider_single_tour/1_medium.jpg" data-large="img/slider_single_tour/1_large.jpg"
-                  data-retina="img/slider_single_tour/1_large.jpg">
-              </div>
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/2_medium.jpg" data-small="img/slider_single_tour/2_small.jpg"
-                  data-medium="img/slider_single_tour/2_medium.jpg" data-large="img/slider_single_tour/2_large.jpg"
-                  data-retina="img/slider_single_tour/2_large.jpg">
+              <!-- Small Square Images -->
+              <div class="small-images-container">
+                <img *ngFor="let image of property.images" [src]="image.imagePath" (click)="selectImage(image.imagePath)" class="small-image">
               </div>
 
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/3_medium.jpg" data-small="img/slider_single_tour/3_small.jpg"
-                  data-medium="img/slider_single_tour/3_medium.jpg" data-large="img/slider_single_tour/3_large.jpg"
-                  data-retina="img/slider_single_tour/3_large.jpg">
-              </div>
+              <!-- TRY -->
 
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/4_medium.jpg" data-small="img/slider_single_tour/4_small.jpg"
-                  data-medium="img/slider_single_tour/4_medium.jpg" data-large="img/slider_single_tour/4_large.jpg"
-                  data-retina="img/slider_single_tour/4_large.jpg">
-              </div>
-
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/5_medium.jpg" data-small="img/slider_single_tour/5_small.jpg"
-                  data-medium="img/slider_single_tour/5_medium.jpg" data-large="img/slider_single_tour/5_large.jpg"
-                  data-retina="img/slider_single_tour/5_large.jpg">
-              </div>
-
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/6_medium.jpg" data-small="img/slider_single_tour/6_small.jpg"
-                  data-medium="img/slider_single_tour/6_medium.jpg" data-large="img/slider_single_tour/6_large.jpg"
-                  data-retina="img/slider_single_tour/6_large.jpg">
-              </div>
-
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/7_medium.jpg" data-small="img/slider_single_tour/7_small.jpg"
-                  data-medium="img/slider_single_tour/7_medium.jpg" data-large="img/slider_single_tour/7_large.jpg"
-                  data-retina="img/slider_single_tour/7_large.jpg">
-              </div>
-
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/8_medium.jpg" data-small="img/slider_single_tour/8_small.jpg"
-                  data-medium="img/slider_single_tour/8_medium.jpg" data-large="img/slider_single_tour/8_large.jpg"
-                  data-retina="img/slider_single_tour/8_large.jpg">
-              </div>
-
-              <div class="sp-slide">
-                <img alt="Image" class="sp-image" src="css/images/blank.gif"
-                  data-src="img/slider_single_tour/9_medium.jpg" data-small="img/slider_single_tour/9_small.jpg"
-                  data-medium="img/slider_single_tour/9_medium.jpg" data-large="img/slider_single_tour/9_large.jpg"
-                  data-retina="img/slider_single_tour/9_large.jpg">
-              </div>
-            </div>
-            <div class="sp-thumbnails">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/1_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/2_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/3_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/4_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/5_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/6_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/7_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/8_medium.jpg">
-              <img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/9_medium.jpg">
             </div>
           </div>
 
@@ -190,8 +120,10 @@
               <div class="row">
                 <div class="col-md-6">
                   <google-map [center]="center" [zoom]="15" (zoom_changed)="onZoomChanged($event)">
-                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }" [icon]="markerIcon" class="property-marker"></map-marker>
-                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }" [icon]="markerIcon" +[label]="property.price" class="price-marker" *ngIf="showPrice"></map-marker>
+                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }"
+                      [icon]="markerIcon" class="property-marker"></map-marker>
+                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }"
+                      [icon]="markerIcon" +[label]="property.price" class="price-marker" *ngIf="showPrice"></map-marker>
                   </google-map>
                 </div>
               </div>

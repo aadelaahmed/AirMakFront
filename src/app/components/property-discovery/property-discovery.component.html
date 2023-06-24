@@ -1,16 +1,16 @@
 <main>
-	<div id="position">
-		<div class="container">
-			<ul>
-				<li><a href="#">Home</a>
-				</li>
-				<li><a href="#">Category</a>
-				</li>
-				<li>Page active</li>
-			</ul>
-		</div>
-	</div>
-	<!-- Position -->
+  <div id="position">
+    <div class="container">
+      <ul>
+        <li><a href="#">Home</a>
+        </li>
+        <li><a href="#">Category</a>
+        </li>
+        <li>Page active</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Position -->
 
   <div class="collapse" id="collapseMap">
     <div id="map" class="map">
@@ -19,14 +19,14 @@
   </div>
   <!-- End Map -->
 
-  <google-map  height="400px" width="1680px" [center]="map.center" [zoom]="map.zoom">
+  <google-map *ngIf="isLoaded" height="400px" width="1680px" [center]="map.center" [zoom]="map.zoom">
     <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
     <map-marker #marker="mapMarker" *ngFor="let property of properties"
       [position]="{lat: property.address.lat, lng: property.address.lng}"
       (mapDblclick)="moveToPropertyDetails(property.id)" (mapMouseover)="Over(property,marker)" (mapMouseout)="Out()">
     </map-marker>
-    <map-info-window> {{property.propertyType}} For {{property.listingType}} : ${{property.price}}
-      <br> Double Click For More Details</map-info-window>
+    <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : ${{propertyInfo.price}}
+    <br> Double Click For More Details </map-info-window>
   </google-map>
 
 
@@ -200,59 +200,59 @@
         </div>
         <!--End tools -->
 
-        <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
-          data-wow-delay="0.1s">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 position-relative">
-              <!--<div class="wishlist">
+        <!-- <div ngIf="isLoaded"> -->
+          <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
+            data-wow-delay="0.1s">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 position-relative">
+                <!--<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
 										class="tooltip-content-flip"><span class="tooltip-back">Add to
 											wishlist</span></span></a>
 							</div>-->
-							<div class="img_list">
-								<a href="property/details/{{property.id}}"><img [src]="property.images[0].imagePath" alt="Image">
-									<div class="short_info"></div>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-6">
-							<div class="tour_list_desc">
-								<div class="rating"><i class="icon-star voted"></i><i class="icon-star
-										voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-										class="icon-star-empty"></i>
-								</div>
-								<h3><strong>Park Hyatt</strong> {{property.propertyType}}</h3>
-								<p>{{property.description}}<p>
-										<ul class="add_info">
-											<li *ngIf="property.wifi === 1">
-												<a href="javascript:void(0);" class="tooltip-1"
-													data-bs-placement="top" title="Free Wifi"><i
-														class="icon_set_1_icon-86"></i></a>
-											</li>
-											<li *ngIf="property.tv === 1">
-												<a href="javascript:void(0);" class="tooltip-1"
-													data-bs-placement="top" title="Plasma TV with cable channels"><i
-														class="icon_set_2_icon-116"></i></a>
-											</li>
-
-                  <li *ngIf="property.airCondition === 1">
-                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
-                      title="Plasma TV with cable channels"><i class="icon-air"></i></a>
-                  </li>
-                </ul>
+                <div class="img_list">
+                  <a href="property/details/{{property.id}}"><img [src]="property.images[0].imagePath" alt="Image">
+                    <div class="short_info"></div>
+                  </a>
+                </div>
               </div>
-            </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="tour_list_desc">
+                  <div class="rating"><i class="icon-star voted"></i><i class="icon-star
+										voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
+                  </div>
+                  <h3><strong>Park Hyatt</strong> {{property.propertyType}}</h3>
+                  <p>{{property.description}}
+                  <p>
+                  <ul class="add_info">
+                    <li *ngIf="property.wifi === 1">
+                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top" title="Free Wifi"><i
+                          class="icon_set_1_icon-86"></i></a>
+                    </li>
+                    <li *ngIf="property.tv === 1">
+                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                        title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
+                    </li>
 
-            <div class="col-lg-2 col-md-2">
-              <div class="price_list">
-                <div><sup>${{property.price}}</sup><small>From/Per night</small>
-                  <p><a href="single_hotel.html" class="btn_1">Details</a>
-                  </p>
+                    <li *ngIf="property.airCondition === 1">
+                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                        title="Plasma TV with cable channels"><i class="icon-air"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-2 col-md-2">
+                <div class="price_list">
+                  <div><sup>${{property.price}}</sup><small>From/Per night</small>
+                    <p><a href="single_hotel.html" class="btn_1">Details</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
         <!--End strip -->
 
 
@@ -295,10 +295,10 @@
 </main>
 <!-- End main -->
 <style>
-
-  .map{
+  .map {
     width: 100%;
   }
+
   .horizontal-inputs {
     display: flex;
     justify-content: space-between;
@@ -331,17 +331,16 @@
     margin-bottom: 10px;
   }
 
-.spinner-arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 6px 6px 0 6px;
-  border-color: #666 transparent transparent transparent;
-  cursor: pointer;
-}
-		</style>
-
+  .spinner-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 0 6px;
+    border-color: #666 transparent transparent transparent;
+    cursor: pointer;
+  }
+</style>

@@ -7,3 +7,44 @@
   padding: 6px 12px;
   border-radius: 4px;
 }
+
+#big-image {
+  width: 400px; /* Adjust the width as per your requirements */
+  height: 400px; /* Adjust the height as per your requirements */
+  border: 1px solid #ccc; /* Add a border if desired */
+}
+
+.square-image {
+  width: 100px; /* Adjust the width as per your requirements */
+  height: 100px; /* Adjust the height as per your requirements */
+  margin: 5px; /* Adjust the margin as per your requirements */
+  cursor: pointer; /* Show a pointer cursor on hover */
+}
+
+.square-image:hover {
+  border: 2px solid blue; /* Add a border to the selected image on hover */
+}
+
+
+
+
+.insider-image {
+  position: absolute; /* Set image to absolute position within the parent div */
+  width: 100%; /* Make the image width 100% of the parent div */
+  height: 100%; /* Make the image height 100% of the parent div */
+  object-fit: cover; /* Scale the image while maintaining aspect ratio */
+}
+
+
+
+.small-images-container {
+  display: flex;
+}
+
+.small-image {
+  width: 100px; /* Adjust the width as per your requirement */
+  height: 100px; /* Adjust the height as per your requirement */
+  object-fit: cover; /* Adjust the object-fit property as per your requirement */
+  margin-right: 10px; /* Adjust the margin between the images as per your requirement */
+}
+

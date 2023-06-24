@@ -13,13 +13,18 @@ export class PropertyDetailsComponent {
   property: Property = new Property();
   mapVisible: boolean = false;
   center: google.maps.LatLngLiteral;
-  zoom: number = 15 ;
+  zoom: number = 15;
   markerIcon: string;
   showPrice: boolean = true;
-  imageUrl:string;
+  imageUrl: string;
+  selectedImage: any;
 
   constructor(private route: ActivatedRoute, private propertyService: EditPropertyService) {
     propertyService.baseUrl = "http://localhost:8080/properties";
+    this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
+    this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log('Property ID in propertyDetails:', this.propertyId);
+    this.getAndDisplayProperty(this.propertyId);
   }
 
   getAndDisplayProperty(id: number) {
@@ -30,6 +35,7 @@ export class PropertyDetailsComponent {
         this.property = this.propertyService.mapResponseToProperty(payload);
         this.markerIcon = "https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png";
         // this.markerIcon = "assets/img/map icons/1.png";
+        this.selectedImage = this.property.images[0].imagePath;
 
         this.center = {
           lat: this.property.address.lat,
@@ -48,23 +54,19 @@ export class PropertyDetailsComponent {
   }
 
   ngOnInit() {
-    this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
-    this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
-    console.log('Property ID in propertyDetails:', this.propertyId);
-    this.getAndDisplayProperty(this.propertyId);
-    /*this.route.queryParams.subscribe(params => {
-      this.propertyId = params['id'];
-      //this.propertyId = 51;
-      console.log('Property ID:', this.propertyId);
-      this.getAndDisplayProperty(this.propertyId);
-    });*/
+
   }
 
-  onZoomChanged(event:any) {
+  onZoomChanged(event: any) {
     console.log("zoom :" + this.zoom)
     if (this.zoom > 13)
       this.showPrice = true;
     this.showPrice = false;
+  }
+
+
+  selectImage(image: string): void {
+    this.selectedImage = image;
   }
 
 }

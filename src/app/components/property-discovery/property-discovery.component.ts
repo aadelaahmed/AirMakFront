@@ -14,13 +14,35 @@ import { MapInfo } from 'src/app/models/map.model';
   styleUrls: ['./property-discovery.component.css']
 })
 export class PropertyDiscoveryComponent implements OnInit {
-
-  propertyFilter: PropertyFilter;
+  isLoaded: boolean = false;
+  propertyFilter: PropertyFilter = new PropertyFilter();
   properties: Property[];
   page: number = 0;
+
   pageMetadata: PageMetadata;
 
   rangeValues: string = "";
+
+
+  constructor(private propertyService: PropertyService, private router: Router) {
+    map: MapInfo;
+    // this.searchForProperties(this.page);
+    this.propertyService.filterProperties(this.propertyFilter, this.page + 1).subscribe(response => {
+      this.properties = response.payload as Property[];
+      console.log(response)
+      this.pageMetadata = response.metadata as PageMetadata;
+      console.log(this.pageMetadata)
+      this.isLoaded = true;
+
+      console.log("Filter : " + JSON.stringify(this.propertyFilter));
+      console.log("All : " + JSON.stringify(this.properties));
+      console.log("1");
+    })
+  }
+
+  ngOnInit() {
+    console.log("2")
+  }
 
   updateRange() {
     const values = this.rangeValues.split("-");
@@ -31,25 +53,17 @@ export class PropertyDiscoveryComponent implements OnInit {
     console.log("To:", toValue);
   }
 
-  constructor(private propertyService: PropertyService, private router: Router) {
-    map: MapInfo;
-    this.searchForProperties(this.page);
-    console.log("RAHOMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-  }
-
-  ngOnInit() {
-    this.propertyFilter = new PropertyFilter();
-  }
-
   searchForProperties(page: number) {
     console.log("price");
     this.page = page;
-    this.propertyService.filterProperties(this.propertyFilter, page + 1).subscribe(response => {
-      this.properties = response.payload as Property[];
-      console.log(response)
-      this.pageMetadata = response.metadata as PageMetadata;
-      console.log(this.pageMetadata)
-    })
+    // this.propertyService.filterProperties(this.propertyFilter, page + 1).subscribe(response => {
+    //   this.properties = response.payload as Property[];
+    //   console.log(response)
+    //   this.pageMetadata = response.metadata as PageMetadata;
+    //   console.log(this.pageMetadata)
+    //   this.isLoaded = true;
+    // })
+
   }
 
   counterArray(length: number): number[] {
@@ -96,7 +110,7 @@ export class PropertyDiscoveryComponent implements OnInit {
 
   imageUrl: string = "assets/img/ll.png";
   map = new MapInfo();
-  property: Property;
+  propertyInfo: Property = new Property();
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   moveToPropertyDetails(propertyId: number) {
@@ -105,9 +119,9 @@ export class PropertyDiscoveryComponent implements OnInit {
   }
 
   Over(property: Property, marker: MapMarker) {
+    this.propertyInfo = property;
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
-    this.property = property;
-    console.log("The Property On Selected Mark : " + this.property)
+    console.log("The Property On Selected Mark : " + this.propertyInfo)
     console.log(property);
   }
 
