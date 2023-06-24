@@ -35,7 +35,8 @@ export class authGuard implements CanActivate {
           '/admin/add-admin',
           '/admin/create-package',
           '/admin/package/details/:id',
-          '/admin/pending'
+          '/admin/pending',
+          '/property/details/:id'
         ];
 
         const allowedNotAdminOrUserRoutes = [
