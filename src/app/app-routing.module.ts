@@ -23,7 +23,7 @@ import { PackageComponent } from './components/packages/packages.component';
 import { DetailsComponent } from './components/packageDetails/details.component';
 import { PendingComponent } from './components/pending/pending.component';
 import { authGuard } from "./auth/auth.guard";
-import {AdminComponent} from "./components/admin/admin.component";
+import { AdminComponent } from "./components/admin/admin.component";
 
 const routes: Routes = [
   {
@@ -32,13 +32,22 @@ const routes: Routes = [
     pathMatch: 'full',
     data: { title: 'City Tours - Home' }
   },
-  
+  { path: 'login', component: LoginComponent, data: { title: 'City Tours - Login' } },
   {
     path: 'user',
+    canActivate: [authGuard],
     children: [
+      {
+        path: 'property',
+        children: [
+          { path: 'discovery', component: PropertyDiscoveryComponent, data: { title: 'City Tours - Property' } },
+          { path: 'edit/:id', component: EditPropertyComponent, title: 'Edit Property' },
+          { path: 'add', component: AddPropertyComponent, title: 'Add Property' },
+          { path: 'details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails' },
+        ]
+      },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, data: { title: 'City Tours - Home' } },
-      { path: 'login', component: LoginComponent, data: { title: 'City Tours - Login' } },
       { path: 'logout', component: LoginComponent, data: { title: 'City Tours - Logout' } },
       { path: 'properties', component: UserPropertiesComponent, title: 'User\'s Properties' },
       {
@@ -53,7 +62,6 @@ const routes: Routes = [
       { path: 'reset-password', component: ResetPasswordComponent, data: { title: 'City Tours - Reset Password' } },
       {
         path: 'profile',
-        canActivate: [authGuard],
         children: [
           { path: '', redirectTo: 'view-profile', pathMatch: 'full' },
           { path: 'view-profile', component: ProfileComponent, data: { title: 'City Tours - My Profile' } },
@@ -78,19 +86,10 @@ const routes: Routes = [
       { path: 'pending', component: PendingComponent, data: { title: 'City Tours - Pending' } }
     ]
   },
-  {
-    path: 'property',
-    children: [
-      { path: 'discovery', component: PropertyDiscoveryComponent, data: { title: 'City Tours - Property' } },
-      { path: 'edit/:id', component: EditPropertyComponent, title: 'Edit Property' },
-      { path: 'add', component: AddPropertyComponent, title: 'Add Property' },
-      { path: 'details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails' },
-    ]
-  },
+
 
   { path: '**', component: PageNotFoundComponent, data: { title: 'City Tours - Page Not Found' } }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

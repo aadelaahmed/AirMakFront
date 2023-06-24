@@ -6,7 +6,7 @@
         <div class="col-6"><i class="icon-phone"></i><strong>+201552938027</strong></div>
         <div class="col-6">
           <ul id="top_links">
-            <li *ngIf="isSignInButtonVisible"><a routerLink="user/login" class="fa-icon-sign-in" id="access_link">Sign
+            <li *ngIf="isSignInButtonVisible"><a routerLink="/login" class="fa-icon-sign-in" id="access_link">Sign
               in</a></li>
             <li *ngIf="!isSignInButtonVisible && getRole==='USER'">
               <a routerLink="user/profile" class="fa-icon-user" id="profile_link">Profile</a>
@@ -62,7 +62,7 @@
               </a>
             </li>
             <li *ngIf="isSignInButtonVisible || getRole==='USER'" routerLinkActive="active">
-              <a routerLink="property/discovery">
+              <a routerLink="user/property/discovery">
                 <i class="icon-home-4"></i>Apartments
               </a>
             </li>
@@ -76,7 +76,7 @@
             <li class="submenu">
 
             <li *ngIf="!isSignInButtonVisible && getRole==='USER'" class="submenu" style="margin-left:30ch; ">
-              <a routerLink=" user/payment" style="color:#e14d67">
+              <a routerLink="user/payment" style="color:#e14d67">
                 <i class="icon-heart"></i>AirMak Your Home
               </a>
             </li>

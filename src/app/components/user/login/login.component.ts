@@ -94,8 +94,10 @@ export class LoginComponent implements OnInit {
           // Second API call to get the user ID
           this.fetchUserID(response.payload.email)
           if (response.payload.role == 'ADMIN') {
+            this.authGuardService.setLoggedIn(true);
             this.router.navigate(['/admin/dashboard'])
           } else {
+            this.authGuardService.setLoggedIn(true);
             this.router.navigate(['/user/home'])
           }
           this.isButtonDisabled = true; // Disable the button
