@@ -84,7 +84,13 @@
                 </div>
               </div>
               <div id="pass-info" class="clearfix"></div>
-              <button type="submit" class="btn_full">Create an account</button>
+              <button type="submit" class="btn_full" [class.disabled]="isButtonDisabled" [disabled]="isButtonDisabled" [ngStyle]="isButtonDisabled ? {'pointer-events': 'none', 'opacity': '0.5', 'cursor': 'not-allowed'} : null">
+                <span *ngIf="!isButtonDisabled">Create an account</span>
+                <span *ngIf="isButtonDisabled">Creating...</span>
+              </button>
+              
+              
+
             </form>
           </div>
         </div>

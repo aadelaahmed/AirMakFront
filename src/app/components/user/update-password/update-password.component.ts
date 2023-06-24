@@ -43,13 +43,10 @@ export class UpdatePasswordComponent implements OnInit {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
       });
-      this.apiService.put("users/profile/update-password", updatePassword, {
-        headers,
-        withCredentials: true
-      }).subscribe({
+      this.apiService.put("users/profile/update-password", updatePassword).subscribe({
         next: (response) => {
           this.popupService.successPopup("Updated Password");
-          this.router.navigate(["/profile/view-profile"]);
+          this.router.navigate(["/user/profile/view-profile"]);
         },
         error: (error) => {
           this.popupService.errorPopup("Failed Update Password");

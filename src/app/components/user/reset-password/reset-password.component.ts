@@ -54,13 +54,11 @@ export class ResetPasswordComponent implements OnInit {
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
       const resetPassword: ResetPassword = new ResetPassword(formValue.newPassword, formValue.confirmNewPassword, this.token);
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
-      this.apiService.post("users/reset-password", resetPassword, {headers, withCredentials: true}).subscribe({
+
+      this.apiService.post("users/reset-password", resetPassword).subscribe({
         next: (response) => {
           this.popupService.successPopup(response.payload);
-          this.router.navigate(["/login"]);
+          this.router.navigate(["/user/login"]);
         },
         error: (error) => {
           this.popupService.errorPopup(error.payload)

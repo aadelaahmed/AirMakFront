@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NavbarService } from "../../../services/navbar.service";
-import { BehaviorSubject } from "rxjs";
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
-import { HttpHeaders } from '@angular/common/http';
-import { SocialAuthService } from "@abacritt/angularx-social-login";
-import { PopupService } from "../../../services/popup.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {ApiService} from 'src/app/services/api.service';
+import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {PopupService} from "../../../services/popup.service";
+import {SessionStorageService} from "../../../services/session-storage.service";
+import { AuthGuardService } from 'src/app/services/authGuard.service';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 
 @Component({
@@ -14,37 +13,33 @@ import { SubscriptionService } from 'src/app/services/subscription.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isSignInButtonVisible: boolean;
-  hasActiveSubscription: boolean = false;
+  hasActiveSubscription:boolean;
 
   constructor(
-    private navbarService: NavbarService,
     private router: Router,
     private apiService: ApiService,
     private authService: SocialAuthService,
     private popupService: PopupService,
-    private subscriptionService: SubscriptionService
+    private sessionStorageService: SessionStorageService,
+    private authGuardService: AuthGuardService,
+    private subscriptionService:SubscriptionService
   ) {
   }
 
   ngOnInit() {
-    this.navbarService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
-      this.isSignInButtonVisible = !isLoggedIn;
-    });
+  }
+
+  get isSignInButtonVisible(): boolean {
+    return !this.authGuardService.isLoggedIn("userID");
   }
 
   logout() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
     // Call the logout API on the server
-    this.apiService.get('users/logout', { headers, withCredentials: true }).subscribe(
+    this.apiService.get('users/logout').subscribe(
       () => {
-        // Clear the logged-in status in the navbar service
-        this.navbarService.setLoggedIn(false);
+        this.sessionStorageService.removeItem('userID');
         this.signOut();
-        this.popupService.successPopup("We Miss you")
+        this.popupService.successPopup("We Will Miss you")
         this.router.navigate(['/home'])
       },
       (error) => {
@@ -68,7 +63,7 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/property/add']);
       } else {
         //redirect to packages
-        this.router.navigate(['/packages']);
+        this.router.navigate(['/user/packages']);
       }
 
     });

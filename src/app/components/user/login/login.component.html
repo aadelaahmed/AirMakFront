@@ -7,10 +7,10 @@
             <div class="text-center"><img src="../../../../assets/img/logo_sticky.png" alt="Image" width="160"
                                           height="34"></div>
             <hr>
-            <form [formGroup]="loginForm" (ngSubmit)="signInButton()">
+            <form [formGroup]="loginForm" (ngSubmit)="signInButton($event)">
 
               <asl-google-signin-button
-                *ngIf="!user"
+                *ngIf="!socialUser"
                 type='standard'
                 size='large'
                 width="290"
@@ -47,10 +47,12 @@
               <p class="small">
                 <a href="/forget-password">Forgot Password?</a>
               </p>
-              <button class="btn_full" type="submit" [disabled]="loginForm.invalid">
-                Sign in
+              <button type="submit" class="btn_full" [class.disabled]="isButtonDisabled" [disabled]="isButtonDisabled"
+                      [ngStyle]="isButtonDisabled ? {'pointer-events': 'none', 'opacity': '0.5', 'cursor': 'not-allowed'} : null">
+                <span *ngIf="!isButtonDisabled">Login</span>
+                <span *ngIf="isButtonDisabled">Logging...</span>
               </button>
-              <a href="/register " class="btn_full_outline">Register</a>
+              <a routerLink="/user/register" class="btn_full_outline">Register</a>
             </form>
           </div>
         </div>

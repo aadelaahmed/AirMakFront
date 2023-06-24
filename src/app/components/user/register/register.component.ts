@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { PopupService } from "../../../services/popup.service";
 export class RegisterComponent {
   registerForm: FormGroup;
   emailExists: boolean = false;
+  isButtonDisabled: boolean = false;
 
   constructor(
     private router: Router,
@@ -67,6 +68,8 @@ export class RegisterComponent {
       return;
     }
 
+    this.isButtonDisabled = true; // Disable the button
+
     const requestRegistrationDTO = {
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
@@ -78,15 +81,18 @@ export class RegisterComponent {
 
     console.log('UserDTO:', requestRegistrationDTO);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.apiService.post('users/register', requestRegistrationDTO, { headers, withCredentials: true }).subscribe({
+    this.apiService.post('users/register', requestRegistrationDTO).subscribe({
       next: response => {
         console.log('User registered successfully', response);
         this.popupService.successPopup('User registered successfully');
-        this.router.navigate(['/confirmation-email']);
+        this.router.navigate(['/user/register/confirmation-email']);
       },
       error: error => {
         console.error('Error Occurred While Registering User', error);
         this.popupService.errorPopup('Error Occurred While Registering User');
+      },
+      complete: () => {
+        this.isButtonDisabled = false; // Re-enable the button after API call completes
       }
     });
   }

@@ -26,9 +26,9 @@ website:   	http://www.themepunch.com
 	height:10px;
 	position:relative;
 	display:block;
-	margin-bottom:3px;	
+	margin-bottom:3px;
 	display:none;
-	white-space: nowrap;	
+	white-space: nowrap;
 	box-sizing: border-box;
 }
 
@@ -43,7 +43,7 @@ website:   	http://www.themepunch.com
 	top:0px;
 	left:0px;
 	height:100%;
-	width:0;	
+	width:0;
 }
 
 .rs-go-fullscreen {
@@ -58,18 +58,18 @@ website:   	http://www.themepunch.com
 
 
 .debugtimeline.tl_slide .the_timeline_tester {
-	background:#f39c12;	
+	background:#f39c12;
 }
 
 .debugtimeline.tl_frame .the_timeline_tester {
-	background:#3498db;	
+	background:#3498db;
 }
 
 .debugtimline_txt {
 	color:#fff;
 	font-weight: 400;
 	font-size:7px;
-	position:absolute;	
+	position:absolute;
 	left:10px;
 	top:0px;
 	white-space: nowrap;
@@ -98,7 +98,7 @@ website:   	http://www.themepunch.com
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
-  text-align: center; 
+  text-align: center;
 
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
@@ -162,7 +162,7 @@ website:   	http://www.themepunch.com
 .revicon-layers-alt:before { content: '\e804'; } /* '' */
 .revicon-popup:before { content: '\e828'; } /* '' */
 
-							
+
 
 /******************************
 	-	BASIC STYLES		-
@@ -187,7 +187,7 @@ website:   	http://www.themepunch.com
 
 .tp-simpleresponsive img,
 .rev_slider img{
-	max-width:none !important;	
+	max-width:none !important;
 	transition: none;
 	margin:0px;
 	padding:0px;
@@ -212,7 +212,7 @@ website:   	http://www.themepunch.com
 .tp-revslider-mainul >li,
 .tp-simpleresponsive >ul >li{
 	list-style:none !important;
-	position:absolute;	
+	position:absolute;
 	margin:0px !important;
 	padding:0px !important;
 	overflow-x: visible;
@@ -232,14 +232,14 @@ website:   	http://www.themepunch.com
 .tp-simpleresponsive >ul >li,
 .tp-simpleresponsive >ul >li:before,
 .tp-revslider-mainul >li,
-.tp-simpleresponsive >ul >li { 
-	visibility:hidden; 
+.tp-simpleresponsive >ul >li {
+	visibility:hidden;
 }
 
 .tp-revslider-slidesli,
-.tp-revslider-mainul	{	
-	padding:0 !important; 
-	margin:0 !important; 
+.tp-revslider-mainul	{
+	padding:0 !important;
+	margin:0 !important;
 	list-style:none !important;
 }
 
@@ -255,11 +255,11 @@ website:   	http://www.themepunch.com
 .rs-toggle-content-active.tp-caption .rs-untoggled-content { display:none;}
 
 .rev_slider .tp-caption,
-.rev_slider .caption 	{ 
-	position:relative;  
-	visibility:hidden; 
+.rev_slider .caption 	{
+	position:relative;
+	visibility:hidden;
 	white-space: nowrap;
-	display: block;	
+	display: block;
 	-webkit-font-smoothing: antialiased !important;
 	z-index:1;
 }
@@ -283,7 +283,7 @@ website:   	http://www.themepunch.com
 
 .tp-svg-layer svg {	width:100%; height:100%;position: relative;vertical-align: top}
 
-	
+
 /* CAROUSEL FUNCTIONS */
 .tp-carousel-wrapper {
 	cursor:url(openhand.cur), move;
@@ -293,9 +293,9 @@ website:   	http://www.themepunch.com
 }
 
 /* ADDED FOR SLIDELINK MANAGEMENT */
-.tp_inner_padding {	
-	box-sizing:border-box;	
-	max-height:none !important;	
+.tp_inner_padding {
+	box-sizing:border-box;
+	max-height:none !important;
 }
 
 
@@ -303,14 +303,14 @@ website:   	http://www.themepunch.com
 	-moz-user-select: all;
 	-khtml-user-select: all;
 	-webkit-user-select: all;
-	-o-user-select: all;	
+	-o-user-select: all;
 }
 
 .tp-forcenotvisible,
 .tp-hide-revslider,
 .tp-caption.tp-hidden-caption,
-.tp-parallax-wrap.tp-hidden-caption {	
-	visibility:hidden !important; 
+.tp-parallax-wrap.tp-hidden-caption {
+	visibility:hidden !important;
 	display:none !important
 }
 
@@ -352,12 +352,12 @@ website:   	http://www.themepunch.com
 	font-size:0px;
 }
 
-.rev_column {	
+.rev_column {
 	display: table-cell;
 	position: relative;
 	vertical-align: top;
 	height: auto;
-	box-sizing: border-box;	
+	box-sizing: border-box;
 	font-size:0px;
 }
 
@@ -408,7 +408,7 @@ website:   	http://www.themepunch.com
 **********************************************/
 
 
-.fullscreen-container {	
+.fullscreen-container {
 	position:relative;
 	padding:0;
 }
@@ -431,7 +431,7 @@ website:   	http://www.themepunch.com
 	-	SPECIAL TP CAPTIONS -
 **********************************/
 
-.tp-static-layers				{	
+.tp-static-layers				{
 	position:absolute; z-index:101; top:0px;left:0px;
 	/*pointer-events:none;*/
 
@@ -473,17 +473,17 @@ website:   	http://www.themepunch.com
 	border-top: 40px solid #00A8FF;
 	position: absolute;right:0px;top:0px;
 }
-									
-.tp-layer-inner-rotation {	
+
+.tp-layer-inner-rotation {
 	position: relative !important;
-}		
+}
 
 
 /***********************************************
 	-	SPECIAL ALTERNATIVE IMAGE SETTINGS	-
 ***********************************************/
 
-img.tp-slider-alternative-image	{	
+img.tp-slider-alternative-image	{
 	width:100%; height:auto;
 }
 
@@ -523,13 +523,13 @@ img.tp-slider-alternative-image	{
 
 .videoisplaying .html5vid .tp-poster	{	display: none}
 
-.tp-video-play-button					{	
+.tp-video-play-button					{
 	background:#000;
-	background:rgba(0,0,0,0.3);										
+	background:rgba(0,0,0,0.3);
 	border-radius:5px;
 	position: absolute;
 	top: 50%;
-	left: 50%;										
+	left: 50%;
 	color: #FFF;
 	z-index: 3;
 	margin-top: -25px;
@@ -540,18 +540,18 @@ img.tp-slider-alternative-image	{
 	width: 50px;
 	height:50px;
 	box-sizing: border-box;
-	
-	display: inline-block;	
+
+	display: inline-block;
 	vertical-align: top;
 	z-index: 4;
-	opacity: 0;	
-	transition:opacity 300ms ease-out !important;				
+	opacity: 0;
+	transition:opacity 300ms ease-out !important;
 }
 
 .tp-hiddenaudio,
 .tp-audio-html5 .tp-video-play-button { display:none !important;}
-.tp-caption .html5vid					{	width:100% !important; height:100% !important;}									
-.tp-video-play-button i 				{	width:50px;height:50px; display:inline-block; text-align: center; vertical-align: top; line-height: 50px !important; font-size: 40px !important;}									
+.tp-caption .html5vid					{	width:100% !important; height:100% !important;}
+.tp-video-play-button i 				{	width:50px;height:50px; display:inline-block; text-align: center; vertical-align: top; line-height: 50px !important; font-size: 40px !important;}
 .tp-caption:hover .tp-video-play-button	{	opacity: 1; display:block;}
 .tp-caption .tp-revstop					{	display:none; border-left:5px solid #fff !important; border-right:5px solid #fff !important;margin-top:15px !important;line-height: 20px !important;vertical-align: top; font-size:25px !important;}
 .videoisplaying .revicon-right-dir		{	display:none}
@@ -575,9 +575,9 @@ img.tp-slider-alternative-image	{
 	left: 0;
 	right: 0;
 	padding: 5px;
-	opacity: 0;	
+	opacity: 0;
 	transition: opacity .3s;
-	background-image: linear-gradient(to bottom, rgb(0,0,0) 13%, rgb(50,50,50) 100%);		
+	background-image: linear-gradient(to bottom, rgb(0,0,0) 13%, rgb(50,50,50) 100%);
 	display:table;max-width:100%; overflow:hidden;box-sizing:border-box;
 }
 
@@ -586,7 +586,7 @@ img.tp-slider-alternative-image	{
 .tp-video-button {
 	background: rgba(0,0,0,.5);
 	border: 0;
-	color: #EEE;	
+	color: #EEE;
 	border-radius: 3px;
 	cursor:pointer;
 	line-height:12px;
@@ -617,21 +617,21 @@ img.tp-slider-alternative-image	{
 .rs-background-video-layer video::-webkit-media-controls-start-playback-button,
 .rs-background-video-layer video::-webkit-media-controls,
 .rs-background-video-layer audio::-webkit-media-controls { display:none !important;}
- 
+
 
 .tp-audio-html5 .tp-video-controls {	opacity: 1 !important; visibility: visible !important}
 
- 
+
 
 
 /********************************
 	-	DOTTED OVERLAYS	-
 *********************************/
 .tp-dottedoverlay						{	background-repeat:repeat;width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:3}
-.tp-dottedoverlay.twoxtwo				{	background:url(../assets/gridtile.png)}
-.tp-dottedoverlay.twoxtwowhite			{	background:url(../assets/gridtile_white.png)}
-.tp-dottedoverlay.threexthree			{	background:url(../assets/gridtile_3x3.png)}
-.tp-dottedoverlay.threexthreewhite		{	background:url(../assets/gridtile_3x3_white.png)}
+.tp-dottedoverlay.twoxtwo				{	background:url(assets/img/gridtile.png)}
+.tp-dottedoverlay.twoxtwowhite			{	background:url(assets/img/gridtile_white.png)}
+.tp-dottedoverlay.threexthree			{	background:url(assets/img/gridtile_3x3.png)}
+.tp-dottedoverlay.threexthreewhite		{	background:url(assets/img/gridtile_3x3_white.png)}
 
 
 /******************************
@@ -652,15 +652,15 @@ img.tp-slider-alternative-image	{
   width: 50%;
   top: 85%;
   max-width:300px;
-  background: transparent;  
+  background: transparent;
   box-shadow: 0 15px 10px rgba(0,0,0,0.8);
-  
+
   transform: rotate(-3deg);
 }
 
 .tp-shadow2:after,
 .tp-shadow4:after
-{  
+{
   transform: rotate(3deg);
   right: 10px;
   left: auto;
@@ -668,19 +668,19 @@ img.tp-slider-alternative-image	{
 
 .tp-shadow5
 {
-  	position:relative;        
+  	position:relative;
     box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 .tp-shadow5:before, .tp-shadow5:after
 {
 	content:"";
-    position:absolute; 
-    z-index:-2;    
+    position:absolute;
+    z-index:-2;
     box-shadow:0 0 25px 0px  rgba(0,0,0,0.6);
     top:30%;
     bottom:0;
     left:20px;
-    right:20px;    
+    right:20px;
     border-radius:100px / 20px;
 }
 
@@ -690,7 +690,7 @@ img.tp-slider-alternative-image	{
 
 .tp-button{
 	padding:6px 13px 5px;
-	border-radius: 3px;	
+	border-radius: 3px;
 	height:30px;
 	cursor:pointer;
 	color:#fff !important; text-shadow:0px 1px 1px rgba(0, 0, 0, 0.6) !important; font-size:15px; line-height:45px !important;
@@ -705,7 +705,7 @@ img.tp-slider-alternative-image	{
 .tp-button:hover,
 .tp-button.big:hover {	background-position:bottom, 15px 11px}
 
-	
+
 /*	BUTTON COLORS	*/
 
 .tp-button.green, .tp-button:hover.green,
@@ -762,7 +762,7 @@ img.tp-slider-alternative-image	{
 
 /* ROUNDING OPTIONS */
 .rev-maxround 							{ 	border-radius: 30px; }
-.rev-minround 							{ 	border-radius: 3px; }	
+.rev-minround 							{ 	border-radius: 3px; }
 
 
 /* BURGER BUTTON */
@@ -795,20 +795,20 @@ img.tp-slider-alternative-image	{
 .open .rev-burger :first-child,
 .open.rev-burger :first-child {
   transform: translateY(6px) rotate(-45deg);
- 
+
 }
 #dialog_addbutton .rev-burger:hover :nth-child(2),
 .open .rev-burger :nth-child(2),
 .open.rev-burger :nth-child(2) {
   transform: rotate(-45deg);
- 
+
   opacity: 0;
 }
 #dialog_addbutton .rev-burger:hover :last-child,
 .open .rev-burger :last-child,
 .open.rev-burger :last-child {
   transform: translateY(-6px) rotate(-135deg);
- 
+
 }
 
 .rev-burger.revb-white {
@@ -865,7 +865,7 @@ img.tp-slider-alternative-image	{
 	text-align: center;
 	cursor: pointer;
 	width:35px;
-	height:55px;	
+	height:55px;
 	box-sizing: border-box;
 	border: 3px solid white;
 	border-radius: 23px;
@@ -897,7 +897,7 @@ img.tp-slider-alternative-image	{
 }
 
 .rev-scroll-btn.revs-fullwhite span {
-	background: #333;	
+	background: #333;
 }
 
 .rev-scroll-btn.revs-fulldark  {
@@ -906,7 +906,7 @@ img.tp-slider-alternative-image	{
 }
 
 .rev-scroll-btn.revs-fulldark  span {
-	background: #fff;	
+	background: #fff;
 }
 
 .rev-scroll-btn span {
@@ -918,7 +918,7 @@ img.tp-slider-alternative-image	{
 	height: 8px;
 	margin: -4px 0 0 -4px;
 	background: white;
-	border-radius: 50%;	
+	border-radius: 50%;
 	animation: rev-ani-mouse 2.5s linear infinite;
 }
 
@@ -926,23 +926,23 @@ img.tp-slider-alternative-image	{
 	border-color:#333;
 }
 .rev-scroll-btn.revs-dark span {
-	background: #333;	
+	background: #333;
 }
 
 .rev-control-btn {
 	position: relative;
 	display: inline-block;
-	z-index: 5;	
-	color: #FFF;  
+	z-index: 5;
+	color: #FFF;
 	font-size: 20px;
 	line-height: 60px;
 	font-weight: 400;
 	font-style: normal;
-	font-family: Raleway;	
+	font-family: Raleway;
 	text-decoration: none;
 	text-align: center;
-	background-color: #000;	
-	border-radius: 50px;	
+	background-color: #000;
+	border-radius: 50px;
 	text-shadow: none;
 	background-color: rgba(0, 0, 0, 0.50);
 	width:60px;
@@ -951,35 +951,35 @@ img.tp-slider-alternative-image	{
 	cursor: pointer;
 }
 
-.rev-cbutton-dark-sr	{	
-	border-radius: 3px;		
+.rev-cbutton-dark-sr	{
+	border-radius: 3px;
 }
 
-.rev-cbutton-light	{	
-	color: #333;  	
-	background-color: rgba(255,255,255, 0.75);	
+.rev-cbutton-light	{
+	color: #333;
+	background-color: rgba(255,255,255, 0.75);
 }
 
-.rev-cbutton-light-sr	{		
-	color: #333;  	
-	border-radius: 3px;		
+.rev-cbutton-light-sr	{
+	color: #333;
+	border-radius: 3px;
 	background-color: rgba(255,255,255, 0.75);
 }
 
 
-.rev-sbutton {	
-	line-height: 37px;	
+.rev-sbutton {
+	line-height: 37px;
 	width:37px;
-	height:37px;	
+	height:37px;
 }
 
-.rev-sbutton-blue	{	
+.rev-sbutton-blue	{
 	background-color: #3B5998
 }
-.rev-sbutton-lightblue	{	
+.rev-sbutton-lightblue	{
 	background-color: #00A0D1;
 }
-.rev-sbutton-red	{	
+.rev-sbutton-red	{
 	background-color: #DD4B39;
 }
 
@@ -998,7 +998,7 @@ img.tp-slider-alternative-image	{
 -	BASIC SETTINGS FOR THE BANNER	-
 ***********************************************/
 
- 
+
 
 .tp-caption img {
 	background: transparent;
@@ -1012,8 +1012,8 @@ img.tp-slider-alternative-image	{
 
 
 .caption.slidelink a div,
-.tp-caption.slidelink a div {	width:3000px; height:1500px;  background:url(../assets/coloredbg.png) repeat}
-.tp-caption.slidelink a span{	background:url(../assets/coloredbg.png) repeat}
+.tp-caption.slidelink a div {	width:3000px; height:1500px;  background:url(assets/img/coloredbg.png) repeat}
+.tp-caption.slidelink a span{	background:url(assets/img/coloredbg.png) repeat}
 .tp-shape {	width:100%;height:100%;}
 
 
@@ -1026,23 +1026,23 @@ img.tp-slider-alternative-image	{
 
 
 .tp-caption .rs-starring .star-rating {
-	float: none;	
+	float: none;
 	display: inline-block;
     vertical-align: top;
     color: #FFC321 !important;
 }
 
 
-.tp-caption .rs-starring .star-rating, 
-.tp-caption .rs-starring-page .star-rating {	
+.tp-caption .rs-starring .star-rating,
+.tp-caption .rs-starring-page .star-rating {
 	position: relative;
-	height: 1em;	
+	height: 1em;
 	width: 5.4em;
 	font-family: star;
 	font-size: 1em !important;
 }
 
-.tp-caption  .rs-starring .star-rating:before, 
+.tp-caption  .rs-starring .star-rating:before,
 .tp-caption  .rs-starring-page .star-rating:before {
 	content: "\73\73\73\73\73";
 	color: #E0DADF;
@@ -1087,14 +1087,14 @@ img.tp-slider-alternative-image	{
 	width: 40px;
 	height: 40px;
 	background-color: #fff;
-	background-image:url(../assets/loader.gif);
+	background-image:url(assets/img/loader.gif);
 	background-repeat:no-repeat;
 	background-position: center center;
-	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);	
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
 	margin-top:-20px;
-	margin-left:-20px;	
+	margin-left:-20px;
 	animation: tp-rotateplane 1.2s infinite ease-in-out;
-	border-radius: 3px;	
+	border-radius: 3px;
 }
 
 
@@ -1102,29 +1102,29 @@ img.tp-slider-alternative-image	{
 	width: 40px;
 	height: 40px;
 	background-color: #fff;
-	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);	
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
 	margin-top:-20px;
-	margin-left:-20px;	
+	margin-left:-20px;
 	animation: tp-rotateplane 1.2s infinite ease-in-out;
-	border-radius: 3px;	
+	border-radius: 3px;
 }
 
 
 
-.tp-loader.spinner5 	{	
-	background-image:url(../assets/loader.gif);
+.tp-loader.spinner5 	{
+	background-image:url(assets/img/loader.gif);
 	background-repeat:no-repeat;
 	background-position:10px 10px;
 	background-color:#fff;
 	margin:-22px -22px;
 	width:44px;height:44px;
-	border-radius: 3px;	
+	border-radius: 3px;
 }
 
 
 @keyframes tp-rotateplane {
-  0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg);} 
-  50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);} 
+  0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg);}
+  50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);}
   100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);}
 }
 
@@ -1134,14 +1134,14 @@ img.tp-slider-alternative-image	{
 	height: 40px;
 	margin-top:-20px;margin-left:-20px;
 	background-color: #ff0000;
-	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);	
-	border-radius: 100%;	
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
+	border-radius: 100%;
 	animation: tp-scaleout 1.0s infinite ease-in-out;
 }
 
 
 @keyframes tp-scaleout {
-  0% {transform: scale(0.0);} 
+  0% {transform: scale(0.0);}
   100% {transform: scale(1.0);opacity: 0;}
 }
 
@@ -1158,11 +1158,11 @@ img.tp-slider-alternative-image	{
   width: 18px;
   height: 18px;
   background-color: #fff;
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);  
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
   border-radius: 100%;
-  display: inline-block;  
+  display: inline-block;
   animation: tp-bouncedelay 1.4s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */  
+  /* Prevent first frame from flickering when animation starts */
   animation-fill-mode: both;
 }
 
@@ -1170,12 +1170,12 @@ img.tp-slider-alternative-image	{
   animation-delay: -0.32s;
 }
 
-.tp-loader.spinner3 .bounce2 {  
+.tp-loader.spinner3 .bounce2 {
   animation-delay: -0.16s;
 }
 
 @keyframes tp-bouncedelay {
-  0%, 80%, 100% {transform: scale(0.0);} 
+  0%, 80%, 100% {transform: scale(0.0);}
   40% {transform: scale(1.0);}
 }
 
@@ -1198,14 +1198,14 @@ img.tp-slider-alternative-image	{
   position: absolute;
   top: 0;
   background-color: #fff;
-  border-radius: 100%;  
+  border-radius: 100%;
   animation: tp-bounce 2.0s infinite ease-in-out;
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);  
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
 }
 
 .tp-loader.spinner4 .dot2 {
   top: auto;
-  bottom: 0px;  
+  bottom: 0px;
   animation-delay: -1.0s;
 }
 
@@ -1213,14 +1213,14 @@ img.tp-slider-alternative-image	{
 @keyframes tp-rotate { 100% { transform: rotate(360deg);}}
 
 @keyframes tp-bounce {
-  0%, 100% {transform: scale(0.0);} 
+  0%, 100% {transform: scale(0.0);}
   50% { transform: scale(1.0);}
 }
 
 
 
 /***********************************************
-	-  STANDARD NAVIGATION SETTINGS 
+	-  STANDARD NAVIGATION SETTINGS
 ***********************************************/
 
 
@@ -1302,8 +1302,8 @@ body.rtl .tp-kbimg {left: 0 !important}
 
 
 
-/** 
-INSTAGRAM FILTERS BY UNA 
+/**
+INSTAGRAM FILTERS BY UNA
 https://una.im/CSSgram/
 **/
 .aden{filter:hue-rotate(-20deg) contrast(.9) saturate(.85) brightness(1.2)}.aden::after{background:linear-gradient(to right,rgba(66,10,14,.2),transparent);mix-blend-mode:darken}.perpetua::after,.reyes::after{mix-blend-mode:soft-light;opacity:.5}.inkwell{filter:sepia(.3) contrast(1.1) brightness(1.1) grayscale(1)}.perpetua::after{background:linear-gradient(to bottom,#005b9a,#e6c13d)}.reyes{filter:sepia(.22) brightness(1.1) contrast(.85) saturate(.75)}.reyes::after{background:#efcdad}.gingham{filter:brightness(1.05) hue-rotate(-10deg)}.gingham::after{background:linear-gradient(to right,rgba(66,10,14,.2),transparent);mix-blend-mode:darken}.toaster{filter:contrast(1.5) brightness(.9)}.toaster::after{background:radial-gradient(circle,#804e0f,#3b003b);mix-blend-mode:screen}.walden{filter:brightness(1.1) hue-rotate(-10deg) sepia(.3) saturate(1.6)}.walden::after{background:#04c;mix-blend-mode:screen;opacity:.3}.hudson{filter:brightness(1.2) contrast(.9) saturate(1.1)}.hudson::after{background:radial-gradient(circle,#a6b1ff 50%,#342134);mix-blend-mode:multiply;opacity:.5}.earlybird{filter:contrast(.9) sepia(.2)}.earlybird::after{background:radial-gradient(circle,#d0ba8e 20%,#360309 85%,#1d0210 100%);mix-blend-mode:overlay}.mayfair{filter:contrast(1.1) saturate(1.1)}.mayfair::after{background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.8),rgba(255,200,200,.6),#111 60%);mix-blend-mode:overlay;opacity:.4}.lofi{filter:saturate(1.1) contrast(1.5)}.lofi::after{background:radial-gradient(circle,transparent 70%,#222 150%);mix-blend-mode:multiply}._1977{filter:contrast(1.1) brightness(1.1) saturate(1.3)}._1977:after{background:rgba(243,106,188,.3);mix-blend-mode:screen}.brooklyn{filter:contrast(.9) brightness(1.1)}.brooklyn::after{background:radial-gradient(circle,rgba(168,223,193,.4) 70%,#c4b7c8);mix-blend-mode:overlay}.xpro2{filter:sepia(.3)}.xpro2::after{background:radial-gradient(circle,#e6e7e0 40%,rgba(43,42,161,.6) 110%);mix-blend-mode:color-burn}.nashville{filter:sepia(.2) contrast(1.2) brightness(1.05) saturate(1.2)}.nashville::after{background:rgba(0,70,150,.4);mix-blend-mode:lighten}.nashville::before{background:rgba(247,176,153,.56);mix-blend-mode:darken}.lark{filter:contrast(.9)}.lark::after{background:rgba(242,242,242,.8);mix-blend-mode:darken}.lark::before{background:#22253f;mix-blend-mode:color-dodge}.moon{filter:grayscale(1) contrast(1.1) brightness(1.1)}.moon::before{background:#a0a0a0;mix-blend-mode:soft-light}.moon::after{background:#383838;mix-blend-mode:lighten}.clarendon{filter:contrast(1.2) saturate(1.35)}.clarendon:before{background:rgba(127,187,227,.2);mix-blend-mode:overlay}.willow{filter:grayscale(.5) contrast(.95) brightness(.9)}.willow::before{background-color:radial-gradient(40%,circle,#d4a9af 55%,#000 150%);mix-blend-mode:overlay}.willow::after{background-color:#d8cdcb;mix-blend-mode:color}.rise{filter:brightness(1.05) sepia(.2) contrast(.9) saturate(.9)}.rise::after{background:radial-gradient(circle,rgba(232,197,152,.8),transparent 90%);mix-blend-mode:overlay;opacity:.6}.rise::before{background:radial-gradient(circle,rgba(236,205,169,.15) 55%,rgba(50,30,7,.4));mix-blend-mode:multiply}._1977:after,._1977:before,.aden:after,.aden:before,.brooklyn:after,.brooklyn:before,.clarendon:after,.clarendon:before,.earlybird:after,.earlybird:before,.gingham:after,.gingham:before,.hudson:after,.hudson:before,.inkwell:after,.inkwell:before,.lark:after,.lark:before,.lofi:after,.lofi:before,.mayfair:after,.mayfair:before,.moon:after,.moon:before,.nashville:after,.nashville:before,.perpetua:after,.perpetua:before,.reyes:after,.reyes:before,.rise:after,.rise:before,.slumber:after,.slumber:before,.toaster:after,.toaster:before,.walden:after,.walden:before,.willow:after,.willow:before,.xpro2:after,.xpro2:before{content:'';display:block;height:100%;width:100%;top:0;left:0;position:absolute;pointer-events:none}._1977,.aden,.brooklyn,.clarendon,.earlybird,.gingham,.hudson,.inkwell,.lark,.lofi,.mayfair,.moon,.nashville,.perpetua,.reyes,.rise,.slumber,.toaster,.walden,.willow,.xpro2{position:relative}._1977 img,.aden img,.brooklyn img,.clarendon img,.earlybird img,.gingham img,.hudson img,.inkwell img,.lark img,.lofi img,.mayfair img,.moon img,.nashville img,.perpetua img,.reyes img,.rise img,.slumber img,.toaster img,.walden img,.willow img,.xpro2 img{width:100%;z-index:1}._1977:before,.aden:before,.brooklyn:before,.clarendon:before,.earlybird:before,.gingham:before,.hudson:before,.inkwell:before,.lark:before,.lofi:before,.mayfair:before,.moon:before,.nashville:before,.perpetua:before,.reyes:before,.rise:before,.slumber:before,.toaster:before,.walden:before,.willow:before,.xpro2:before{z-index:2}._1977:after,.aden:after,.brooklyn:after,.clarendon:after,.earlybird:after,.gingham:after,.hudson:after,.inkwell:after,.lark:after,.lofi:after,.mayfair:after,.moon:after,.nashville:after,.perpetua:after,.reyes:after,.rise:after,.slumber:after,.toaster:after,.walden:after,.willow:after,.xpro2:after{z-index:3}.slumber{filter:saturate(.66) brightness(1.05)}.slumber::after{background:rgba(125,105,24,.5);mix-blend-mode:soft-light}.slumber::before{background:rgba(69,41,12,.4);mix-blend-mode:lighten}

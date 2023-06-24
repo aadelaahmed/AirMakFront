@@ -43,7 +43,6 @@ import {
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
 
-
 @NgModule({
   declarations: [
     AppComponent,

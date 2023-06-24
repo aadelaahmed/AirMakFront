@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {AbstractControl, ValidatorFn} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +9,50 @@ export class ApiService {
 
   private baseUrl = 'http://localhost:8080';
 
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
   constructor(private _http: HttpClient) {
   }
 
-  getAll(url: string) : Observable<any> {
+  getAll(url: string): Observable<any> {
     return this._http.get<any[]>(`${this.baseUrl}/${url}`)
   }
 
-  getById(url: string, id: number) : Observable<any> {
+  getById(url: string, id: number): Observable<any> {
     return this._http.get<any>(`${this.baseUrl}/${url}/${id}`)
   }
 
-  get(url: string, headers: any) : Observable<any>{
-    return this._http.get<any>(`${this.baseUrl}/${url}`, headers)
+  get(url: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this._http.get<any>(`${this.baseUrl}/${url}`, {headers, withCredentials: true})
   }
 
-  post(url: string, body: any, headers: any) : Observable<any>{
-    return this._http.post<any>(`${this.baseUrl}/${url}`, body, headers)
+  post(url: string, body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this._http.post<any>(`${this.baseUrl}/${url}`, body, {headers, withCredentials: true})
   }
 
-  put(url: string, body: any, headers: any) : Observable<any> {
-    return this._http.put<any>(`${this.baseUrl}/${url}`, body, headers)
+  postTextPlain(url: string, body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/plain',
+    });
+    return this._http.post<any>(`${this.baseUrl}/${url}`, body, {headers, withCredentials: true})
   }
 
-  delete(url: string, id: number) : Observable<any> {
+  put(url: string, body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this._http.put<any>(`${this.baseUrl}/${url}`, body, {headers, withCredentials: true})
+  }
+
+  delete(url: string, id: number): Observable<any> {
     return this._http.delete<any>(`${this.baseUrl}/${url}/${id}`)
   }
 

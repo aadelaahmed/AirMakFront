@@ -27,7 +27,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.apiService.get("users/profile/view-profile", {headers, withCredentials: true}).subscribe({
+    this.apiService.get("users/profile/view-profile").subscribe({
       next: response => {
         console.log(response.payload)
         this.profileDate = response.payload;
@@ -57,13 +57,11 @@ export class EditProfileComponent implements OnInit {
       formValue.email || this.profileDate.email
     );
     console.log(user)
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    this.apiService.put("users/profile/edit-profile", user, {headers, withCredentials: true}).subscribe({
+
+    this.apiService.put("users/profile/edit-profile", user).subscribe({
       next: response => {
         this.popupService.successPopup("Done");
-        this.router.navigate(['/profile/view-profile']);
+        this.router.navigate(['/user/profile/view-profile']);
       },
       error: err => {
         this.popupService.errorPopup("Failed Update Your Profile");
