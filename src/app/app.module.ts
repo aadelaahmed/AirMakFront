@@ -4,7 +4,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {firebaseConfig} from "../environments/environment";
 import { EditPropertyComponent } from './components/edit-property/edit-property.component';
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
-import { ExploringComponent } from './components/exploring/exploring.component';
 import {AddPropertyComponent} from "./components/add-property/add-property.component";
 import {AddPropertyService} from "./services/add-property.service";
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
@@ -54,7 +53,6 @@ import {
     PageNotFoundComponent,
     EditPropertyComponent,
     PropertyDetailsComponent,
-    ExploringComponent,
     AddPropertyComponent,
     UserPropertiesComponent,
     LoginComponent,
@@ -71,7 +69,7 @@ import {
     PropertyDiscoveryComponent,
     PackageComponent,
     AdminHomeComponent,
-    PendingComponent
+    PendingComponent,
   ],
   imports: [
     BrowserModule,

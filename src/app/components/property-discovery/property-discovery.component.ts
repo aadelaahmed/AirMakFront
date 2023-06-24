@@ -40,7 +40,7 @@ export class PropertyDiscoveryComponent implements OnInit {
     this.page = page;
     this.propertyService.filterProperties(this.propertyFilter, page + 1).subscribe(response => {
       this.properties = response.payload as Property[];
-
+      console.log(response)
       this.pageMetadata = response.metadata as PageMetadata;
       console.log(this.pageMetadata)
     })

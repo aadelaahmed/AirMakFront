@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {NavbarService} from "../../../services/navbar.service";
-import {BehaviorSubject} from "rxjs";
-import {Router} from '@angular/router';
-import {ApiService} from 'src/app/services/api.service';
-import {HttpHeaders} from '@angular/common/http';
-import {SocialAuthService} from "@abacritt/angularx-social-login";
-import {PopupService} from "../../../services/popup.service";
+import { Component, OnInit } from '@angular/core';
+import { NavbarService } from "../../../services/navbar.service";
+import { BehaviorSubject } from "rxjs";
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { HttpHeaders } from '@angular/common/http';
+import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { PopupService } from "../../../services/popup.service";
+import { SubscriptionService } from 'src/app/services/subscription.service';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +15,15 @@ import {PopupService} from "../../../services/popup.service";
 })
 export class HeaderComponent implements OnInit {
   isSignInButtonVisible: boolean;
+  hasActiveSubscription: boolean = false;
 
   constructor(
     private navbarService: NavbarService,
     private router: Router,
     private apiService: ApiService,
     private authService: SocialAuthService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private subscriptionService: SubscriptionService
   ) {
   }
 
@@ -36,7 +39,7 @@ export class HeaderComponent implements OnInit {
     });
 
     // Call the logout API on the server
-    this.apiService.get('users/logout', {headers, withCredentials: true}).subscribe(
+    this.apiService.get('users/logout', { headers, withCredentials: true }).subscribe(
       () => {
         // Clear the logged-in status in the navbar service
         this.navbarService.setLoggedIn(false);
@@ -53,5 +56,21 @@ export class HeaderComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+  }
+
+
+  hasSubscription() {
+    this.subscriptionService.HasActiveSubscription().subscribe(data => {
+      this.hasActiveSubscription = data.payload as boolean;
+      console.log(this.hasActiveSubscription)
+      if(this.hasActiveSubscription){
+        //redirect to add 
+        this.router.navigate(['/property/add']);
+      } else {
+        //redirect to packages
+        this.router.navigate(['/packages']);
+      }
+
+    });
   }
 }

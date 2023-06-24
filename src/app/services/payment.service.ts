@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Response } from 'src/app/interface/response';
 import { PaymentRequest } from '../interface/payments/PaymentRequest';
 import { Injectable } from '@angular/core';
@@ -15,7 +15,10 @@ export class PaymentService {
 
   public subscribeOnPackage(paymentRequest: PaymentRequest): Observable<Response<ChargeDetails>> {
     const url = 'http://127.0.0.1:8080/subscriptions/stripe';
-    return this.http.post<Response<ChargeDetails>>(url, paymentRequest);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<Response<ChargeDetails>>(url, paymentRequest, {headers, withCredentials: true});
   }
 
 
