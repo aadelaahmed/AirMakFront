@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
         this.sessionStorageService.removeItem('userID');
         this.signOut();
         this.popupService.successPopup("We Will Miss you")
-        this.router.navigate(['/home'])
+        this.router.navigate(['/user/home'])
       },
       (error) => {
         console.log('error');

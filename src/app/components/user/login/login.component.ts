@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
-import {LoginDTO} from "../../../dtos/users/login-dto.model";
-import {TokenDto} from "../../../dtos/users/token-dto.model";
-import {ApiService} from "../../../services/api.service";
-import {PopupService} from "../../../services/popup.service";
-import {SessionStorageService} from '../../../services/session-storage.service';
-import {Router} from "@angular/router";
-import {AuthGuardService} from 'src/app/services/authGuard.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { LoginDTO } from "../../../dtos/users/login-dto.model";
+import { TokenDto } from "../../../dtos/users/token-dto.model";
+import { ApiService } from "../../../services/api.service";
+import { PopupService } from "../../../services/popup.service";
+import { SessionStorageService } from '../../../services/session-storage.service';
+import { Router } from "@angular/router";
+import { AuthGuardService } from 'src/app/services/authGuard.service';
 
 @Component({
   selector: 'app-login',
@@ -87,16 +87,17 @@ export class LoginComponent implements OnInit {
 
       this.apiService.post("users/login", user).subscribe({
         next: response => {
+          this.sessionStorageService.setItem("role", response.payload.role);
+          console.log(response.payload.role, "ROLE");
           this.popupService.successPopup("Welcome, " + response.payload.firstName);
-          this.sessionStorageService.setItem("role", response.playload.role);
-          console.log(response.playload.role, + "--------------------------")
+
           // Second API call to get the user ID
           this.fetchUserID(response.payload.email)
-          // if (response.payload.role == 'ADMIN') {
-          //   this.router.navigate(['/admin/dashboard'])
-          // } else {
+          if (response.payload.role == 'ADMIN') {
+            this.router.navigate(['/admin/dashboard'])
+          } else {
             this.router.navigate(['/user/home'])
-          // }
+          }
           this.isButtonDisabled = true; // Disable the button
 
         },
@@ -105,6 +106,7 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           this.isButtonDisabled = false; // Re-enable the button after API call completes
+
         }
       });
     }

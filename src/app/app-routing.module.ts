@@ -32,11 +32,12 @@ const routes: Routes = [
     pathMatch: 'full',
     data: { title: 'City Tours - Home' }
   },
-  { path: 'home', component: HomeComponent, data: { title: 'City Tours - Home' } },
+  
   {
     path: 'user',
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, data: { title: 'City Tours - Home' } },
       { path: 'login', component: LoginComponent, data: { title: 'City Tours - Login' } },
       { path: 'logout', component: LoginComponent, data: { title: 'City Tours - Logout' } },
       { path: 'properties', component: UserPropertiesComponent, title: 'User\'s Properties' },
