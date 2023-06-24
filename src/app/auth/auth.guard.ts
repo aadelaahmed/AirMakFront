@@ -12,11 +12,11 @@ export class authGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isLoggedIn$.pipe(
       map((isLoggedIn: boolean) => {
-        if (!isLoggedIn) {
-          console.log("GUARDDDDDDDDDDD ", isLoggedIn);
-          this.router.navigate(['/login']);
-          return false;
-        }
+        // if (!isLoggedIn) {
+        //   console.log("GUARDDDDDDDDDDD ", isLoggedIn);
+        //   this.router.navigate(['/login']);
+        //   return false;
+        // }
 
         const allowedUserRoutes = [
           '/user/home',
@@ -38,6 +38,14 @@ export class authGuard implements CanActivate {
           '/admin/pending'
         ];
 
+        const allowedNotAdminOrUserRoutes = [
+          '/user/home',
+          '/login',
+          '/register',
+          '/user/property/discovery',
+          '/user/packages'
+        ];
+
         const currentRoute = state.url;
         const userRole = this.authService.getRole();
         console.log('userRole in auth is: ', userRole);
@@ -48,6 +56,11 @@ export class authGuard implements CanActivate {
         }
 
         if (userRole === 'ADMIN' && !allowedAdminRoutes.includes(currentRoute)) {
+          this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
+          return false;
+        }
+
+        if (!isLoggedIn &&!userRole && !allowedNotAdminOrUserRoutes.includes(currentRoute)) {
           this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
           return false;
         }

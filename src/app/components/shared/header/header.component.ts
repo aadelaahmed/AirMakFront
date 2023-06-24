@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
     this.apiService.get('users/logout').subscribe(
       () => {
         this.sessionStorageService.removeItem('userID');
+        this.sessionStorageService.removeItem('role');
         this.signOut();
         this.popupService.successPopup("We Will Miss you")
         this.router.navigate(['/user/home'])
