@@ -18,7 +18,7 @@ export class AuthGuardService {
     return this.sessionStorage.getItem(key) !== null;
   }
 
-  getRole() {
+  getRole():any {
     return this.sessionStorage.getItem("role");
   }
 

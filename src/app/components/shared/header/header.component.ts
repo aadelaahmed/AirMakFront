@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit {
     return !this.authGuardService.isLoggedIn("userID");
   }
 
+  get getRole(): any {
+    return this.authGuardService.getRole();
+  }
+
   logout() {
     // Call the logout API on the server
     this.apiService.get('users/logout').subscribe(

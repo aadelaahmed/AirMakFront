@@ -8,7 +8,7 @@
           <ul id="top_links">
             <li *ngIf="isSignInButtonVisible"><a routerLink="user/login" class="fa-icon-sign-in" id="access_link">Sign
               in</a></li>
-            <li *ngIf="!isSignInButtonVisible">
+            <li *ngIf="!isSignInButtonVisible && getRole==='USER'">
               <a routerLink="user/profile" class="fa-icon-user" id="profile_link">Profile</a>
             </li>
           </ul>
@@ -33,26 +33,49 @@
           </div>
           <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
           <ul style="display: flex; list-style-type: none;">
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+
+            <li *ngIf=" !isSignInButtonVisible && getRole==='ADMIN'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a routerLink="/admin/dashboard">
+                <i class="icon-home"></i>Dashboard
+              </a>
+            </li>
+            <li *ngIf="!isSignInButtonVisible && getRole==='ADMIN'" routerLinkActive="active">
+              <a routerLink="/admin/create-package">
+                <i class="icon-money-2"></i>Create Package
+              </a>
+            </li>
+            <li *ngIf="!isSignInButtonVisible && getRole==='ADMIN'" routerLinkActive="active">
+              <a routerLink="/admin/add-admin">
+                <i class="icon-phone"></i>Add Admin
+              </a>
+            </li>
+
+            <li *ngIf="!isSignInButtonVisible && getRole==='ADMIN'" routerLinkActive="active">
+              <a routerLink="/admin/pending">
+                <i class="icon-home-4"></i>Pending Requests
+              </a>
+            </li>
+
+            <li *ngIf="isSignInButtonVisible || getRole==='USER'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a routerLink="/user/home">
                 <i class="icon-home"></i>Home
               </a>
             </li>
-            <li routerLinkActive="active">
+            <li *ngIf="isSignInButtonVisible || getRole==='USER'" routerLinkActive="active">
               <a routerLink="property/discovery">
                 <i class="icon-home-4"></i>Apartments
               </a>
             </li>
-            <li routerLinkActive="active">
+            <li *ngIf="isSignInButtonVisible || getRole==='USER'" routerLinkActive="active">
               <a routerLink="user/packages">
                 <i class="fa-icon-amazon"></i>Packages
               </a>
             </li>
-            <li class="submenu">
+            <li *ngIf="isSignInButtonVisible || getRole==='USER'" class="submenu">
               <a (click)="hasSubscription()" href="javascript:void(0);"><i class="icon-money-2"></i>Sell</a>
             <li class="submenu">
 
-            <li class="submenu" style="margin-left:30ch; ">
+            <li *ngIf="!isSignInButtonVisible && getRole==='USER'" class="submenu" style="margin-left:30ch; ">
               <a routerLink=" user/payment" style="color:#e14d67">
                 <i class="icon-heart"></i>AirMak Your Home
               </a>

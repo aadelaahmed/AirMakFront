@@ -68,7 +68,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: AdminHomeComponent, data: { title: 'City Tours - Property' } },
