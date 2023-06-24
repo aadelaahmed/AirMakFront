@@ -38,10 +38,19 @@ const routes: Routes = [
         path: 'register',
         children: [
           {path: '', component: RegisterComponent, data: {title: 'City Tours - Register'}},
-          {path: 'confirmation-email', component: ConfirmationCodeComponent, data: {title: 'City Tours - Confirmation Email'}}
+          {
+            path: 'confirmation-email',
+            component: ConfirmationCodeComponent,
+            data: {title: 'City Tours - Confirmation Email'}
+          }
         ]
       },
-      {path: 'forget-password', component: ForgetPasswordComponent, canActivate: [authGuard],data: {title: 'City Tours - Forget Password'}},
+      {
+        path: 'forget-password',
+        component: ForgetPasswordComponent,
+        canActivate: [authGuard],
+        data: {title: 'City Tours - Forget Password'}
+      },
       {path: 'reset-password', component: ResetPasswordComponent, data: {title: 'City Tours - Reset Password'}},
       {
         path: 'profile',
@@ -53,10 +62,23 @@ const routes: Routes = [
           {path: 'update-password', component: UpdatePasswordComponent, data: {title: 'City Tours - Update Password'}}
         ]
       },
-      {path: 'payment', component: PaymentComponent, data: {title: 'City Tours - Payment'}},
-      {path: 'confirmation', component: PaymentConfirmationComponent, data: {title: 'City Tours - Confirmation'}},
-      {path: 'packages', component: UserPackagesComponent, data: {title: 'City Tours - Packages'}},
-      {path: 'discoverproperty', component: PropertyDiscoveryComponent, data: {title: 'City Tours - Property'}}
+      {path: 'payment', canActivate: [authGuard], component: PaymentComponent, data: {title: 'City Tours - Payment'}},
+      {
+        path: 'confirmation',
+        canActivate: [authGuard],
+        component: PaymentConfirmationComponent,
+        data: {title: 'City Tours - Confirmation'}
+      },
+      {
+        path: 'packages',
+        component: UserPackagesComponent,
+        data: {title: 'City Tours - Packages'}
+      },
+      {
+        path: 'discoverproperty',
+        component: PropertyDiscoveryComponent,
+        data: {title: 'City Tours - Property'}
+      }
     ]
   },
   {
