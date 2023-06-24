@@ -8821,3 +8821,8 @@ a.box_news ul li:after {
 }
 
 /* END MEDIA QUERIES max-width 480px - MOBILE PORTRAIT  */
+
+
+	.main{
+		margin-top: 80px;
+	}

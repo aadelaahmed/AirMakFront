@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
       next: response => {
         this.popupService.successPopup("Welcome, " + response.payload.firstName);
         this.fetchUserID(response.payload.email)
-        this.router.navigate(['/user/home']);
+        this.router.navigate(['/home']);
       },
       error: err => {
         this.popupService.errorPopup("Must first register");
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       this.apiService.post("users/login", user).subscribe({
         next: response => {
           this.popupService.successPopup("Welcome, " + response.payload.firstName);
-          this.router.navigate(['/user/home'])
+          this.router.navigate(['/home'])
           // Second API call to get the user ID
           this.fetchUserID(response.payload.email)
         },

@@ -168,6 +168,11 @@ export class AddPropertyComponent implements OnInit {
     this.property.user = new User();
     this.property.user.id = this.sessionStorage.getItem("userID");
 
+    this.property.address.lat = this.lat;
+    this.property.address.lng = this.lng;
+    console.log("property details : ");
+    console.log(this.property);
+    
     console.log("check on images ->" + this.property.images[2]);
     this.addPropertyService.addProperty(this.property);
   }
@@ -193,11 +198,9 @@ export class AddPropertyComponent implements OnInit {
 
   click(event: google.maps.MapMouseEvent) {
     if (event.latLng != null) this.propertyPositionFromMap = event.latLng.toJSON();
-    console.log(this.propertyPositionFromMap);
-    console.log(this.propertyPositionFromMap.lat);
-    console.log(this.propertyPositionFromMap.lng);
     this.lng = this.propertyPositionFromMap.lng;
     this.lat = this.propertyPositionFromMap.lat;
+
   }
 
   protected readonly LoadingBarService = LoadingBarService;
