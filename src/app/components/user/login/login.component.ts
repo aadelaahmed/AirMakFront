@@ -114,7 +114,6 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           this.isButtonDisabled = false; // Re-enable the button after API call completes
-
         }
       });
     }
