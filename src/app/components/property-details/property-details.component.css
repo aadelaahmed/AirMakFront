@@ -39,6 +39,8 @@
 
 .small-images-container {
   display: flex;
+  cursor: pointer;
+
 }
 
 .small-image {

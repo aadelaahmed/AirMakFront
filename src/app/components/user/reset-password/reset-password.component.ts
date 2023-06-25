@@ -4,7 +4,6 @@ import {ApiService} from "../../../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResetPassword} from "../../../dtos/users/reset-password.model";
 import {PopupService} from "../../../services/popup.service";
-import {HttpHeaders} from "@angular/common/http";
 import {UserService} from "../../../services/user.service";
 
 @Component({
@@ -15,6 +14,7 @@ import {UserService} from "../../../services/user.service";
 export class ResetPasswordComponent implements OnInit {
   forgetPasswordForm: FormGroup;
   token: string;
+  isButtonDisabled: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,7 +50,8 @@ export class ResetPasswordComponent implements OnInit {
     }
   }
 
-  private resetPassword() {
+  private resetPassword(event: Event) {
+    event.preventDefault();
     if (!this.verifyToken(this.token)) {
       return;
     }
@@ -61,16 +62,20 @@ export class ResetPasswordComponent implements OnInit {
       this.apiService.post("users/reset-password", resetPassword).subscribe({
         next: (response) => {
           this.popupService.successPopup(response.payload);
-          this.router.navigate(["/user/login"]);
+          this.isButtonDisabled = true; // Disable the button
+          this.router.navigate(["/login"]);
         },
         error: (error) => {
           this.popupService.errorPopup(error.payload)
         },
+        complete: () => {
+          this.isButtonDisabled = false;
+        }
       });
     }
   }
 
-  updatePasswordButton() {
-    this.resetPassword();
+  updatePasswordButton(event: Event) {
+    this.resetPassword(event);
   }
 }

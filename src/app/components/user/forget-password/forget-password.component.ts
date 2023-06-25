@@ -29,6 +29,7 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   sendEmailButton() {
+    event.preventDefault()
     if (this.forgetPasswordForm.valid) {
       const formValue = this.forgetPasswordForm.value;
       const email: ForgetPasswordDto = new ForgetPasswordDto(formValue.email);

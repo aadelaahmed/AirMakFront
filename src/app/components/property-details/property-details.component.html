@@ -23,7 +23,7 @@
           </div>
           <div class="col-md-4">
             <div id="price_single_main">
-              <i *ngIf="property.listingType == 'RENT'"> Per Month </i> <span><sup>$</sup>{{ property.price }}</span>
+              <i *ngIf="property.listingType == 'RENT'"> Per Month </i> <span><sup>E£</sup>{{ property.price }}</span>
             </div>
           </div>
         </div>
@@ -34,6 +34,11 @@
 
 
   <main>
+    <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+      <!-- Add your loading bar or spinner HTML content here -->
+      <!-- For example, you can use a CSS spinner -->
+      <div class="spinner"></div>
+    </div>
     <!-- <div id="position">
       <div class="container">
         <ul>

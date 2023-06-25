@@ -78,7 +78,6 @@ const routes: Routes = [
   },
   {path: 'user/reset-password', component: ResetPasswordComponent, data: {title: 'AirMAK - Reset Password'}},
   {path: 'property/details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails'},
-
   {
     path: 'admin',
     canActivate: [authGuard],

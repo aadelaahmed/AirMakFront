@@ -35,7 +35,7 @@ export class AddPropertyComponent implements OnInit {
       property_type: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      availability: ['', Validators.required],
+      //availability: ['', Validators.required],
       listing_type: ['', Validators.required],
       floor_no: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       wifi: ['', Validators.required],
@@ -47,7 +47,7 @@ export class AddPropertyComponent implements OnInit {
       street: ['', Validators.required],
       city: ['', Validators.required],
       streetNo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      country: ['', Validators.required],
+      //country: ['', Validators.required],
       /*lng: ['', [Validators.required, Validators.pattern(/^-?\d{1,3}(\.\d{1,6})?$/)]],
       lat: ['', [Validators.required, Validators.pattern(/^-?\d{1,2}(\.\d{1,6})?$/)]],*/
       imgs: ['', Validators.required],
@@ -137,13 +137,13 @@ export class AddPropertyComponent implements OnInit {
     console.log("check how many success executed");
     this.uploadProgress = 100;
     this.isUploadFinished = true;
-    //TODO: then, add the property to the database.
     console.log(this.formData);
     this.address.street = this.formData.get('street').value;
     console.log(this.address.street);
     this.address.city = this.formData.get('city').value;
     this.address.streetNo = this.formData.get('streetNo').value;
-    this.address.country = this.formData.get('country').value;
+    // this.address.country = this.formData.get('country').value;
+    this.address.country = "Egypt";
     /*this.address.lng = this.formData.get('lng').value;
     this.address.lat = this.formData.get('lat').value;*/
     console.log(this.formData.get('city').value);
@@ -151,7 +151,8 @@ export class AddPropertyComponent implements OnInit {
     this.property.propertyType = this.formData.get('property_type').value;
     this.property.description = this.formData.get('description').value;
     this.property.price = this.formData.get('price').value;
-    this.property.availability = this.formData.get('availability').value;
+    // this.property.availability = this.formData.get('availability').value;
+    this.property.availability = 1;
     this.property.listingType = this.formData.get('listing_type').value;
     this.property.floorNo = this.formData.get('floor_no').value;
     this.property.wifi = this.formData.get('wifi').value;
@@ -159,10 +160,12 @@ export class AddPropertyComponent implements OnInit {
     this.property.bathRoomCount = this.formData.get('bathroom_count').value;
     this.property.airCondition = this.formData.get('air_conditioning').value;
     this.property.tv = this.formData.get('tv').value;
+    this.property.publishDate = new Date();
     this.property.propertyNo = this.formData.get('property_number').value;
     //this.property.images = [];
     //this.property.images = this.uploadedImages;
     this.property.propertyState = "PENDING";
+
     console.log("test images in property -> " + this.property.images);
     //TODO : get current user id
     this.property.user = new User();
@@ -174,13 +177,47 @@ export class AddPropertyComponent implements OnInit {
     console.log("check on images ->" + this.property.images[2]);
     this.addPropertyService.addProperty(this.property);
   }
+  public egyptMainCities: string[] = [
+    "Cairo",
+    "Alexandria",
+    "Giza",
+    "Shubra El-Kheima",
+    "Port Said",
+    "Suez",
+    "Luxor",
+    "Aswan",
+    "Tanta",
+    "Mansoura",
+    "Damietta",
+    "Ismailia",
+    "Fayoum",
+    "Zagazig",
+    "Asyut",
+    "Beni Suef",
+    "Sohag",
+    "Hurghada",
+    "Minya",
+    "Qena",
+    "Safaga",
+    "Assiut",
+    "Banha",
+    "Kafr El Sheikh",
+    "Damanhur",
+    "Al-Minya",
+    "Qalyub",
+    "Mallawi",
+    "Damanhur",
+    "Al-Minya",
+    "Qalyub",
+    "Mallawi"
+  ];
 
   onSubmit(fileList: FileList) {
     this.isFormValidated = this.formData.valid;
     this.isSubmitted = true;
     console.log("fileList length ->"+fileList.length);
     LoadingBarService.isLoading = true;
-    if (!this.isFormValidated || this.lat == null || this.lng == null || fileList.length < 3) {
+    if (!this.isFormValidated || this.lat == null || this.lng == null || fileList.length != 3) {
       console.log("not validated");
       LoadingBarService.isLoading = false;
     } else {
