@@ -49,7 +49,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, data: { title: 'AirMAK - Home' } },
       { path: 'logout', component: LoginComponent, data: { title: 'AirMAK - Logout' } },
-      { path: 'properties', component: UserPropertiesComponent, title: 'User\'s Properties' },
+      { path: 'properties', component: UserPropertiesComponent, title: 'AirMAK - User\'s Properties' },
       {
         path: 'register',
         children: [
@@ -59,7 +59,7 @@ const routes: Routes = [
       },
 
       { path: 'forget-password', component: ForgetPasswordComponent, data: { title: 'AirMAK - Forget Password' } },
-      { path: 'reset-password?token=', component: ResetPasswordComponent, data: { title: 'AirMAK - Reset Password' } },
+      { path: 'reset-password', component: ResetPasswordComponent, data: { title: 'AirMAK - Reset Password' } },
       {
         path: 'profile',
         children: [
@@ -79,7 +79,7 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: AdminHomeComponent, data: { title: 'AirMAK - Property' } },
+      { path: 'dashboard', component: AdminHomeComponent, data: { title: 'AirMAK - Dashboard' } },
       { path: 'add-admin', component: AdminComponent, data: { title: 'AirMAK - Add Admin' } },
       { path: 'create-package', component: PackageComponent, data: { title: 'AirMAK - Create Package' } },
       { path: 'package/details/:id', component: DetailsComponent, data: { title: 'AirMAK - Package Details' } },
