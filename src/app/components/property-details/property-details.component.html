@@ -98,7 +98,7 @@
                   <li>Listing Type: {{ property.listingType }}</li>
                   <li>Floor No: {{ property.floorNo }}</li>
                   <li>Property No: {{ property.propertyNo }}</li>
-                  <li>Bedroom Count: {{ property.bedRoomCount }}</li>
+                  <li *ngIf="property.propertyType.toLowerCase() === 'apartment'">Bedroom Count: {{ property.bedRoomCount }}</li>
                   <li>Bathroom Count: {{ property.bathRoomCount }}</li>
                 </ul>
               </div>
