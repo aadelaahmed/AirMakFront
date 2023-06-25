@@ -1,7 +1,7 @@
 <main>
   <div class="margin_100 container">
 <!--    (ngSubmit)="onSubmit()"-->
-    <form [formGroup]="formData" (ngSubmit)="onSubmit(fileInput1.files,fileInput2.files,fileInput3.files)" >
+    <form [formGroup]="formData" (ngSubmit)="onSubmit(fileInput1.files)" >
       <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -290,12 +290,13 @@
         <h4>Upload Property Images</h4>
         <div class="form-inline upload_1">
           <div class="form-group">
-            <input #fileInput1 formControlName="img1" class="input_file" type="file" name="files[]" id="js-upload-files" multiple required>
-            <input #fileInput2 formControlName="img2" class="input_file" type="file" name="files[]" id="js2-upload-files" multiple required>
-            <input #fileInput3 formControlName="img3" class="input_file" type="file" name="files[]" id="js3-upload-files" multiple required>
+            <input #fileInput1 formControlName="imgs" class="input_file" type="file" name="files[]" id="js-upload-files" multiple required>
+<!--            <input #fileInput2 formControlName="img2" class="input_file" type="file" name="files[]" id="js2-upload-files" multiple required>-->
+<!--            <input #fileInput3 formControlName="img3" class="input_file" type="file" name="files[]" id="js3-upload-files" multiple required>-->
           </div>
+<!--          || formData.controls['img2'].errors?.['required'] || formData.controls['img3'].errors?.['required'])-->
           <div
-            *ngIf="(formData.controls['img1'].errors?.['required'] || formData.controls['img2'].errors?.['required'] || formData.controls['img3'].errors?.['required'])  && isSubmitted"
+            *ngIf="fileInput1.files.length < 3  && isSubmitted"
             class="text-danger">
             Three Images are required
           </div>

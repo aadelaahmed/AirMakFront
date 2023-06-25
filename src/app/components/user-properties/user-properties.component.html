@@ -22,8 +22,8 @@
         </div>
         <div class="col-lg-2 col-md-2">
           <div class="booking_buttons">
-            <a id = "editBtn"  class="btn_2" (click)="editProperty(property.id)">Edit</a>
-            <a id = "deleteBtn"  class="btn_3" (click)="deleteProperty(property.id,currentIndex)">Delete</a>
+            <a id = "editBtn"  class="btn_2" (click)="editProperty(property.id); $event.stopPropagation()">Edit</a>
+            <a id = "deleteBtn"  class="btn_3" (click)="deleteProperty(property.id,currentIndex); $event.stopPropagation()">Delete</a>
           </div>
         </div>
       </div>

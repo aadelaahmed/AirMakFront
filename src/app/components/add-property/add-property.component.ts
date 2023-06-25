@@ -50,9 +50,9 @@ export class AddPropertyComponent implements OnInit {
       country: ['', Validators.required],
       /*lng: ['', [Validators.required, Validators.pattern(/^-?\d{1,3}(\.\d{1,6})?$/)]],
       lat: ['', [Validators.required, Validators.pattern(/^-?\d{1,2}(\.\d{1,6})?$/)]],*/
-      img1: ['', Validators.required],
-      img2: ['', Validators.required],
-      img3: ['', Validators.required],
+      imgs: ['', Validators.required],
+      /*img2: ['', Validators.required],
+      img3: ['', Validators.required],*/
     });
   }
 
@@ -93,12 +93,12 @@ export class AddPropertyComponent implements OnInit {
     });
   }*/
 
-  uploadImages(fileList1: FileList, fileList2: FileList, fileList3: FileList) {
+  uploadImages(fileList: FileList) {
     if (this.isFormValidated) {
       this.property.images = [];
-      const fileImg1 = fileList1[0];
-      const fileImg2 = fileList2[0];
-      const fileImg3 = fileList3[0];
+      const fileImg1 = fileList[0];
+      const fileImg2 = fileList[1];
+      const fileImg3 = fileList[2];
       const uploadObservables: Observable<string>[] = [];
       // Create an upload Observable for each file
       const uploadObservable1 = this.storageService.uploadFile(fileImg1);
@@ -167,32 +167,24 @@ export class AddPropertyComponent implements OnInit {
     //TODO : get current user id
     this.property.user = new User();
     this.property.user.id = this.sessionStorage.getItem("userID");
-
     this.property.address.lat = this.lat;
     this.property.address.lng = this.lng;
     console.log("property details : ");
     console.log(this.property);
-    
     console.log("check on images ->" + this.property.images[2]);
     this.addPropertyService.addProperty(this.property);
   }
 
-  onSubmit(fileList1
-             :
-             FileList, fileList2
-             :
-             FileList, fileList3
-             :
-             FileList
-  ) {
+  onSubmit(fileList: FileList) {
     this.isFormValidated = this.formData.valid;
     this.isSubmitted = true;
+    console.log("fileList length ->"+fileList.length);
     LoadingBarService.isLoading = true;
-    if (!this.isFormValidated || this.lat == null || this.lng == null) {
+    if (!this.isFormValidated || this.lat == null || this.lng == null || fileList.length < 3) {
       console.log("not validated");
       LoadingBarService.isLoading = false;
     } else {
-      this.uploadImages(fileList1, fileList2, fileList3);
+      this.uploadImages(fileList);
     }
   }
 
