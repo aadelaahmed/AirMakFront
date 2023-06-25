@@ -35,7 +35,7 @@ export class DetailsComponent implements OnInit {
 
   }
   getPackageById(id: string | null) {
-    this._http.get<APIResponse>('http://localhost:8097/packages/' + id)
+    this._http.get<APIResponse>('http://localhost:8080/packages/' + id)
       .subscribe(
         {
           next: reponse => {

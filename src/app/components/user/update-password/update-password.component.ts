@@ -4,7 +4,6 @@ import {ApiService} from "../../../services/api.service";
 import {PopupService} from "../../../services/popup.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
-import {ResetPassword} from "../../../dtos/users/reset-password.model";
 import {HttpHeaders} from "@angular/common/http";
 import {UpdatePassword} from "../../../dtos/users/update-password.model";
 

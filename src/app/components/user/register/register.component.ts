@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ApiService } from "../../../services/api.service";
-import { PopupService } from "../../../services/popup.service";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {ApiService} from "../../../services/api.service";
+import {PopupService} from "../../../services/popup.service";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -20,22 +21,26 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private apiService: ApiService,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private userService: UserService
   ) {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      birthdate: ['', [Validators.required, this.minimumAgeValidator(15)]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^01[012564][0-9]{8}$/)]],
-      email: ['', [Validators.required, Validators.email, Validators.pattern(/^\S+@\S+\.\S+$/)]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(20),
-        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
-        )]],
-      confirmPassword: ['', [Validators.required]],
-    });
+        firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+        lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+        birthdate: ['', [Validators.required, this.minimumAgeValidator(15)]],
+        phoneNumber: ['', [Validators.required, Validators.pattern(/^01[012564][0-9]{8}$/)]],
+        email: ['', [Validators.required, Validators.email, Validators.pattern(/^\S+@\S+\.\S+$/)]],
+        password: ['', [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/
+          )]],
+        confirmPassword: ['', [Validators.required]]
+      },
+      {
+        validators: this.userService.match('password', 'confirmPassword')
+      });
   }
 
   ngOnInit() {
@@ -46,8 +51,8 @@ export class RegisterComponent {
 
   checkEmailExists() {
     const email = this.registerForm.get('email').value;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.get<boolean>('http://localhost:8080/users/check-email/' + email, { headers, withCredentials: true })
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.http.get<boolean>('http://localhost:8080/users/check-email/' + email, {headers, withCredentials: true})
       .subscribe(
         (exists) => {
           this.emailExists = exists;
@@ -80,7 +85,7 @@ export class RegisterComponent {
     };
 
     console.log('UserDTO:', requestRegistrationDTO);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
     this.apiService.post('users/register', requestRegistrationDTO).subscribe({
       next: response => {
         console.log('User registered successfully', response);
@@ -113,7 +118,7 @@ export class RegisterComponent {
         const minAgeDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
         const birthdate = new Date(control.value);
         if (birthdate > minAgeDate) {
-          return { minimumAge: true };
+          return {minimumAge: true};
         }
       }
       return null;
