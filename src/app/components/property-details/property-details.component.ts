@@ -6,6 +6,8 @@ import { EditPropertyService } from 'src/app/services/edit-property/edit-propert
 import { PendingService } from 'src/app/services/pending.service';
 import { PopupService } from 'src/app/services/popup.service';
 import {LoadingBarService} from "../../services/loading-bar.service";
+import { UserPropertiesService } from 'src/app/services/user-properties.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-property-details',
@@ -25,7 +27,8 @@ export class PropertyDetailsComponent {
 
   constructor(private route: ActivatedRoute, private propertyService: EditPropertyService,
      private pendingService: PendingService,private popupService: PopupService, 
-     private router: Router, private auth:AuthGuardService) {
+     private router: Router, private auth:AuthGuardService,
+      private userPropertiesService:UserPropertiesService) {
     propertyService.baseUrl = "http://localhost:8080/properties";
     this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
     this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -97,4 +100,21 @@ export class PropertyDetailsComponent {
     return this.auth.getRole() === 'ADMIN';
   }
   protected readonly LoadingBarService = LoadingBarService;
+
+  deleteProperty(propertyId:number){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userPropertiesService.deleteProperty(propertyId);
+        this.router.navigate(['admin/pending']);
+      }
+    })
+  }
 }

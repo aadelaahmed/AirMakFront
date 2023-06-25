@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-  <meta name="author" content="Ansonika">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Citytours - Premium site template for city
+      tours agencies, transfers and tickets.">
+    <meta name="author" content="Ansonika">
+  </head>
 
-<body>
-  <section class="parallax-window">
-    <br><br><br><br><br><br>
-    <div style="width: auto;">
-      <img [src]="selectedImage" style="max-width: 100%; max-height: 100%; object-fit: fill; object-position: 50% 50%;" >
-    </div>
-    <div class="parallax-content-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <h1>{{ property.propertyType + " for " + property.listingType }}</h1>
-            <span>{{ property.address.street + ", " + property.address.city + ", " + property.address.country }}</span>
-          </div>
-          <div class="col-md-4">
-            <div id="price_single_main">
-              <i *ngIf="property.listingType == 'RENT'"> Per Month </i> <span><sup>E£</sup>{{ property.price }}</span>
+  <body>
+    <section class="parallax-window">
+      <br><br><br><br><br><br>
+      <div style="width: auto;">
+        <img [src]="selectedImage" style="max-width: 100%; max-height: 100%;
+          object-fit: fill; object-position: 50% 50%;">
+      </div>
+      <div class="parallax-content-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <h1>{{ property.propertyType + " for " + property.listingType }}</h1>
+              <span>{{ property.address.street + ", " + property.address.city +
+                ", " + property.address.country }}</span>
+            </div>
+            <div class="col-md-4">
+              <div id="price_single_main">
+                <i *ngIf="property.listingType == 'RENT'"> Per Month </i> <span><sup>E£</sup>{{
+                  property.price }}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- End section -->
+    </section>
+    <!-- End section -->
 
 
-  <main>
-    <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
-      <!-- Add your loading bar or spinner HTML content here -->
-      <!-- For example, you can use a CSS spinner -->
-      <div class="spinner"></div>
-    </div>
-    <!-- <div id="position">
+    <main>
+      <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+        <!-- Add your loading bar or spinner HTML content here -->
+        <!-- For example, you can use a CSS spinner -->
+        <div class="spinner"></div>
+      </div>
+      <!-- <div id="position">
       <div class="container">
         <ul>
           <li><a href="#">Home</a>
@@ -50,13 +54,13 @@
         </ul>
       </div>
     </div> -->
-    <!-- End Position -->
+      <!-- End Position -->
 
 
-    <div class="container margin_60">
-      <div class="row">
-        <div class="col-lg-8" id="single_tour_desc">
-          <!-- <div id="single_tour_feat">
+      <div class="container margin_60">
+        <div class="row">
+          <div class="col-lg-8" id="single_tour_desc">
+            <!-- <div id="single_tour_feat">
 						<ul>
 							<li><i class="icon_set_1_icon-4"></i>Museum</li>
 							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
@@ -67,280 +71,314 @@
 							<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
 						</ul>
 					</div> -->
+            <div id="Img_carousel" class="slider-pro">
+              <div class="sp-slides">
 
-          <div id="Img_carousel" class="slider-pro">
-            <div class="sp-slides">
+                <!-- <img id="big-image" [src]="selectedImage" alt="Big Image"> -->
+                <!-- Small Square Images -->
+                <div class="small-images-container">
+                  <img *ngFor="let image of property.images"
+                    [src]="image.imagePath"
+                    (click)="selectImage(image.imagePath)" class="small-image">
+                </div>
 
-              <!-- <img id="big-image" [src]="selectedImage" alt="Big Image"> -->
+                <!-- TRY -->
 
-              <!-- Small Square Images -->
-              <div class="small-images-container">
-                <img *ngFor="let image of property.images" [src]="image.imagePath" (click)="selectImage(image.imagePath)" class="small-image">
               </div>
-
-              <!-- TRY -->
-
             </div>
-          </div>
 
-          <hr>
+            <hr>
 
-          <div class="row">
-            <div class="col-lg-3">
-              <h3>Description</h3>
-            </div>
-            <div class="col-lg-9">
-              <h4></h4>
-              <p>{{ property.description }}</p>
-
-              <div class="col-md-8 list_ok">
-                <ul>
-                  <li>Listing Type: {{ property.listingType }}</li>
-                  <li>Floor No: {{ property.floorNo }}</li>
-                  <li>Property No: {{ property.propertyNo }}</li>
-                  <li>Bedroom Count: {{ property.bedRoomCount }}</li>
-                  <li>Bathroom Count: {{ property.bathRoomCount }}</li>
-                </ul>
+            <div class="row">
+              <div class="col-lg-3">
+                <h3>Description</h3>
               </div>
+              <div class="col-lg-9">
+                <h4></h4>
+                <p>{{ property.description }}</p>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <ul class="list_ok">
-                    <li *ngIf="property.tv">TV</li>
-                    <li *ngIf="property.wifi">Wifi</li>
-                    <li *ngIf="property.airCondition">Air Condition</li>
+                <div class="col-md-8 list_ok">
+                  <ul>
+                    <li>Listing Type: {{ property.listingType }}</li>
+                    <li>Floor No: {{ property.floorNo }}</li>
+                    <li>Property No: {{ property.propertyNo }}</li>
+                    <li>Bedroom Count: {{ property.bedRoomCount }}</li>
+                    <li>Bathroom Count: {{ property.bathRoomCount }}</li>
                   </ul>
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-6">
-                  <google-map [center]="center" [zoom]="15" (zoom_changed)="onZoomChanged($event)">
-                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }"
-                      [icon]="markerIcon" class="property-marker"></map-marker>
-                    <map-marker [position]="{ lat: property.address.lat, lng: property.address.lng }"
-                      [icon]="markerIcon" +[label]="property.price" class="price-marker" *ngIf="showPrice"></map-marker>
-                  </google-map>
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul class="list_ok">
+                      <li *ngIf="property.tv">TV</li>
+                      <li *ngIf="property.wifi">Wifi</li>
+                      <li *ngIf="property.airCondition">Air Condition</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <google-map [center]="center" [zoom]="15"
+                      (zoom_changed)="onZoomChanged($event)">
+                      <map-marker [position]="{ lat: property.address.lat, lng:
+                        property.address.lng }"
+                        [icon]="markerIcon" class="property-marker"></map-marker>
+                      <map-marker [position]="{ lat: property.address.lat, lng:
+                        property.address.lng }"
+                        [icon]="markerIcon" +[label]="property.price"
+                        class="price-marker" *ngIf="showPrice"></map-marker>
+                    </google-map>
+                  </div>
+                </div>
+
+                <br>
+
+              </div>
+            </div>
+
+          </div>
+          <!--End  single_tour_desc-->
+
+          <aside class="col-lg-4">
+
+            <!--/box_style_1 -->
+
+            <div class="box_style_4">
+              <i class="icon_set_1_icon-90"></i>
+              <h4><span>Book</span> by phone</h4>
+              <!-- <a href="tel://004542344599" class="phone">{{property.user.phoneNumber}}</a> -->
+              <a href="tel:{{property.user.phoneNumber}}" class="phone">{{property.user.phoneNumber}}</a>
+              <div *ngIf="isAdmin()" class="col-lg-2 col-md-2">
+                <div class="booking_buttons">
+                  <a id="editBtn" class="btn_2" (click)="accept(property.id)">Accept</a>
+                  <a id="deleteBtn" class="btn_3"
+                    (click)="deleteProperty(property.id);
+                    $event.stopPropagation()">Delete</a>
                 </div>
               </div>
-
-              <br>
-
+              <!-- <small>Monday to Friday 9.00am - 7.30pm</small> -->
             </div>
-          </div>
 
+          </aside>
         </div>
-        <!--End  single_tour_desc-->
-
-        <aside class="col-lg-4">
-
-          <!--/box_style_1 -->
-
-          <div class="box_style_4">
-            <i class="icon_set_1_icon-90"></i>
-            <h4><span>Book</span> by phone</h4>
-            <!-- <a href="tel://004542344599" class="phone">{{property.user.phoneNumber}}</a> -->
-            <a href="tel:{{property.user.phoneNumber}}" class="phone">{{property.user.phoneNumber}}</a>
-
-            <a (click)="accept(property.id)" *ngIf="isAdmin()" class="phone">Accept</a>
-
-            <!-- <small>Monday to Friday 9.00am - 7.30pm</small> -->
-          </div>
-
-        </aside>
+        <!--End row -->
       </div>
-      <!--End row -->
-    </div>
-    <!--End container -->
+      <!--End container -->
 
-    <div id="overlay"></div>
-    <!-- Mask on input focus -->
+      <div class="loading-bar" *ngIf="LoadingBarService.isLoading">
+        <!-- Add your loading bar or spinner HTML content here -->
+        <!-- For example, you can use a CSS spinner -->
+        <div class="spinner"></div>
+      </div>
+      <div id="overlay"></div>
+      <!-- Mask on input focus -->
 
-  </main>
-  <!-- End main -->
+    </main>
+    <!-- End main -->
 
-  <div id="toTop"></div><!-- Back to top button -->
+    <div id="toTop"></div><!-- Back to top button -->
 
-  <!-- Search Menu -->
-  <div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-    <form role="search" id="searchform" method="get">
-      <input value="" name="q" type="text" placeholder="Search..." />
-      <button type="submit"><i class="icon_set_1_icon-78"></i>
-      </button>
-    </form>
-  </div><!-- End Search Menu -->
+    <!-- Search Menu -->
+    <div class="search-overlay-menu">
+      <span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
+      <form role="search" id="searchform" method="get">
+        <input value="" name="q" type="text" placeholder="Search..." />
+        <button type="submit"><i class="icon_set_1_icon-78"></i>
+        </button>
+      </form>
+    </div><!-- End Search Menu -->
 
-  <!-- Sign In Popup -->
-  <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-    <div class="small-dialog-header">
-      <h3>Sign In</h3>
-    </div>
-    <form>
-      <div class="sign-in-wrapper">
-        <a href="#0" class="social_bt facebook">Login with Facebook</a>
-        <a href="#0" class="social_bt google">Login with Google</a>
-        <div class="divider"><span>Or</span></div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" class="form-control" name="email" id="email">
-          <i class="icon_mail_alt"></i>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" name="password" id="password" value="">
-          <i class="icon_lock_alt"></i>
-        </div>
-        <div class="clearfix add_bottom_15">
-          <div class="checkboxes float-start">
-            <label class="container_check">Remember me
-              <input type="checkbox">
-              <span class="checkmark"></span>
-            </label>
-          </div>
-          <div class="float-end"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
-        </div>
-        <div class="text-center"><input type="submit" value="Log In" class="btn_login"></div>
-        <div class="text-center">
-          Don’t have an account? <a href="javascript:void(0);">Sign up</a>
-        </div>
-        <div id="forgot_pw">
+    <!-- Sign In Popup -->
+    <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+      <div class="small-dialog-header">
+        <h3>Sign In</h3>
+      </div>
+      <form>
+        <div class="sign-in-wrapper">
+          <a href="#0" class="social_bt facebook">Login with Facebook</a>
+          <a href="#0" class="social_bt google">Login with Google</a>
+          <div class="divider"><span>Or</span></div>
           <div class="form-group">
-            <label>Please confirm login email below</label>
-            <input type="email" class="form-control" name="email_forgot" id="email_forgot">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" id="email">
             <i class="icon_mail_alt"></i>
           </div>
-          <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
-          <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-        </div>
-      </div>
-    </form>
-    <!--form -->
-  </div>
-  <!-- /Sign In Popup -->
-
-  <!-- Modal Review -->
-  <div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myReviewLabel">Write your review</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div id="message-review">
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password"
+              id="password" value="">
+            <i class="icon_lock_alt"></i>
           </div>
-          <form method="post" action="assets/review_tour.php" name="review_tour" id="review_tour">
-            <input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name"
-                    class="form-control">
-                </div>
-              </div>
+          <div class="clearfix add_bottom_15">
+            <div class="checkboxes float-start">
+              <label class="container_check">Remember me
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
             </div>
-            <!-- End row -->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input name="email_review" id="email_review" type="email" placeholder="Your email"
-                    class="form-control">
-                </div>
-              </div>
-            </div>
-            <!-- End row -->
-            <hr>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Position</label>
-                  <select class="form-select" name="position_review" id="position_review">
-                    <option value="">Please review</option>
-                    <option value="Low">Low</option>
-                    <option value="Sufficient">Sufficient</option>
-                    <option value="Good">Good</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Superb">Super</option>
-                    <option value="Not rated">I don't know</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Tourist guide</label>
-                  <select class="form-select" name="guide_review" id="guide_review">
-                    <option value="">Please review</option>
-                    <option value="Low">Low</option>
-                    <option value="Sufficient">Sufficient</option>
-                    <option value="Good">Good</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Superb">Super</option>
-                    <option value="Not rated">I don't know</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- End row -->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Price</label>
-                  <select class="form-select" name="price_review" id="price_review">
-                    <option value="">Please review</option>
-                    <option value="Low">Low</option>
-                    <option value="Sufficient">Sufficient</option>
-                    <option value="Good">Good</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Superb">Super</option>
-                    <option value="Not rated">I don't know</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Quality</label>
-                  <select class="form-select" name="quality_review" id="quality_review">
-                    <option value="">Please review</option>
-                    <option value="Low">Low</option>
-                    <option value="Sufficient">Sufficient</option>
-                    <option value="Good">Good</option>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Superb">Super</option>
-                    <option value="Not rated">I don't know</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- End row -->
+            <div class="float-end"><a id="forgot" href="javascript:void(0);">Forgot
+                Password?</a></div>
+          </div>
+          <div class="text-center"><input type="submit" value="Log In"
+              class="btn_login"></div>
+          <div class="text-center">
+            Don’t have an account? <a href="javascript:void(0);">Sign up</a>
+          </div>
+          <div id="forgot_pw">
             <div class="form-group">
-              <textarea name="review_text" id="review_text" class="form-control" style="height:100px"
-                placeholder="Write your review"></textarea>
+              <label>Please confirm login email below</label>
+              <input type="email" class="form-control" name="email_forgot"
+                id="email_forgot">
+              <i class="icon_mail_alt"></i>
             </div>
-            <div class="form-group">
-              <input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
+            <p>You will receive an email containing a link allowing you to reset
+              your password to a new preferred one.</p>
+            <div class="text-center"><input type="submit" value="Reset Password"
+                class="btn_1"></div>
+          </div>
+        </div>
+      </form>
+      <!--form -->
+    </div>
+    <!-- /Sign In Popup -->
+
+    <!-- Modal Review -->
+    <div class="modal fade" id="myReview" tabindex="-1" role="dialog"
+      aria-labelledby="myReviewLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myReviewLabel">Write your review</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="message-review">
             </div>
-            <input type="submit" value="Submit" class="btn_1" id="submit-review">
-          </form>
+            <form method="post" action="assets/review_tour.php"
+              name="review_tour" id="review_tour">
+              <input name="tour_name" id="tour_name" type="hidden" value="Paris
+                Arch de Triomphe Tour">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="name_review" id="name_review" type="text"
+                      placeholder="Your name" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="lastname_review" id="lastname_review"
+                      type="text" placeholder="Your last name"
+                      class="form-control">
+                  </div>
+                </div>
+              </div>
+              <!-- End row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input name="email_review" id="email_review" type="email"
+                      placeholder="Your email"
+                      class="form-control">
+                  </div>
+                </div>
+              </div>
+              <!-- End row -->
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Position</label>
+                    <select class="form-select" name="position_review"
+                      id="position_review">
+                      <option value="">Please review</option>
+                      <option value="Low">Low</option>
+                      <option value="Sufficient">Sufficient</option>
+                      <option value="Good">Good</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Superb">Super</option>
+                      <option value="Not rated">I don't know</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Tourist guide</label>
+                    <select class="form-select" name="guide_review"
+                      id="guide_review">
+                      <option value="">Please review</option>
+                      <option value="Low">Low</option>
+                      <option value="Sufficient">Sufficient</option>
+                      <option value="Good">Good</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Superb">Super</option>
+                      <option value="Not rated">I don't know</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- End row -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Price</label>
+                    <select class="form-select" name="price_review"
+                      id="price_review">
+                      <option value="">Please review</option>
+                      <option value="Low">Low</option>
+                      <option value="Sufficient">Sufficient</option>
+                      <option value="Good">Good</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Superb">Super</option>
+                      <option value="Not rated">I don't know</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Quality</label>
+                    <select class="form-select" name="quality_review"
+                      id="quality_review">
+                      <option value="">Please review</option>
+                      <option value="Low">Low</option>
+                      <option value="Sufficient">Sufficient</option>
+                      <option value="Good">Good</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Superb">Super</option>
+                      <option value="Not rated">I don't know</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- End row -->
+              <div class="form-group">
+                <textarea name="review_text" id="review_text"
+                  class="form-control" style="height:100px"
+                  placeholder="Write your review"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="text" id="verify_review" class=" form-control"
+                  placeholder="Are you human? 3 + 1=">
+              </div>
+              <input type="submit" value="Submit" class="btn_1"
+                id="submit-review">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- End modal review -->
+    <!-- End modal review -->
 
-  <!-- Common scripts -->
-  <script src="js/jquery-3.6.0.min.js"></script>
-  <script src="js/common_scripts_min.js"></script>
-  <script src="js/functions.js"></script>
+    <!-- Common scripts -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/common_scripts_min.js"></script>
+    <script src="js/functions.js"></script>
 
-  <!-- Gallery -->
-  <script src="js/jquery.sliderPro.min.js"></script>
-  <script type="text/javascript">
+    <!-- Gallery -->
+    <script src="js/jquery.sliderPro.min.js"></script>
+    <script type="text/javascript">
     $(document).ready(function ($) {
       $('#Img_carousel').sliderPro({
         width: 960,
@@ -358,9 +396,8 @@
       });
     });
   </script>
-
-  <!-- Date and time pickers -->
-  <script>
+    <!-- Date and time pickers -->
+    <script>
     $(function () {
       $('input.date-pick').daterangepicker({
         autoUpdateInput: true,
@@ -380,16 +417,25 @@
       })
     });
   </script>
+    <!--Review modal validation -->
+    <script src="assets/validate.js"></script>
 
-  <!--Review modal validation -->
-  <script src="assets/validate.js"></script>
-
-  <!-- Map -->
-  <script src="http://maps.googleapis.com/maps/api/js"></script>
-  <script src="js/map.js"></script>
-  <script src="js/infobox.js"></script>
+    <!-- Map -->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/infobox.js"></script>
 
 
-</body>
-
+  </body>
+  <style>
+  #editBtn{
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  color:white;
+}
+#deleteBtn{
+  /*background: #800000;*/
+  background: #d33;
+  color: white;
+}
+</style>
 </html>
