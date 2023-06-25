@@ -114,7 +114,7 @@ export class PropertyDiscoveryComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   moveToPropertyDetails(propertyId: number) {
-    this.router.navigate(['/user/property/details', propertyId]);
+    this.router.navigate(['/property/details', propertyId]);
     console.log("Property Id to Redirect : " + propertyId);
   }
 
