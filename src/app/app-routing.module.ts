@@ -77,7 +77,7 @@ const routes: Routes = [
       {path: 'packages', component: UserPackagesComponent, data: {title: 'AirMAK - Packages'}},
     ]
   },
-  {path: '/user/reset-password', component: ResetPasswordComponent, data: {title: 'AirMAK - Reset Password'}},
+  {path: 'user/reset-password', component: ResetPasswordComponent, data: {title: 'AirMAK - Reset Password'}},
   {
     path: 'admin',
     canActivate: [authGuard],
