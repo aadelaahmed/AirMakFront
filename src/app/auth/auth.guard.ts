@@ -43,7 +43,7 @@ export class authGuard implements CanActivate {
         const allowedNotAdminOrUserRoutes = [
           '/user/home',
           '/login',
-          '/register',
+          '/user/register',
           '/user/property/discovery',
           '/user/packages'
         ];
