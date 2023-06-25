@@ -1,25 +1,6 @@
 <main>
-  <div id="position">
-    <div class="container">
-      <ul>
-        <li><a href="#">Home</a>
-        </li>
-        <li><a href="#">Category</a>
-        </li>
-        <li>Page active</li>
-      </ul>
-    </div>
-  </div>
-  <!-- Position -->
 
-  <div class="collapse" id="collapseMap">
-    <div id="map" class="map">
-
-    </div>
-  </div>
-  <!-- End Map -->
-
-  <br><br>
+  <br><br><br><br>
 
   <google-map *ngIf="isLoaded" height="400px" width="1280px" [center]="map.center" [zoom]="map.zoom">
     <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
@@ -36,12 +17,6 @@
 
     <div class="row">
       <aside class="col-lg-3">
-        <p>
-          <a class="btn_map" data-bs-toggle="collapse" href="#collapseMap" aria-expanded="false"
-            aria-controls="collapseMap" data-text-swap="Hide
-						map" data-text-original="View on map">View on map</a>
-        </p>
-
         <div id="filters_col">
           <a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters"
             id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
@@ -57,61 +32,21 @@
                 <input type="number" id="to" name="to" [(ngModel)]="propertyFilter.maxPrice"> $
               </div>
             </div>
+      
             <div class="filter_type">
-              <h6>Star Category</h6>
-              <ul>
+              <h6>Type</h6>
+              <ul class="mb-0">
                 <li>
                   <label class="container_check">
-                    <span class="rating">
-                      <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81
-												voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81
-												voted"></i>
-                    </span>(15)
-                    <input type="checkbox">
+                    Rent
+                    <input [(ngModel)]="propertyFilter.isForRent" type="checkbox" name="location">
                     <span class="checkmark"></span>
                   </label>
                 </li>
                 <li>
                   <label class="container_check">
-                    <span class="rating">
-                      <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81
-												voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i
-                        class="icon_set_1_icon-81"></i>
-                    </span>(10)
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-                </li>
-                <li>
-                  <label class="container_check">
-                    <span class="rating">
-                      <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81
-												voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i
-                        class="icon_set_1_icon-81"></i>
-                    </span>(22)
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-                </li>
-                <li>
-                  <label class="container_check">
-                    <span class="rating">
-                      <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81
-												voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i
-                        class="icon_set_1_icon-81"></i>
-                    </span>(08)
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-                </li>
-                <li>
-                  <label class="container_check">
-                    <span class="rating">
-                      <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i
-                        class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i
-                        class="icon_set_1_icon-81"></i>
-                    </span>(08)
-                    <input type="checkbox">
+                    Sale
+                    <input [(ngModel)]="propertyFilter.isForSale" type="checkbox" name="location">
                     <span class="checkmark"></span>
                   </label>
                 </li>
@@ -183,25 +118,6 @@
       <!--End aside -->
 
       <div class="col-lg-9">
-        <div id="tools">
-          <div class="row justify-content-between">
-            <div class="col-md-3 col-sm-4">
-              <div class="styled-select-filters">
-                <select name="sort_price" id="sort_price">
-                  <option value="" selected>Sort by price</option>
-                  <option value="lower">Lowest price</option>
-                  <option value="higher">Highest price</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-4 d-none d-sm-block text-end">
-              <a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_hotels_list.html"
-                class="bt_filters"><i class=" icon-list"></i></a>
-            </div>
-          </div>
-        </div>
-        <!--End tools -->
-
         <!-- <div ngIf="isLoaded"> -->
           <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
             data-wow-delay="0.1s">
@@ -220,10 +136,9 @@
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="tour_list_desc">
-                  <div class="rating"><i class="icon-star voted"></i><i class="icon-star
-										voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                  </div>
-                  <h3><strong>Park Hyatt</strong> {{property.propertyType}}</h3>
+                  <p *ngIf="property.listingType === 'RENT'" class="rentText">For {{property.listingType}}</p>
+                  <p *ngIf="property.listingType === 'SALE'" class="saleText">For {{property.listingType}}</p>
+                  <h3><strong>{{property.user.firstName}}</strong> {{property.propertyType}}</h3>
                   <p>{{property.description}}
                   <p>
                   <ul class="add_info">
@@ -345,4 +260,19 @@
     border-color: #666 transparent transparent transparent;
     cursor: pointer;
   }
+
+  .rentText{
+    border-radius: 5px;
+    background: rgb(233, 167, 0);
+    padding: 3px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .saleText{
+    border-radius: 5px;
+    background: rgb(0, 95, 184);
+    padding: 3px;
+    color: white;
+    font-weight: bold;  }
 </style>

@@ -5,149 +5,112 @@
         <div id="search">
           <div class="home-page-section">
             <div class="section-heading">
-              <h2 style = "color: #e14d67;">Discover Your Perfect Home</h2>
+              <h2 style="color: #e14d67;">Discover Your Perfect Home</h2>
               <p>Find homes for sale or rent in your area</p>
             </div>
-
-            <div class="search-form">
-              <input type="text" id="location" name="location"
-                placeholder="Enter a country, city or street" />
-              <button type="submit">Search</button>
-            </div>
+            <!-- Hover #1 -->
+              <div routerLink="/user/property/discovery" class="btn btn-one">
+                <span>Start Exploring</span>
+              </div>
           </div>
         </div>
       </div>
       <img src="assets/video/paris.gif" alt="Image" class="header-video--media">
     </div>
   </section>
-
-  <div class="container margin_60">
-    <div class="main_title">
-      <h2>Egypt <span>Top</span> Tours</h2>
-      <p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur
-        consequat.</p>
-    </div>
-    <div class="row">
-      <div *ngFor="let property of properties; let i= index" class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-        <div class="tour_container">
-          <div class="img_container">
-            <a href="single_tour.html">
-              <img src="assets/img/tour_box_3.jpg" width="800" height="533"
-                class="img-fluid" alt="Image">
-              <div class="short_info">
-                <i class="icon_set_1_icon-44"></i>Historic {{property.propertyType}}<span
-                  class="price"><sup>$</sup>{{property.price}}</span>
-              </div>
-            </a>
-          </div>
-        </div><!-- End box tour -->
-      </div><!-- End col -->
-
-    </div><!-- End row -->
-
-    <p class="text-center nopadding">
-      <a href="\discoverproperty" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours
-        ({{pageMetadata.totalElements}}) </a>
-    </p>
-  </div><!-- End container -->
-
-  <div id="map" class="map"></div>
-  <!-- End map -->
-  <div class="container margin_60">
-
-    <div class="main_title">
-      <h2>Some <span>good</span> reasons</h2>
-      <p>
-        Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur
-        consequat.
-      </p>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4 wow zoomIn" data-wow-delay="0.2s">
-        <div class="feature_home">
-          <i class="icon_set_1_icon-41"></i>
-          <h3><span>+120</span> Premium tours</h3>
-          <p>
-            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus
-            efficiantur in. Nec id tempor imperdiet
-            deterruisset.
-          </p>
-          <a href="about.html" class="btn_1 outline">Read more</a>
-        </div>
-      </div>
-
-      <div class="col-lg-4 wow zoomIn" data-wow-delay="0.4s">
-        <div class="feature_home">
-          <i class="icon_set_1_icon-30"></i>
-          <h3><span>+1000</span> Customers</h3>
-          <p>
-            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus
-            efficiantur in. Nec id tempor imperdiet
-            deterruisset.
-          </p>
-          <a href="about.html" class="btn_1 outline">Read more</a>
-        </div>
-      </div>
-
-      <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
-        <div class="feature_home">
-          <i class="icon_set_1_icon-57"></i>
-          <h3><span>H24 </span> Support</h3>
-          <p>
-            Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus
-            efficiantur in. Nec id tempor imperdiet
-            deterruisset.
-          </p>
-          <a href="about.html" class="btn_1 outline">Read more</a>
-        </div>
-      </div>
-
-    </div>
-    <!--End row -->
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-6">
-        <img src="assets/img/laptop.png" alt="Laptop" class="img-fluid laptop">
-      </div>
-      <div class="col-md-6">
-        <h3><span>Get started</span> with CityTours</h3>
-        <p>
-          Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus
-          efficiantur in. Nec id tempor imperdiet
-          deterruisset.
-        </p>
-        <ul class="list_order">
-          <li><span>1</span>Select your preferred tours</li>
-          <li><span>2</span>Purchase tickets and options</li>
-          <li><span>3</span>Pick them directly from your office</li>
-        </ul>
-        <a href="all_tour_list.html" class="btn_1">Start now</a>
-      </div>
-    </div>
-    <!-- End row -->
-
-  </div>
-  <section class="promo_full">
-    <div class="promo_full_wp magnific">
-      <div>
-        <h3>BELONG ANYWHERE</h3>
-        <p>
-          Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus
-          efficiantur in. Nec id tempor imperdiet
-          deterruisset, doctus volumus explicari qui ex.
-        </p>
-        <a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video"><i
-            class="icon-play-circled2-1"></i></a>
-      </div>
-    </div>
-  </section>
-  <!-- End section -->
-  <!-- End container -->
 </main>
 <!-- End main -->
 
 <!-- Map -->
 <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+<style>
+@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+div[class*=box] {
+  height: 33.33%;
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-1 { background-color: #FF6766; }
+.box-2 { background-color: #3C3C3C; }
+.box-3 { background-color: #66A182; }
+
+.btn {
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+}
+
+/* 
+========================
+      BUTTON ONE
+========================
+*/
+.btn-one {
+  color: #FFF;
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-one span {
+  transition: all 0.3s;
+}
+.btn-one::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255,255,255,0.5);
+  border-bottom-color: rgba(255,255,255,0.5);
+  transform: scale(0.1, 1);
+}
+.btn-one:hover span {
+  letter-spacing: 2px;
+}
+.btn-one:hover::before {
+  opacity: 1; 
+  transform: scale(1, 1); 
+}
+.btn-one::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: rgba(255,255,255,0.1);
+}
+.btn-one:hover::after {
+  opacity: 0; 
+  transform: scale(0.1, 1);
+}
+
+</style>

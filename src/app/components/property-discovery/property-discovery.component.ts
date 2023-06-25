@@ -56,13 +56,13 @@ export class PropertyDiscoveryComponent implements OnInit {
   searchForProperties(page: number) {
     console.log("price");
     this.page = page;
-    // this.propertyService.filterProperties(this.propertyFilter, page + 1).subscribe(response => {
-    //   this.properties = response.payload as Property[];
-    //   console.log(response)
-    //   this.pageMetadata = response.metadata as PageMetadata;
-    //   console.log(this.pageMetadata)
-    //   this.isLoaded = true;
-    // })
+    this.propertyService.filterProperties(this.propertyFilter, page + 1).subscribe(response => {
+      this.properties = response.payload as Property[];
+      console.log(response)
+      this.pageMetadata = response.metadata as PageMetadata;
+      console.log(this.pageMetadata)
+      this.isLoaded = true;
+    })
 
   }
 
@@ -114,7 +114,7 @@ export class PropertyDiscoveryComponent implements OnInit {
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   moveToPropertyDetails(propertyId: number) {
-    this.router.navigate(['property/details', propertyId]);
+    this.router.navigate(['/user/property/details', propertyId]);
     console.log("Property Id to Redirect : " + propertyId);
   }
 

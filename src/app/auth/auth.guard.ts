@@ -28,7 +28,8 @@ export class authGuard implements CanActivate {
           '/user/payment',
           '/user/confirmation',
           '/user/packages',
-          /^\/user\/property\/details\/\d+$/ 
+          /^\/user\/property\/details\/\d+$/,
+          /^\/user\/property\/edit\/\d+$/
         ];
 
         const allowedAdminRoutes = [
@@ -37,7 +38,8 @@ export class authGuard implements CanActivate {
           '/admin/create-package',
           '/admin/package/details/:id',
           '/admin/pending',
-          '/user/property/details'
+          '/user/property/details',
+          /^\/user\/property\/details\/\d+$/
         ];
 
         const allowedNotAdminOrUserRoutes = [

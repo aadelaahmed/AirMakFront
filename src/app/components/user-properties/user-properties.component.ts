@@ -42,7 +42,7 @@ export class UserPropertiesComponent implements OnInit{
   }
   editProperty(propertyId:number){
     console.log("editproperty btn clicked ->"+propertyId);
-    this.router.navigate(['property/edit', propertyId]);
+    this.router.navigate(['user/property/edit', propertyId]);
   }
   getPropertyMonth(property: Property): string {
     // Implement logic to retrieve and format the month based on the property's date
@@ -68,7 +68,7 @@ export class UserPropertiesComponent implements OnInit{
     })
   }
   moveToPropertyDetails(propertyId:number){
-    this.router.navigate(['property/details', propertyId]);
+    this.router.navigate(['/user/property/details', propertyId]);
   }
   getPropertyDay(property: Property): number {
     // Implement logic to retrieve and format the day based on the property's date

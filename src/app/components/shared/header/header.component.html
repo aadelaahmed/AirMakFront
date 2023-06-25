@@ -71,9 +71,13 @@
                 <i class="fa-icon-amazon"></i>Packages
               </a>
             </li>
-            <li *ngIf="isSignInButtonVisible || getRole==='USER'" class="submenu">
+            <li *ngIf="!isSignInButtonVisible && getRole==='USER'" class="submenu">
               <a (click)="hasSubscription()" href="javascript:void(0);"><i class="icon-money-2"></i>Sell</a>
             <li class="submenu">
+
+              <li *ngIf="!isSignInButtonVisible && getRole==='USER'" class="submenu">
+                <a routerLink="/user/properties" href="javascript:void(0);"><i class="icon-money-2"></i>MyProperty</a>
+              <li class="submenu">
 
             <li *ngIf="!isSignInButtonVisible && getRole==='USER'" class="submenu" style="margin-left:30ch; ">
               <a routerLink="user/payment" style="color:#e14d67">

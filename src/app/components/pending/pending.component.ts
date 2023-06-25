@@ -28,14 +28,6 @@ export class  PendingComponent implements OnInit {
       },
       error: error => { }
     });
-
-    
-    
-    
-     
-
-   
-
   }
 
 
