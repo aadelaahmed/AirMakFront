@@ -1,25 +1,23 @@
 <main>
-
-  <br><br><br><br>
-
-  <google-map *ngIf="isLoaded" height="400px" width="1280px" [center]="map.center" [zoom]="map.zoom">
-    <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
-    <map-marker #marker="mapMarker" *ngFor="let property of properties"
-      [position]="{lat: property.address.lat, lng: property.address.lng}"
-      (mapDblclick)="moveToPropertyDetails(property.id)" (mapMouseover)="Over(property,marker)" (mapMouseout)="Out()">
-    </map-marker>
-    <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : ${{propertyInfo.price}}
-    <br> Double Click For More Details </map-info-window>
-  </google-map>
-
-
   <div class="container margin_60">
-
+    <div style="margin-top: 40px; margin-bottom: 8px">
+      <google-map *ngIf="isLoaded" height="400px" width="auto" [center]="map.center" [zoom]="map.zoom">
+        <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
+        <map-marker #marker="mapMarker" *ngFor="let property of properties"
+                    [position]="{lat: property.address.lat, lng: property.address.lng}"
+                    (mapDblclick)="moveToPropertyDetails(property.id)" (mapMouseover)="Over(property,marker)"
+                    (mapMouseout)="Out()">
+        </map-marker>
+        <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : ${{propertyInfo.price}}
+          <br> Double Click For More Details
+        </map-info-window>
+      </google-map>
+    </div>
     <div class="row">
       <aside class="col-lg-3">
         <div id="filters_col">
           <a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters"
-            id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
+             id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
           <div class="collapse show" id="collapseFilters">
             <div class="filter_type">
               <h6>Price</h6>
@@ -119,56 +117,57 @@
 
       <div class="col-lg-9">
         <!-- <div ngIf="isLoaded"> -->
-          <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
-            data-wow-delay="0.1s">
-            <div class="row">
-              <div class="col-lg-4 col-md-4 position-relative">
-                <!--<div class="wishlist">
-								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-										class="tooltip-content-flip"><span class="tooltip-back">Add to
-											wishlist</span></span></a>
-							</div>-->
-                <div class="img_list">
-                  <a routerLink="/user/property/details/{{property.id}}"><img [src]="property.images[0].imagePath" alt="Image">
-                    <div class="short_info"></div>
-                  </a>
-                </div>
+        <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
+             data-wow-delay="0.1s">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 position-relative">
+              <!--<div class="wishlist">
+              <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
+                  class="tooltip-content-flip"><span class="tooltip-back">Add to
+                    wishlist</span></span></a>
+            </div>-->
+              <div class="img_list">
+                <a routerLink="/user/property/details/{{property.id}}"><img [src]="property.images[0].imagePath"
+                                                                            alt="Image">
+                  <div class="short_info"></div>
+                </a>
               </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="tour_list_desc">
-                  <p *ngIf="property.listingType === 'RENT'" class="rentText">For {{property.listingType}}</p>
-                  <p *ngIf="property.listingType === 'SALE'" class="saleText">For {{property.listingType}}</p>
-                  <h3><strong>{{property.user.firstName}}</strong> {{property.propertyType}}</h3>
-                  <p>{{property.description}}
-                  <p>
-                  <ul class="add_info">
-                    <li *ngIf="property.wifi === 1">
-                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top" title="Free Wifi"><i
-                          class="icon_set_1_icon-86"></i></a>
-                    </li>
-                    <li *ngIf="property.tv === 1">
-                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
-                        title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-                    </li>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="tour_list_desc">
+                <p *ngIf="property.listingType === 'RENT'" class="rentText">For {{property.listingType}}</p>
+                <p *ngIf="property.listingType === 'SALE'" class="saleText">For {{property.listingType}}</p>
+                <h3><strong>{{property.user.firstName}}</strong> {{property.propertyType}}</h3>
+                <p>{{property.description}}
+                <p>
+                <ul class="add_info">
+                  <li *ngIf="property.wifi === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top" title="Free Wifi"><i
+                      class="icon_set_1_icon-86"></i></a>
+                  </li>
+                  <li *ngIf="property.tv === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                       title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
+                  </li>
 
-                    <li *ngIf="property.airCondition === 1">
-                      <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
-                        title="Plasma TV with cable channels"><i class="icon-air"></i></a>
-                    </li>
-                  </ul>
-                </div>
+                  <li *ngIf="property.airCondition === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                       title="Plasma TV with cable channels"><i class="icon-air"></i></a>
+                  </li>
+                </ul>
               </div>
+            </div>
 
-              <div class="col-lg-2 col-md-2">
-                <div class="price_list">
-                  <div><sup>${{property.price}}</sup><small>From/Per night</small>
-                    <p><a routerLink="/user/property/details/{{property.id}}" class="btn_1">Details</a>
-                    </p>
-                  </div>
+            <div class="col-lg-2 col-md-2">
+              <div class="price_list">
+                <div><sup>${{property.price}}</sup><small>From/Per night</small>
+                  <p><a routerLink="/user/property/details/{{property.id}}" class="btn_1">Details</a>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         <!-- </div> -->
         <!--End strip -->
 
@@ -183,14 +182,13 @@
             </li>
             <div *ngFor="let i of counterArray(pageMetadata.totalPages)">
               <li *ngIf="i === page" class="page-item active">
-                <span class="page-link">{{i+1}}</span>
+                <span class="page-link">{{i + 1}}</span>
               </li>
 
               <li *ngIf="i !== page" class="page-item">
-                <button (click)="searchForProperties(i)" class="page-link">{{i+1}}</button>
+                <button (click)="searchForProperties(i)" class="page-link">{{i + 1}}</button>
               </li>
             </div>
-
 
 
             <li *ngIf="page != pageMetadata.totalPages - 1" class="page-item">
@@ -261,7 +259,7 @@
     cursor: pointer;
   }
 
-  .rentText{
+  .rentText {
     border-radius: 5px;
     background: rgb(233, 167, 0);
     padding: 3px;
@@ -269,10 +267,11 @@
     font-weight: bold;
   }
 
-  .saleText{
+  .saleText {
     border-radius: 5px;
     background: rgb(0, 95, 184);
     padding: 3px;
     color: white;
-    font-weight: bold;  }
+    font-weight: bold;
+  }
 </style>
