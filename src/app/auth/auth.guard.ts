@@ -29,6 +29,8 @@ export class authGuard implements CanActivate {
           '/user/payment',
           '/user/confirmation',
           '/user/packages',
+          '/user/property/discovery',
+          '/property/details',
           /^\/user\/property\/edit\/\d+$/
         ];
 
