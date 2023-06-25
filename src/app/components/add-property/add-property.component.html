@@ -50,19 +50,30 @@
             </div>
           </div>
           <div class="col-md-6">
+<!--            <div class="form-group">-->
+<!--              <label>Availability</label>-->
+<!--              <select class="form-control" formControlName="availability" required>-->
+<!--                <option value="">Select...</option>-->
+<!--                <option value="1">Yes</option>-->
+<!--                <option value="0">No</option>-->
+<!--              </select>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['availability'].errors?.['required'] && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Availability is required-->
+<!--              </div>-->
+<!--            </div>-->
             <div class="form-group">
-              <label>Availability</label>
-              <select class="form-control" formControlName="availability" required>
-                <option value="">Select...</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </select>
+              <label>Property Number</label>
+              <input class="form-control" formControlName="property_number" type="number" required>
               <div
-                *ngIf="formData.controls['availability'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.controls['property_number'].errors?.['required']  && isSubmitted"
                 class="text-danger">
-                Availability is required
+                Property Number is required
               </div>
+              <div *ngIf="formData.get('property_number').errors?.['pattern'] && isSubmitted">Invalid PropertyNumber.</div>
             </div>
+          </div>
           </div>
         </div>
         <!-- End row -->
@@ -178,17 +189,17 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <label>Property Number</label>
-              <input class="form-control" formControlName="property_number" type="number" required>
-              <div
-                *ngIf="formData.controls['property_number'].errors?.['required']  && isSubmitted"
-                class="text-danger">
-                Property Number is required
-              </div>
-              <div *ngIf="formData.get('property_number').errors?.['pattern'] && isSubmitted">Invalid PropertyNumber.</div>
-            </div>
-          </div>
+<!--            <div class="form-group">-->
+<!--              <label>Property Number</label>-->
+<!--              <input class="form-control" formControlName="property_number" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['property_number'].errors?.['required']  && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Property Number is required-->
+<!--              </div>-->
+<!--              <div *ngIf="formData.get('property_number').errors?.['pattern'] && isSubmitted">Invalid PropertyNumber.</div>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
         <!-- End row -->
         <!-- Divider -->
@@ -227,7 +238,11 @@
             </div>
             <div class="form-group">
               <label>City</label>
-              <input class="form-control" formControlName="city" type="text" required>
+<!--              class="form-control" formControlName="city"-->
+              <select class="form-control" formControlName="city">
+                <option *ngFor="let city of egyptMainCities" [value]="city">{{ city }}</option>
+              </select>
+<!--              <input class="form-control" formControlName="city" type="text" required>-->
               <div
                 *ngIf="formData.controls['city'].errors?.['required']  && isSubmitted"
                 class="text-danger">
@@ -244,15 +259,15 @@
               </div>
               <div *ngIf="formData.controls['streetNo'].errors?.['pattern'] && isSubmitted">Invalid Street Number.</div>
             </div>
-            <div class="form-group">
-              <label>Country</label>
-              <input class="form-control" formControlName="country" type="text" required>
-              <div
-                *ngIf="formData.controls['country'].errors?.['required'] && isSubmitted"
-                class="text-danger">
-                Country is required
-              </div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label>Country</label>-->
+<!--              <input class="form-control" formControlName="country" type="text" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['country'].errors?.['required'] && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Country is required-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <div class="col-md-6">
 <!--            <div class="form-group">-->
@@ -296,7 +311,7 @@
           </div>
 <!--          || formData.controls['img2'].errors?.['required'] || formData.controls['img3'].errors?.['required'])-->
           <div
-            *ngIf="fileInput1.files.length < 3  && isSubmitted"
+            *ngIf="fileInput1.files.length != 3  && isSubmitted"
             class="text-danger">
             Three Images are required
           </div>

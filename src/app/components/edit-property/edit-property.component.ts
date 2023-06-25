@@ -35,8 +35,8 @@ export class EditPropertyComponent implements OnInit {
     }
     this.formData = this.formBuilder.group({
       description: ['', Validators.required],
-      // price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      price: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      //price: ['', [Validators.required]],
       //availability: ['', Validators.required],
       listingType: ['', Validators.required],
       bedroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],

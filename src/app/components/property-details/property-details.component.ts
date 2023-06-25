@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Property } from 'src/app/interface/property';
 import { EditPropertyService } from 'src/app/services/edit-property/edit-property.service';
+import {LoadingBarService} from "../../services/loading-bar.service";
 
 @Component({
   selector: 'app-property-details',
@@ -20,6 +21,7 @@ export class PropertyDetailsComponent {
   selectedImage: any;
 
   constructor(private route: ActivatedRoute, private propertyService: EditPropertyService) {
+    LoadingBarService.isLoading = true;
     propertyService.baseUrl = "http://localhost:8080/properties";
     this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/airmak-163da.appspot.com/o/1687473125679_349463878_3531148067160639_1216578188164938866_n.jpg?alt=media&token=a0294873-68a0-4bd3-9ce0-92ca718f7371";
     this.propertyId = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -32,6 +34,7 @@ export class PropertyDetailsComponent {
       (payload) => {
         console.log("/////////////////")
         console.log(payload);
+        LoadingBarService.isLoading = false;
         this.property = this.propertyService.mapResponseToProperty(payload);
         this.markerIcon = "https://maps.gstatic.com/mapfiles/ms2/micons/blue-dot.png";
         // this.markerIcon = "assets/img/map icons/1.png";
@@ -47,6 +50,7 @@ export class PropertyDetailsComponent {
       (error) => {
         console.log("//////////eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee///////")
         console.error(error);
+        LoadingBarService.isLoading = false;
         console.log("/////////////////")
       }
 
@@ -69,4 +73,5 @@ export class PropertyDetailsComponent {
     this.selectedImage = image;
   }
 
+  protected readonly LoadingBarService = LoadingBarService;
 }
