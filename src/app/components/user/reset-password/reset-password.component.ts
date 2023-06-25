@@ -29,6 +29,9 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
+      console.log(this.token)
+      // this.token = this.route.queryParams['token']
+      console.log(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ", this.route.queryParams['token'])
     })
     this.forgetPasswordForm = this.formBuilder.group({
       newPassword: [null, [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&+=])[A-Za-z\\d@#$%^&+=]+$"), Validators.minLength(8), Validators.maxLength(30)]],

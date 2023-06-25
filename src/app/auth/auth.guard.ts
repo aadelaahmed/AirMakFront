@@ -1,13 +1,14 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { AuthGuardService } from '../services/authGuard.service';
-import { Observable, map } from 'rxjs';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {AuthGuardService} from '../services/authGuard.service';
+import {Observable, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class authGuard implements CanActivate {
-  constructor(private authService: AuthGuardService, private router: Router) {}
+  constructor(private authService: AuthGuardService, private router: Router) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isLoggedIn$.pipe(
@@ -49,8 +50,7 @@ export class authGuard implements CanActivate {
           '/user/property/discovery',
           '/user/packages',
           '/user/forget-password',
-          // /^\/user\/reset-password\?token=.+$/,
-          /^\/user\/reset-password\?token=\/\*$/,
+          '/user/reset-password?token',
         ];
 
         const currentRoute = state.url;
@@ -67,7 +67,7 @@ export class authGuard implements CanActivate {
           return false;
         }
 
-        if (!isLoggedIn &&!userRole && !allowedNotAdminOrUserRoutes.includes(currentRoute)) {
+        if (!isLoggedIn && !userRole && !allowedNotAdminOrUserRoutes.includes(currentRoute)) {
           this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
           return false;
         }

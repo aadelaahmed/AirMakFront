@@ -30,9 +30,9 @@ const routes: Routes = [
     path: '',
     redirectTo: 'user/home',
     pathMatch: 'full',
-    data: { title: 'City Tours - Home' }
+    data: { title: 'AirMAK - Home' }
   },
-  { path: 'login', component: LoginComponent, data: { title: 'City Tours - Login' } },
+  { path: 'login', component: LoginComponent, data: { title: 'AirMAK - Login' } },
   {
     path: 'user',
     canActivate: [authGuard],
@@ -40,38 +40,38 @@ const routes: Routes = [
       {
         path: 'property',
         children: [
-          { path: 'discovery', component: PropertyDiscoveryComponent, data: { title: 'City Tours - Property' } },
+          { path: 'discovery', component: PropertyDiscoveryComponent, data: { title: 'AirMAK - Property' } },
           { path: 'edit/:id', component: EditPropertyComponent, title: 'Edit Property' },
           { path: 'add', component: AddPropertyComponent, title: 'Add Property' },
           { path: 'details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails' },
         ]
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, data: { title: 'City Tours - Home' } },
-      { path: 'logout', component: LoginComponent, data: { title: 'City Tours - Logout' } },
+      { path: 'home', component: HomeComponent, data: { title: 'AirMAK - Home' } },
+      { path: 'logout', component: LoginComponent, data: { title: 'AirMAK - Logout' } },
       { path: 'properties', component: UserPropertiesComponent, title: 'User\'s Properties' },
       {
         path: 'register',
         children: [
-          { path: '', component: RegisterComponent, data: { title: 'City Tours - Register' } },
-          { path: 'confirmation-email', component: ConfirmationCodeComponent, data: { title: 'City Tours - Confirmation Email' } }
+          { path: '', component: RegisterComponent, data: { title: 'AirMAK - Register' } },
+          { path: 'confirmation-email', component: ConfirmationCodeComponent, data: { title: 'AirMAK - Confirmation Email' } }
         ]
       },
 
-      { path: 'forget-password', component: ForgetPasswordComponent, data: { title: 'City Tours - Forget Password' } },
-      { path: 'reset-password', component: ResetPasswordComponent, data: { title: 'City Tours - Reset Password' } },
+      { path: 'forget-password', component: ForgetPasswordComponent, data: { title: 'AirMAK - Forget Password' } },
+      { path: 'reset-password?token=', component: ResetPasswordComponent, data: { title: 'AirMAK - Reset Password' } },
       {
         path: 'profile',
         children: [
           { path: '', redirectTo: 'view-profile', pathMatch: 'full' },
-          { path: 'view-profile', component: ProfileComponent, data: { title: 'City Tours - My Profile' } },
-          { path: 'edit-profile', component: EditProfileComponent, data: { title: 'City Tours - Edit Profile' } },
-          { path: 'update-password', component: UpdatePasswordComponent, data: { title: 'City Tours - Update Password' } }
+          { path: 'view-profile', component: ProfileComponent, data: { title: 'AirMAK - My Profile' } },
+          { path: 'edit-profile', component: EditProfileComponent, data: { title: 'AirMAK - Edit Profile' } },
+          { path: 'update-password', component: UpdatePasswordComponent, data: { title: 'AirMAK - Update Password' } }
         ]
       },
-      { path: 'payment', component: PaymentComponent, data: { title: 'City Tours - Payment' } },
-      { path: 'confirmation', component: PaymentConfirmationComponent, data: { title: 'City Tours - Confirmation' } },
-      { path: 'packages', component: UserPackagesComponent, data: { title: 'City Tours - Packages' } },
+      { path: 'payment', component: PaymentComponent, data: { title: 'AirMAK - Payment' } },
+      { path: 'confirmation', component: PaymentConfirmationComponent, data: { title: 'AirMAK - Confirmation' } },
+      { path: 'packages', component: UserPackagesComponent, data: { title: 'AirMAK - Packages' } },
     ]
   },
   {
@@ -79,16 +79,16 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: AdminHomeComponent, data: { title: 'City Tours - Property' } },
-      { path: 'add-admin', component: AdminComponent, data: { title: 'City Tours - Add Admin' } },
-      { path: 'create-package', component: PackageComponent, data: { title: 'City Tours - Create Package' } },
-      { path: 'package/details/:id', component: DetailsComponent, data: { title: 'City Tours - Package Details' } },
-      { path: 'pending', component: PendingComponent, data: { title: 'City Tours - Pending' } }
+      { path: 'dashboard', component: AdminHomeComponent, data: { title: 'AirMAK - Property' } },
+      { path: 'add-admin', component: AdminComponent, data: { title: 'AirMAK - Add Admin' } },
+      { path: 'create-package', component: PackageComponent, data: { title: 'AirMAK - Create Package' } },
+      { path: 'package/details/:id', component: DetailsComponent, data: { title: 'AirMAK - Package Details' } },
+      { path: 'pending', component: PendingComponent, data: { title: 'AirMAK - Pending' } }
     ]
   },
 
 
-  { path: '**', component: PageNotFoundComponent, data: { title: 'City Tours - Page Not Found' } }
+  { path: '**', component: PageNotFoundComponent, data: { title: 'AirMAK - Page Not Found' } }
 ];
 
 @NgModule({
