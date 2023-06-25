@@ -62,13 +62,24 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private handleNavigationDependOnRole(email: string, role: string) {
+    this.fetchUserID(email);
+    if (role == 'ADMIN') {
+      this.authGuardService.setLoggedIn(true);
+      this.router.navigate(['/admin/dashboard'])
+    } else {
+      this.authGuardService.setLoggedIn(true);
+      this.router.navigate(['/user/home'])
+    }
+  }
+
   private handleSocialLoginResponse(idToken: string): void {
     const token: TokenDto = new TokenDto(idToken);
     this.apiService.post("api/google", token).subscribe({
       next: response => {
         this.popupService.successPopup("Welcome, " + response.payload.firstName);
-        this.fetchUserID(response.payload.email)
-        this.router.navigate(['/home']);
+        this.sessionStorageService.setItem("role", response.payload.role);
+        this.handleNavigationDependOnRole(response.payload.email, response.payload.role);
       },
       error: err => {
         this.popupService.errorPopup("Must first register");
@@ -93,14 +104,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/home'])
 
           // Second API call to get the user ID
-          this.fetchUserID(response.payload.email)
-          if (response.payload.role == 'ADMIN') {
-            this.authGuardService.setLoggedIn(true);
-            this.router.navigate(['/admin/dashboard'])
-          } else {
-            this.authGuardService.setLoggedIn(true);
-            this.router.navigate(['/user/home'])
-          }
+          this.handleNavigationDependOnRole(response.payload.email, response.payload.role);
+
           this.isButtonDisabled = true; // Disable the button
 
         },

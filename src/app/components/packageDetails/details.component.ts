@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { APIResponse } from 'src/app/models/api-response.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PackageService } from 'src/app/services/package.service';
-import { Package } from 'src/app/models/getPackage.model';
-import { PopupService } from 'src/app/services/popup.service';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {APIResponse} from 'src/app/models/api-response.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PackageService} from 'src/app/services/package.service';
+import {Package} from 'src/app/models/getPackage.model';
+import {PopupService} from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   package = new Package();
   packageFormEdit: FormGroup;
 
-  constructor(private popupService: PopupService,private formBuilder: FormBuilder,private _activatedRoute: ActivatedRoute, private router: Router, private _http: HttpClient, private packageService: PackageService) {
+  constructor(private popupService: PopupService, private formBuilder: FormBuilder, private _activatedRoute: ActivatedRoute, private router: Router, private _http: HttpClient, private packageService: PackageService) {
   }
 
   ngOnInit(): void {
@@ -28,12 +28,13 @@ export class DetailsComponent implements OnInit {
 
       });
 
-      this.packageFormEdit = this.formBuilder.group({
-        price:         ['', [Validators.required]],
-      });
+    this.packageFormEdit = this.formBuilder.group({
+      price: ['', [Validators.required]],
+    });
 
 
   }
+
   getPackageById(id: string | null) {
     this._http.get<APIResponse>('http://localhost:8080/packages/' + id)
       .subscribe(
@@ -47,27 +48,23 @@ export class DetailsComponent implements OnInit {
   }
 
 
+  update(pakcgaeId: string, price: string): void {
+    this.packageService.update(pakcgaeId, price).subscribe({
+        next: response => {
+          console.log(response.payload);
+          if (response.status) {
+            this.popupService.successPopup('Update Successfuly');
 
-  update(pakcgaeId:string,price:string): void {
+            this.router.navigate(['/admin']);
+          } else {
 
-
-    this.packageService.update(pakcgaeId,price).subscribe({
-      next: response => {
-        console.log(response.payload);
-        if (response.status) {
-          this.popupService.successPopup('Update Successfuly');
-
-          this.router.navigate(['/admin']);
+          }
+        },
+        error: error => {
+          alert("Error");
         }
-        else {
-
-        }
-      },
-      error: error => { alert("Error"); }
-    }
+      }
     );
-
-
 
 
   }
