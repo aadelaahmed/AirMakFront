@@ -127,7 +127,7 @@
                     wishlist</span></span></a>
             </div>-->
               <div class="img_list">
-                <a routerLink="/user/property/details/{{property.id}}"><img [src]="property.images[0].imagePath"
+                <a routerLink="/property/details/{{property.id}}"><img [src]="property.images[0].imagePath"
                                                                             alt="Image">
                   <div class="short_info"></div>
                 </a>
@@ -161,7 +161,7 @@
             <div class="col-lg-2 col-md-2">
               <div class="price_list">
                 <div><sup>${{property.price}}</sup><small>From/Per night</small>
-                  <p><a routerLink="/user/property/details/{{property.id}}" class="btn_1">Details</a>
+                  <p><a routerLink="/property/details/{{property.id}}" class="btn_1">Details</a>
                   </p>
                 </div>
               </div>

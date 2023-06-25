@@ -137,6 +137,8 @@
             <!-- <a href="tel://004542344599" class="phone">{{property.user.phoneNumber}}</a> -->
             <a href="tel:{{property.user.phoneNumber}}" class="phone">{{property.user.phoneNumber}}</a>
 
+            <a (click)="accept(property.id)" *ngIf="isAdmin()" class="phone">Accept</a>
+
             <!-- <small>Monday to Friday 9.00am - 7.30pm</small> -->
           </div>
 

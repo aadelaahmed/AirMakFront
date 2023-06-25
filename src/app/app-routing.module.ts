@@ -43,7 +43,6 @@ const routes: Routes = [
           {path: 'discovery', component: PropertyDiscoveryComponent, data: {title: 'AirMAK - Property'}},
           {path: 'edit/:id', component: EditPropertyComponent, title: 'Edit Property'},
           {path: 'add', component: AddPropertyComponent, title: 'Add Property'},
-          {path: 'details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails'},
         ]
       },
       {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -77,7 +76,9 @@ const routes: Routes = [
       {path: 'packages', component: UserPackagesComponent, data: {title: 'AirMAK - Packages'}},
     ]
   },
-  {path: '/user/reset-password', component: ResetPasswordComponent, data: {title: 'AirMAK - Reset Password'}},
+  {path: 'user/reset-password', component: ResetPasswordComponent, data: {title: 'AirMAK - Reset Password'}},
+  {path: 'property/details/:id', component: PropertyDetailsComponent, title: 'PropertyDetails'},
+
   {
     path: 'admin',
     canActivate: [authGuard],
