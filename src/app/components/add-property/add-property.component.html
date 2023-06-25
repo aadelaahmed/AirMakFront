@@ -128,14 +128,14 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label>Bedroom Count</label>
-              <input class="form-control" formControlName="bedroom_count" type="number" required>
+              <label *ngIf="formData.controls['property_type'].value.toLowerCase() !== 'room'">Bedroom Count</label>
+              <input *ngIf="formData.controls['property_type'].value.toLowerCase() !== 'room'" class="form-control" formControlName="bedroom_count" type="number" required>
               <div
                 *ngIf="formData.controls['bedroom_count'].errors?.['required']  && isSubmitted"
                 class="text-danger">
                 Bedroom Count is required
               </div>
-              <div *ngIf="formData.get('bedroom_count').errors?.['pattern'] && isSubmitted">Invalid BedRoom Count.</div>
+              <div *ngIf="formData.get('bedroom_count').errors?.['pattern'] && formData.controls['property_type'].value.toLowerCase() !== 'room' && isSubmitted">Invalid BedRoom Count.</div>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ export class EditPropertyComponent implements OnInit {
   isSubmitted = false;
   propertyId: number;
   currentProperty: Property;
-
+  isRoom:boolean;
   constructor(private editPropertyService: EditPropertyService, private route: ActivatedRoute, private formBuilder: FormBuilder, private sessionStorage: SessionStorageService) {
   }
 
@@ -55,6 +55,12 @@ export class EditPropertyComponent implements OnInit {
       (property: Property) => {
         LoadingBarService.isLoading = false;
         this.currentProperty = property;
+        // const propertyType = this.formData.get('property_type').value.toString().toLowerCase();
+        const propertyType = property.propertyType;
+        if (propertyType.toLowerCase() === 'room') {
+          this.isRoom = true;
+          // this.formData.get('bedroom_count').setValue(0);
+        }
         console.log("fetched property ->" + property);
         console.log("currentProperty ->" + this.currentProperty);
         this.formData.patchValue({
@@ -83,11 +89,16 @@ export class EditPropertyComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
+    const updatedProperty: UpdatePropertyDTO = new UpdatePropertyDTO();
+    if (this.isRoom)
+    {
+      this.formData.get('bedroom_count').setValue(0);
+      updatedProperty.bedRoomCount = 0;
+    }
     if (this.formData.valid) {
       // Perform the submission or update operation
       LoadingBarService.isLoading = true;
       console.log(this.formData.value);
-      const updatedProperty: UpdatePropertyDTO = new UpdatePropertyDTO();
       updatedProperty.description = this.formData.get('description').value;
       updatedProperty.airCondition = this.formData.get('airCondition').value;
       updatedProperty.bedRoomCount = this.formData.get('bedroom_count').value;
@@ -99,9 +110,9 @@ export class EditPropertyComponent implements OnInit {
       updatedProperty.availability = this.currentProperty.availability;
       updatedProperty.id = this.currentProperty.id;
       updatedProperty.user = new User();
+
       //TODO: get user id from opened session.
       updatedProperty.user.id = this.sessionStorage.getItem("userID");
-
       console.log("check data in invalid form ->" + JSON.stringify(this.formData.value));
       this.editPropertyService.editProperty(updatedProperty);
     } else {

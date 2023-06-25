@@ -62,37 +62,6 @@ export class AddPropertyComponent implements OnInit {
       lng: 30.58154140412807
     };
   }
-
-  /*constructor(private addPropertyService: AddPropertyService, private storageService: FirebaseStorageService, private formBuilder: FormBuilder) {
-  }*/
-
-  /*ngOnInit() {
-    this.isSubmitted = false;
-    this.formData = this.formBuilder.group({
-      property_type: ['', Validators.required],
-      description: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      availability: ['', Validators.required],
-      listing_type: ['', Validators.required],
-      floor_no: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      wifi: ['', Validators.required],
-      bedroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      bathroom_count: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      air_conditioning: ['', Validators.required],
-      tv: ['', Validators.required],
-      property_number: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      streetNo: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      country: ['', Validators.required],
-      lng: ['', [Validators.required, Validators.pattern(/^-?\d{1,3}(\.\d{1,6})?$/)]],
-      lat: ['', [Validators.required, Validators.pattern(/^-?\d{1,2}(\.\d{1,6})?$/)]],
-      img1: ['', Validators.required],
-      img2: ['', Validators.required],
-      img3: ['', Validators.required],
-    });
-  }*/
-
   uploadImages(fileList: FileList) {
     if (this.isFormValidated) {
       this.property.images = [];
@@ -165,7 +134,6 @@ export class AddPropertyComponent implements OnInit {
     //this.property.images = [];
     //this.property.images = this.uploadedImages;
     this.property.propertyState = "PENDING";
-
     console.log("test images in property -> " + this.property.images);
     //TODO : get current user id
     this.property.user = new User();
@@ -217,6 +185,10 @@ export class AddPropertyComponent implements OnInit {
     this.isSubmitted = true;
     console.log("fileList length ->"+fileList.length);
     LoadingBarService.isLoading = true;
+    const propertyType = this.formData.get('property_type').value.toString().toLowerCase();
+    if (propertyType === 'room') {
+      this.formData.get('bedroom_count').setValue(0);
+    }
     if (!this.isFormValidated || this.lat == null || this.lng == null || fileList.length != 3) {
       console.log("not validated");
       LoadingBarService.isLoading = false;
@@ -229,8 +201,6 @@ export class AddPropertyComponent implements OnInit {
     if (event.latLng != null) this.propertyPositionFromMap = event.latLng.toJSON();
     this.lng = this.propertyPositionFromMap.lng;
     this.lat = this.propertyPositionFromMap.lat;
-
   }
-
   protected readonly LoadingBarService = LoadingBarService;
 }

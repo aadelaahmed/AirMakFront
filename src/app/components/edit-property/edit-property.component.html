@@ -65,14 +65,29 @@
         </div>
 
         <div class="row">
+<!--          <div class="col-md-6">-->
+<!--            <div class="form-group">-->
+<!--              <label *ngIf="!isRoom">Bedroom Count</label>-->
+<!--              <input *ngIf="!isRoom" class="form-control" formControlName="bedroom_count" type="number" required>-->
+<!--              <div-->
+<!--                *ngIf="formData.controls['bedroom_count'].errors?.['required']&& !isRoom && isSubmitted"-->
+<!--                class="text-danger">-->
+<!--                Bedroom Count is required-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
           <div class="col-md-6">
             <div class="form-group">
-              <label>Bedroom Count</label>
-              <input class="form-control" formControlName="bedroom_count" type="number" required>
+              <label>Wi-Fi</label>
+              <select class="form-control" formControlName="wifi" required>
+                <option value="">Select...</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
               <div
-                *ngIf="formData.controls['bedroom_count'].errors?.['required'] && isSubmitted"
+                *ngIf="formData.controls['wifi'].errors?.['required'] && isSubmitted"
                 class="text-danger">
-                Bedroom Count is required
+                Wi-Fi is required
               </div>
             </div>
           </div>
@@ -105,7 +120,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <!--<div class="col-md-6">
             <div class="form-group">
               <label>Wi-Fi</label>
               <select class="form-control" formControlName="wifi" required>
@@ -119,7 +134,18 @@
                 Wi-Fi is required
               </div>
             </div>
-          </div>
+          </div>-->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label *ngIf="!isRoom">Bedroom Count</label>
+                        <input *ngIf="!isRoom" class="form-control" formControlName="bedroom_count" type="number" required>
+                        <div
+                          *ngIf="formData.controls['bedroom_count'].errors?.['required']&& !isRoom && isSubmitted"
+                          class="text-danger">
+                          Bedroom Count is required
+                        </div>
+                      </div>
+                    </div>
         </div>
 
         <div class="row">
