@@ -58,7 +58,7 @@ const routes: Routes = [
         ]
       },
 
-      { path: 'forget-password', component: ForgetPasswordComponent, canActivate: [authGuard], data: { title: 'City Tours - Forget Password' } },
+      { path: 'forget-password', component: ForgetPasswordComponent, data: { title: 'City Tours - Forget Password' } },
       { path: 'reset-password', component: ResetPasswordComponent, data: { title: 'City Tours - Reset Password' } },
       {
         path: 'profile',

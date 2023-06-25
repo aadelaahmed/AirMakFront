@@ -47,7 +47,10 @@ export class authGuard implements CanActivate {
           '/login',
           '/user/register',
           '/user/property/discovery',
-          '/user/packages'
+          '/user/packages',
+          '/user/forget-password',
+          // /^\/user\/reset-password\?token=.+$/,
+          /^\/user\/reset-password\?token=\/\*$/,
         ];
 
         const currentRoute = state.url;

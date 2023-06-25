@@ -137,9 +137,9 @@
               <div class="tour_list_desc">
                 <p *ngIf="property.listingType === 'RENT'" class="rentText">For {{property.listingType}}</p>
                 <p *ngIf="property.listingType === 'SALE'" class="saleText">For {{property.listingType}}</p>
-                <h3><strong>{{property.user.firstName}}</strong> {{property.propertyType}}</h3>
-                <p>{{property.description}}
-                <p>
+                <h3>{{property.propertyType}}</h3>
+                <h5 class="font-monospace">{{property.user.firstName}}</h5>
+                <p>{{property.description}}<p>
                 <ul class="add_info">
                   <li *ngIf="property.wifi === 1">
                     <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top" title="Free Wifi"><i
