@@ -6,6 +6,7 @@ import {PopupService} from "../../../services/popup.service";
 import {SessionStorageService} from "../../../services/session-storage.service";
 import { AuthGuardService } from 'src/app/services/authGuard.service';
 import { SubscriptionService } from 'src/app/services/subscription.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-header',
@@ -67,6 +68,7 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['user/property/add']);
       } else {
         //redirect to packages
+        Swal.fire('Please choose your package...')
         this.router.navigate(['user/packages']);
       }
 
