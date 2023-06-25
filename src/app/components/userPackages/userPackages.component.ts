@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { subscribeOn } from 'rxjs';
 import { Packages } from 'src/app/interface/packages';
+import { AuthGuardService } from 'src/app/services/authGuard.service';
 import { PackageService } from 'src/app/services/package.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { PackageService } from 'src/app/services/package.service';
 export class UserPackagesComponent implements OnInit{
   public packages: Packages[];
 
-  constructor(private packageService: PackageService, private router: Router) {
+  constructor(private packageService: PackageService, private router: Router,     private authGuardService: AuthGuardService
+    ) {
   }
 
   ngOnInit(){
@@ -29,6 +31,11 @@ export class UserPackagesComponent implements OnInit{
 
   
   subscribeNow(selectedPackages:Packages) {
-    this.router.navigate(['user/payment'], { queryParams: selectedPackages});
+    const isLogged = this.authGuardService.isLoggedIn("userID");
+    if(isLogged){
+      this.router.navigate(['user/payment'], { queryParams: selectedPackages});
+    }else{
+      this.router.navigate(['login']);
+    }
   }
 }

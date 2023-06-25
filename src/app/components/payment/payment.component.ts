@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit{
       this.paymentService.subscribeOnPackage(paymentRequest).subscribe(result => {
         console.log("result in payment : " + result);
 
-        this.router.navigate(['user/confirmation'], { queryParams: result.payload });
+        this.router.navigate(['/user/confirmation'], { queryParams: result.payload });
         this.isLoading = false;
       });
     } catch (error) {

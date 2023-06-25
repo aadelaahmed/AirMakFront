@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
-import {LoginDTO} from "../../../dtos/users/login-dto.model";
-import {TokenDto} from "../../../dtos/users/token-dto.model";
-import {ApiService} from "../../../services/api.service";
-import {PopupService} from "../../../services/popup.service";
-import {SessionStorageService} from '../../../services/session-storage.service';
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { LoginDTO } from "../../../dtos/users/login-dto.model";
+import { TokenDto } from "../../../dtos/users/token-dto.model";
+import { ApiService } from "../../../services/api.service";
+import { PopupService } from "../../../services/popup.service";
+import { SessionStorageService } from '../../../services/session-storage.service';
+import { Router } from "@angular/router";
 import { AuthGuardService } from 'src/app/services/authGuard.service';
 
 @Component({
@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
       },
       error: err => {
         this.popupService.errorPopup("Must first register");
+        this.authService.signOut();
         this.router.navigate(['/user/register'])
       }
     });
@@ -84,20 +85,31 @@ export class LoginComponent implements OnInit {
       const formValue = this.loginForm.value;
       const user: LoginDTO = new LoginDTO(formValue.email, formValue.password);
 
-      this.isButtonDisabled = true; // Disable the button
-
       this.apiService.post("users/login", user).subscribe({
         next: response => {
+          this.sessionStorageService.setItem("role", response.payload.role);
+          console.log(response.payload.role, "ROLE");
           this.popupService.successPopup("Welcome, " + response.payload.firstName);
           this.router.navigate(['/home'])
+
           // Second API call to get the user ID
           this.fetchUserID(response.payload.email)
+          if (response.payload.role == 'ADMIN') {
+            this.authGuardService.setLoggedIn(true);
+            this.router.navigate(['/admin/dashboard'])
+          } else {
+            this.authGuardService.setLoggedIn(true);
+            this.router.navigate(['/user/home'])
+          }
+          this.isButtonDisabled = true; // Disable the button
+
         },
         error: err => {
           this.popupService.errorPopup("Invalid email or password");
         },
         complete: () => {
           this.isButtonDisabled = false; // Re-enable the button after API call completes
+
         }
       });
     }
@@ -116,5 +128,9 @@ export class LoginComponent implements OnInit {
         console.log(error)
       }
     );
+  }
+
+  get hideGoogleLogin(): boolean {
+    return !this.authGuardService.isLoggedIn("userID");
   }
 }

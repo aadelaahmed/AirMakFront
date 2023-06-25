@@ -48,7 +48,7 @@ export class  PendingComponent implements OnInit {
           console.log(reposnse);
           this.popupService.successPopup(reposnse.payload);
 
-          this.router.navigate(['/pending']);
+          this.router.navigate(['admin/pending']);
 
 
         },
@@ -64,5 +64,7 @@ export class  PendingComponent implements OnInit {
 
   }
 
-
+  showDetails(id:number){
+    this.router.navigate(['/user/property/details', id]); 
+  }
 }

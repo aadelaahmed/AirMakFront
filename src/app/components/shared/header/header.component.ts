@@ -33,14 +33,19 @@ export class HeaderComponent implements OnInit {
     return !this.authGuardService.isLoggedIn("userID");
   }
 
+  get getRole(): any {
+    return this.authGuardService.getRole();
+  }
+
   logout() {
     // Call the logout API on the server
     this.apiService.get('users/logout').subscribe(
       () => {
         this.sessionStorageService.removeItem('userID');
+        this.sessionStorageService.removeItem('role');
         this.signOut();
         this.popupService.successPopup("We Will Miss you")
-        this.router.navigate(['/home'])
+        this.router.navigate(['user/home'])
       },
       (error) => {
         console.log('error');
@@ -53,17 +58,16 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
-
   hasSubscription() {
     this.subscriptionService.HasActiveSubscription().subscribe(data => {
       this.hasActiveSubscription = data.payload as boolean;
       console.log(this.hasActiveSubscription)
       if(this.hasActiveSubscription){
-        //redirect to add 
-        this.router.navigate(['/property/add']);
+        //redirect to add
+        this.router.navigate(['user/property/add']);
       } else {
         //redirect to packages
-        this.router.navigate(['/user/packages']);
+        this.router.navigate(['user/packages']);
       }
 
     });

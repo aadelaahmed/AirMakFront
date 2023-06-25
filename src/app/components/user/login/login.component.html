@@ -10,7 +10,7 @@
             <form [formGroup]="loginForm" (ngSubmit)="signInButton($event)">
 
               <asl-google-signin-button
-                *ngIf="!socialUser"
+                *ngIf="!socialUser && hideGoogleLogin"
                 type='standard'
                 size='large'
                 width="290"
@@ -33,7 +33,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="password">Email</label>
+                <label for="password">Password</label>
                 <input [class.is-valid]="!loginForm.controls['password'].errors" formControlName="password"
                        id="password"
                        class="form-control" placeholder="Password" type="password"/>
