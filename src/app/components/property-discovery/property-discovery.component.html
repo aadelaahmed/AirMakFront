@@ -32,7 +32,7 @@
                 <input type="number" id="to" name="to" [(ngModel)]="propertyFilter.maxPrice"> $
               </div>
             </div>
-      
+
             <div class="filter_type">
               <h6>Type</h6>
               <ul class="mb-0">
@@ -162,7 +162,7 @@
               <div class="col-lg-2 col-md-2">
                 <div class="price_list">
                   <div><sup>${{property.price}}</sup><small>From/Per night</small>
-                    <p><a href="single_hotel.html" class="btn_1">Details</a>
+                    <p><a routerLink="/user/property/details/{{property.id}}" class="btn_1">Details</a>
                     </p>
                   </div>
                 </div>
