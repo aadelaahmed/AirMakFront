@@ -8,7 +8,7 @@
                     (mapDblclick)="moveToPropertyDetails(property.id)" (mapMouseover)="Over(property,marker)"
                     (mapMouseout)="Out()">
         </map-marker>
-        <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : ${{propertyInfo.price}}
+        <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : E£{{propertyInfo.price}}
           <br> Double Click For More Details
         </map-info-window>
       </google-map>
@@ -23,11 +23,11 @@
               <h6>Price</h6>
               <div class="input-wrapper">
                 <label for="from">From:</label>
-                <input type="number" id="from" name="from" [(ngModel)]="propertyFilter.minPrice"> $
+                <input type="number" id="from" name="from" [(ngModel)]="propertyFilter.minPrice"> E£
               </div>
               <div class="input-wrapper">
                 <label for="to">To:</label>
-                <input type="number" id="to" name="to" [(ngModel)]="propertyFilter.maxPrice"> $
+                <input type="number" id="to" name="to" [(ngModel)]="propertyFilter.maxPrice"> E£
               </div>
             </div>
 
@@ -160,7 +160,7 @@
 
             <div class="col-lg-2 col-md-2">
               <div class="price_list">
-                <div><sup>${{property.price}}</sup><small>From/Per night</small>
+                <div><sup>E£{{property.price}}</sup><small>From/Per night</small>
                   <p><a routerLink="/property/details/{{property.id}}" class="btn_1">Details</a>
                   </p>
                 </div>
