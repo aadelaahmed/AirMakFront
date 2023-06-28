@@ -1,4 +1,4 @@
-# Angular Project
+# AirMAK Project
 
 This is a sample Angular project showcasing the features and capabilities of the application. It provides a platform for users to buy, sell, and rent properties seamlessly. The project utilizes the Angular framework and various libraries to create a modern and responsive user interface.
 
