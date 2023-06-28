@@ -76,7 +76,7 @@
               "src/assets/styles/navigation-skins/settings-source.css",
               "src/assets/styles/fonts/font-awesome/css/font-awesome.css",
               "src/assets/styles/fonts/pe-icon-7-stroke/css/helper.css",
-              "src/assets/styles/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css",
+              "src/assets/styles/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"
             ],
             "scripts": [
               "src/assets/js/jquery-3.6.0.min.js",

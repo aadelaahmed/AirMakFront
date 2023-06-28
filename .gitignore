@@ -1,6 +1,7 @@
 .angular/
 node_modules/
 .idea/
+.idea
 # Logs
 logs
 *.log

@@ -56,17 +56,17 @@ export class authGuard implements CanActivate {
         console.log('userRole in auth is: ', userRole);
 
         if (userRole === 'USER' && !allowedUserRoutes.includes(currentRoute)) {
-          this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
+          this.router.navigate(['/unauthorized']);
           return false;
         }
 
         if (userRole === 'ADMIN' && !allowedAdminRoutes.includes(currentRoute)) {
-          this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
+          this.router.navigate(['/unauthorized']);
           return false;
         }
 
         if (!isLoggedIn && !userRole && !allowedNotAdminOrUserRoutes.includes(currentRoute)) {
-          this.router.navigate(['/unauthorized']); // Redirect to an unauthorized page or show an error message
+          this.router.navigate(['/unauthorized']);
           return false;
         }
 
