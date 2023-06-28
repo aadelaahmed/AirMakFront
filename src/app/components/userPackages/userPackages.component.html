@@ -1,0 +1,31 @@
+
+<main class="main">
+	<div class="container margin_60">
+		<div class="main_title">
+			<h2><span>Affordable </span>packages for travellers</h2>
+			<p>
+				Subscribe on package to countinue your journy to successfully.
+			</p>
+		</div>
+		<hr>
+
+			<div  class="row text-center plans">
+
+				<div *ngFor="let package of packages; let i= index" class="plan col-lg-4">
+					<h2 class="plan-title">{{package.name}}</h2>
+					<p class="plan-price">${{package.price}}<span>/00</span>
+					</p>
+					<ul class="plan-features">
+						<li><strong>{{package.propertyCount}}</strong> Property</li>
+					</ul>
+					<p class="text-center"><a (click)="subscribeNow(package)" class=" btn_1">Subscribe now</a>
+					</p>
+				</div>
+				<!-- End col -->
+			</div>
+		<!-- End row plans-->
+	</div>
+	<!-- End container -->
+</main>
+<!-- End main -->
+

@@ -4,15 +4,15 @@ import { Subscription } from './subscription';
 
 export class User {
   id: number;
-  private firstName: string;
-  private lastName: string;
-  private birthdate: Date;
+  firstName: string;
+  lastName: string;
+  birthdate: Date;
   phoneNumber: string;
-  private email: string;
-  private password: string;
-  private properties: Property[];
-  private reviews: Review[];
-  private subscriptions: Subscription[];
-
+  email: string;
+  password: string;
+  properties: Property[];
+  reviews: Review[];
+  subscriptions: Subscription[];
+  propertycount:number;
   // Constructors, getters, and setters
 }

@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LoadingBarService} from "../../services/loading-bar.service";
 import Swal from "sweetalert2";
 import {map} from "rxjs/operators";
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 @Component({
   selector: 'app-user-properties',
@@ -14,32 +15,34 @@ import {map} from "rxjs/operators";
 export class UserPropertiesComponent implements OnInit{
   userProperties:Property[];
 
-  constructor(private router: Router,private userPropertiesService:UserPropertiesService) {
-    //TODO:Replace with the actual user ID
-    const userId = 1;
-    this.userPropertiesService.getPropertiesByUserId(userId)
-      .subscribe(
-      (properties: Property[]) => {
-        this.userProperties = [];
-        LoadingBarService.isLoading= false;
-        for (const property of properties) {
-          if (property.propertyState.toLowerCase() === 'pending' || property.propertyState.toLowerCase() === 'publish')
-            this.userProperties.push(property);
-        }
-        console.log("user properties ->"+this.userProperties);
-      },
-      (error) => {
-        LoadingBarService.isLoading= false;
-        console.error('Error retrieving properties:', error);
-      }
-    );
+  constructor(private router: Router,private userPropertiesService:UserPropertiesService, private sessionStorage:SessionStorageService) {
+
   }
   ngOnInit() {
     LoadingBarService.isLoading= true;
+    //TODO:Replace with the actual user ID
+    const id = this.sessionStorage.getItem("userID");
+    console.log("add USer prop : " + id);
+    this.userPropertiesService.getPropertiesByUserId(id)
+      .subscribe(
+        (properties: Property[]) => {
+          this.userProperties = [];
+          LoadingBarService.isLoading= false;
+          for (const property of properties) {
+            if (property.propertyState.toLowerCase() === 'pending' || property.propertyState.toLowerCase() === 'publish')
+              this.userProperties.push(property);
+          }
+          console.log("user properties ->"+this.userProperties);
+        },
+        (error) => {
+          LoadingBarService.isLoading= false;
+          console.error('Error retrieving properties:', error);
+        }
+      );
   }
   editProperty(propertyId:number){
     console.log("editproperty btn clicked ->"+propertyId);
-    this.router.navigate(['property/edit', propertyId]);
+    this.router.navigate(['user/property/edit', propertyId]);
   }
   getPropertyMonth(property: Property): string {
     // Implement logic to retrieve and format the month based on the property's date
@@ -65,7 +68,7 @@ export class UserPropertiesComponent implements OnInit{
     })
   }
   moveToPropertyDetails(propertyId:number){
-    this.router.navigate(['property/details', propertyId]);
+    this.router.navigate(['/user/property/details', propertyId]);
   }
   getPropertyDay(property: Property): number {
     // Implement logic to retrieve and format the day based on the property's date

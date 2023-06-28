@@ -1,0 +1,96 @@
+<div class="strip_booking">
+    <div class="row">
+        <div class="col-lg-2 col-md-6">
+
+        </div>
+    </div>
+</div>
+<div class="strip_booking">
+    <div class="row">
+        <div class="col-lg-2 col-md-6">
+
+        </div>
+    </div>
+</div>
+<div class="strip_booking">
+    <div class="row">
+        <div class="col-lg-2 col-md-6">
+
+        </div>
+    </div>
+</div>
+<div class="strip_booking">
+    <div class="row">
+        <div class="col-lg-2 col-md-6">
+           
+        </div>
+      
+    </div>
+</div>
+
+
+ <div class="strip_booking" *ngFor="let packagee of packages;let currentIndex=index">
+    <div class="row">
+        <div class="col-lg-2 col-md-6">
+
+        </div>
+            <div class="col-lg-6 col-md-5">
+                
+                <h3 class="hotel_booking"><a routerLink="/admin/package/details/{{packagee.id}}">{{packagee.name}}</a><span>Propet Count: {{packagee.propertyCount}}</span></h3>
+            </div>
+            <div class="col-lg-2 col-md-3">
+                <ul class="info_booking">
+                    <li><strong>Price</strong> {{packagee.price}}</li>
+                    <li><strong>Duration</strong> {{ packagee.duration}}  Day</li>
+                    <li><strong>Subscribition</strong> {{ numbers[currentIndex]}} </li>
+                     
+                </ul>
+            </div>
+    
+        <div class="col-lg-2 col-md-2">
+            <div class="booking_buttons">
+                <button (click)="delete(packagee.id)" class="btn_2">Delete</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+
+
+<div class="row" >
+    <div class="col-lg-6 col-md-6">
+        <div class="pricing-table black ">
+            <div class="pricing-table-header">
+                <span class="heading">Best Package</span>
+            </div>
+            <div class="pricing-table-space"></div>
+            <div class="pricing-table-features">
+                <p><strong>Name: </strong>{{package.name}}</p>
+                <p><strong>Property Count: </strong> {{package.propertyCount}}</p>
+                <p><strong>Duration</strong> {{package.duration}}</p>
+                <p><strong>Price  </strong>{{package.price}}</p>
+                <p><strong>Number Of Subscribtion  </strong>{{package.numberOfSubscriber}}</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+        <div class="pricing-table black">
+            <div class="pricing-table-header">
+                <span class="heading">Number Of Packages</span>
+                <span class="price-value"><span>{{numberOfPackages}}</span><span class="mo"></span></span>
+            </div>
+            <div class="pricing-table-space "></div>
+         
+            
+        </div>
+    </div>
+
+    
+
+   
+
+</div> 

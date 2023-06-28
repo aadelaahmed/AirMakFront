@@ -1,0 +1,37 @@
+<main>
+  <!--  <img src="assets/img/notgeneric_bg1.jpg" class="img-fluid" alt="Responsive image">-->
+
+  <div class="container-profile">
+    <img src="assets/img/notgeneric_bg1.jpg" alt="Snow" style="width:100%;">
+    <div class="centered">
+      <h1 class="h1-profile text-white display-1">PROFILE</h1>
+    </div>
+  </div>
+
+  <div class="margin_60 container">
+    <section>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Your Profile</h4>
+          <ul id="profile_summary">
+            <li>Email <span>{{ profileData?.email }}</span></li>
+            <li>First name <span>{{ profileData?.firstName }}</span></li>
+            <li>Last name <span>{{ profileData?.lastName }}</span></li>
+            <li>Phone number <span>{{ profileData?.phoneNumber }}</span></li>
+            <li>Date of birth <span>{{ profileData?.birthdate }}</span></li>
+            <li>Remaining properties<span>{{ profileData?.propertycount}}</span></li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <img src="assets/img/profile.png" alt="Image" class="img-fluid styled profile_pic rounded-circle" width="200" height="200">
+          </p>
+        </div>
+      </div>
+      <!-- End row -->
+      <hr>
+      <button (click)="editProfileButton()" class="btn_1 green" style="margin-right: 2.5%;">Edit Profile</button>
+      <button (click)="updatePasswordButton()" class="btn_1 green">Update Password</button>
+    </section>
+  </div>
+</main>

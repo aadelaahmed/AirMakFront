@@ -1,0 +1,277 @@
+<main>
+  <div class="container margin_60">
+    <div style="margin-top: 40px; margin-bottom: 8px">
+      <google-map *ngIf="isLoaded" height="400px" width="auto" [center]="map.center" [zoom]="map.zoom">
+        <map-ground-overlay [url]="imageUrl" [bounds]="imageBounds"></map-ground-overlay>
+        <map-marker #marker="mapMarker" *ngFor="let property of properties"
+                    [position]="{lat: property.address.lat, lng: property.address.lng}"
+                    (mapDblclick)="moveToPropertyDetails(property.id)" (mapMouseover)="Over(property,marker)"
+                    (mapMouseout)="Out()">
+        </map-marker>
+        <map-info-window> {{propertyInfo.propertyType}} For {{propertyInfo.listingType}} : E£{{propertyInfo.price}}
+          <br> Double Click For More Details
+        </map-info-window>
+      </google-map>
+    </div>
+    <div class="row">
+      <aside class="col-lg-3">
+        <div id="filters_col">
+          <a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters"
+             id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
+          <div class="collapse show" id="collapseFilters">
+            <div class="filter_type">
+              <h6>Price</h6>
+              <div class="input-wrapper">
+                <label for="from">From:</label>
+                <input type="number" id="from" name="from" [(ngModel)]="propertyFilter.minPrice"> E£
+              </div>
+              <div class="input-wrapper">
+                <label for="to">To:</label>
+                <input type="number" id="to" name="to" [(ngModel)]="propertyFilter.maxPrice"> E£
+              </div>
+            </div>
+
+            <div class="filter_type">
+              <h6>Type</h6>
+              <ul class="mb-0">
+                <li>
+                  <label class="container_check">
+                    Rent
+                    <input [(ngModel)]="propertyFilter.isForRent" type="checkbox" name="location">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="container_check">
+                    Sale
+                    <input [(ngModel)]="propertyFilter.isForSale" type="checkbox" name="location">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter_type">
+              <h6>Facility</h6>
+              <ul>
+                <li>
+                  <label class="container_check">
+                    Air Condition
+                    <input [(ngModel)]="propertyFilter.hasAirCondition" type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="container_check">
+                    Wifi
+                    <input [(ngModel)]="propertyFilter.haswifi" type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="container_check">
+                    Tv
+                    <input [(ngModel)]="propertyFilter.hasTv" type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            <div class="filter_type">
+              <h6>Type</h6>
+              <ul class="mb-0">
+                <li>
+                  <label class="container_check">
+                    Apartment
+                    <input [(ngModel)]="propertyFilter.isProperty" type="checkbox" name="location">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="container_check">
+                    Room
+                    <input [(ngModel)]="propertyFilter.isRoom" type="checkbox" name="location">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter_type">
+              <h6>City</h6>
+              <div class="spinner-wrapper">
+                <select class="spinner-input" [(ngModel)]="propertyFilter.city">
+                  <option *ngFor="let city of egyptMainCities" [value]="city">{{ city }}</option>
+                </select>
+                <div class="spinner-arrow"></div>
+              </div>
+            </div>
+
+          </div>
+          <!--End collapse -->
+          <a class="btn_map" (click)="searchForProperties(0)">Filter Now</a>
+        </div>
+        <!--End filters col-->
+      </aside>
+      <!--End aside -->
+
+      <div class="col-lg-9">
+        <!-- <div ngIf="isLoaded"> -->
+        <div *ngFor="let property of properties; let i= index" class="strip_all_tour_list wow fadeIn"
+             data-wow-delay="0.1s">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 position-relative">
+              <!--<div class="wishlist">
+              <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
+                  class="tooltip-content-flip"><span class="tooltip-back">Add to
+                    wishlist</span></span></a>
+            </div>-->
+              <div class="img_list">
+                <a routerLink="/property/details/{{property.id}}"><img [src]="property.images[0].imagePath"
+                                                                            alt="Image">
+                  <div class="short_info"></div>
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="tour_list_desc">
+                <p *ngIf="property.listingType === 'RENT'" class="rentText">For {{property.listingType}}</p>
+                <p *ngIf="property.listingType === 'SALE'" class="saleText">For {{property.listingType}}</p>
+                <h3>{{property.propertyType}}</h3>
+                <h5 class="font-monospace">{{property.user.firstName}}</h5>
+                <p>{{property.description}}<p>
+                <ul class="add_info">
+                  <li *ngIf="property.wifi === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top" title="Free Wifi"><i
+                      class="icon_set_1_icon-86"></i></a>
+                  </li>
+                  <li *ngIf="property.tv === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                       title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
+                  </li>
+
+                  <li *ngIf="property.airCondition === 1">
+                    <a href="javascript:void(0);" class="tooltip-1" data-bs-placement="top"
+                       title="Plasma TV with cable channels"><i class="icon-air"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2">
+              <div class="price_list">
+                <div><sup>E£{{property.price}}</sup><small>From/Per night</small>
+                  <p><a routerLink="/property/details/{{property.id}}" class="btn_1">Details</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+        <!--End strip -->
+
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center">
+            <li *ngIf="page != 0" class="page-item">
+              <button class="page-link" (click)="searchForProperties(page - 1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </button>
+            </li>
+            <div *ngFor="let i of counterArray(pageMetadata.totalPages)">
+              <li *ngIf="i === page" class="page-item active">
+                <span class="page-link">{{i + 1}}</span>
+              </li>
+
+              <li *ngIf="i !== page" class="page-item">
+                <button (click)="searchForProperties(i)" class="page-link">{{i + 1}}</button>
+              </li>
+            </div>
+
+
+            <li *ngIf="page != pageMetadata.totalPages - 1" class="page-item">
+              <button class="page-link" (click)="searchForProperties(page + 1)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <!-- end pagination-->
+
+      </div>
+      <!-- End col lg-9 -->
+    </div>
+    <!-- End row -->
+  </div>
+  <!-- End container -->
+</main>
+<!-- End main -->
+<style>
+  .map {
+    width: 100%;
+  }
+
+  .horizontal-inputs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrapper label {
+    margin: 8px;
+    align-items: center;
+  }
+
+  .spinner-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .spinner-input {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #333;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  .spinner-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 0 6px;
+    border-color: #666 transparent transparent transparent;
+    cursor: pointer;
+  }
+
+  .rentText {
+    border-radius: 5px;
+    background: rgb(233, 167, 0);
+    padding: 3px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .saleText {
+    border-radius: 5px;
+    background: rgb(0, 95, 184);
+    padding: 3px;
+    color: white;
+    font-weight: bold;
+  }
+</style>

@@ -1,0 +1,62 @@
+<main>
+  <section id="hero" class="login">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
+          <div id="login">
+            <div class="text-center"><img src="../../../../assets/img/logo_sticky.png" alt="Image" width="160"
+                                          height="34"></div>
+            <hr>
+            <form [formGroup]="loginForm" (ngSubmit)="signInButton($event)">
+
+              <asl-google-signin-button
+                *ngIf="!socialUser && hideGoogleLogin"
+                type='standard'
+                size='large'
+                width="290"
+              >
+              </asl-google-signin-button>
+
+              <div class="divider"><span>Or</span></div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input [class.is-valid]="!loginForm.controls['email'].errors" formControlName="email" id="email"
+                       class="form-control" placeholder="example@example.com" type="text"/>
+                <div
+                  *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+                  <small class="form-text text-danger" *ngIf="loginForm.get('email')?.hasError('required')">Email is
+                    required.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="loginForm.get('email')?.hasError('pattern')">Email
+                    The format must be example@example.com.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input [class.is-valid]="!loginForm.controls['password'].errors" formControlName="password"
+                       id="password"
+                       class="form-control" placeholder="Password" type="password"/>
+                <div
+                  *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                  <small class="form-text text-danger" *ngIf="loginForm.get('password')?.hasError('required')">Email is
+                    required.
+                  </small>
+                </div>
+              </div>
+              <p class="small">
+                <a routerLink="/user/forget-password">Forgot Password?</a>
+              </p>
+              <button type="submit" class="btn_full" [class.disabled]="isButtonDisabled" [disabled]="isButtonDisabled"
+                      [ngStyle]="isButtonDisabled ? {'pointer-events': 'none', 'opacity': '0.5', 'cursor': 'not-allowed'} : null">
+                <span *ngIf="!isButtonDisabled">Login</span>
+                <span *ngIf="isButtonDisabled">Logging...</span>
+              </button>
+              <a routerLink="/user/register" class="btn_full_outline">Register</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main><!-- End main -->
